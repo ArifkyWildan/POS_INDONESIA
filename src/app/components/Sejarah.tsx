@@ -1,97 +1,153 @@
 "use client";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-import React, { FC } from 'react';
-import { motion } from 'framer-motion';
-import { SectionProps } from '../types';
+// --- Tipe data item sejarah ---
+interface SejarahItem {
+  image: string;
+  title: string;
+  description: string;
+}
 
-// --- 3. Sejarah Component ---
-const Sejarah: FC<SectionProps> = ({ sectionRef }) => {
+// --- Data sejarah ---
+const sejarahData: SejarahItem[] = [
+  {
+    image: "/museum2.jpeg",
+    title: "Gustaaf Willem Baron van Imhoff (1746)",
+    description:
+      "Pada masa Gubernur Jenderal Gustaaf Willem Baron van Imhoff, sistem pos di Hindia Belanda mulai diperkenalkan untuk menghubungkan Batavia dengan daerah lain.",
+  },
+  {
+    image: "museum3.jpeg",
+    title: "Kantor Pos Bandung (1906)",
+    description:
+      "Bangunan megah Kantor Pos Bandung yang kini menjadi Museum Pos Indonesia berdiri pada tahun 1906 sebagai pusat aktivitas pos dan telegraf.",
+  },
+  {
+    image: "museum4.jpeg",
+    title: "Perkembangan Modern",
+    description:
+      "Memasuki era digital, Pos Indonesia terus berinovasi dengan layanan berbasis teknologi untuk menjawab kebutuhan komunikasi masa kini.",
+  },
+];
+
+// --- Ikon panah ---
+const ArrowIcon: React.FC = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="w-6 h-6"
+  >
+    <path d="M5 12h14"></path>
+    <path d="M12 5l7 7-7 7"></path>
+  </svg>
+);
+
+// --- Komponen utama ---
+const Sejarah: React.FC = () => {
+  const [selectedItem, setSelectedItem] = useState<SejarahItem | null>(null);
+
   return (
-    <section
-      ref={sectionRef}
-      id="sejarah"
-      className="py-20 md:py-32 bg-white text-gray-800"
-    >
-      <div className="container mx-auto px-4 max-w-6xl">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-16 uppercase"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
-        >
-          Sejarah Pos Indonesia
-        </motion.h2>
+    <section className="bg-white text-gray-900 py-20 px-5 font-sans">
+      <div className="max-w-6xl mx-auto text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-wide uppercase">
+          SEJARAH POS INDONESIA
+        </h2>
+      </div>
 
-        {/* Image Row */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-12">
-          {/* Image 1 (Left) */}
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        {sejarahData.map((item, index) => (
           <motion.div
-            className="w-full md:w-1/4"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
-          >
-            <img
-              src="https://placehold.co/300x450/d1d5db/6b7280?text=Ukiran+Sejarah"
-              alt="Ukiran Sejarah Pos"
-              className="w-full h-auto object-cover rounded-lg shadow-md"
-            />
-          </motion.div>
-
-          {/* Image 2 (Center) */}
-          <motion.div
-            className="w-full md:w-1/2"
+            key={index}
+            className="flex flex-col bg-white border border-gray-200 rounded-2xl shadow-md p-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.03, zIndex: 10 }}
+            transition={{ duration: 0.6, delay: index * 0.15 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            <img
-              src="https://placehold.co/600x400/9ca3af/ffffff?text=Gedung+Kantor+Pos+Bandung"
-              alt="Gedung Kantor Pos Bandung"
-              className="w-full h-auto object-cover rounded-lg shadow-xl"
-            />
-          </motion.div>
+            {/* Header */}
+            <div className="flex justify-between items-center min-h-[4rem]">
+              <h3 className="text-xl md:text-2xl font-semibold tracking-tight">
+                {item.title}
+              </h3>
+              <button
+                onClick={() => setSelectedItem(item)}
+                className="text-gray-700 hover:text-orange-500 transition-colors flex-shrink-0 ml-4"
+                aria-label="Lihat detail"
+              >
+                <ArrowIcon />
+              </button>
+            </div>
 
-          {/* Image 3 (Right) */}
+            {/* Garis */}
+            <div className="border-b border-gray-300 mt-3 mb-5"></div>
+
+            {/* Gambar */}
+            <div className="w-full h-64 rounded-lg overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src =
+                    "https://placehold.co/400x300/e0e0e0/333333?text=Image+Error";
+                }}
+              />
+            </div>
+
+            <div className="border-b border-gray-300 mt-5 mb-4"></div>
+
+            {/* Deskripsi singkat */}
+            <div className="text-left">
+              <p className="text-gray-700 leading-relaxed line-clamp-3">
+                {item.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Modal detail */}
+      {selectedItem && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/40"
+          onClick={() => setSelectedItem(null)}
+        >
           <motion.div
-            className="w-full md:w-1/4"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-2xl max-w-lg w-full p-6 text-left shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
             <img
-              src="https://placehold.co/300x450/d1d5db/6b7280?text=Detail+Arsitektur"
-              alt="Detail Arsitektur"
-              className="w-full h-auto object-cover rounded-lg shadow-md"
+              src={selectedItem.image}
+              alt={selectedItem.title}
+              className="w-full h-64 object-cover rounded-xl mb-4"
             />
+            <h3 className="text-xl font-bold mb-3 text-[#2E3192]">
+              {selectedItem.title}
+            </h3>
+            <p className="text-gray-800 leading-relaxed">
+              {selectedItem.description}
+            </p>
+            <button
+              onClick={() => setSelectedItem(null)}
+              className="mt-6 bg-[#2E3192] hover:bg-[#24276B] transition-colors px-5 py-2 rounded-xl font-semibold text-white"
+            >
+              Tutup
+            </button>
           </motion.div>
         </div>
-
-        {/* Text Section - UPDATED to match screenshot layout */}
-        <motion.div
-          className="max-w-4xl mx-auto"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, delay: 0.3, ease: 'easeInOut' }}
-        >
-          <div className="text-center mb-8">
-            <h3 className="text-xl md:text-2xl font-semibold uppercase">Gustaaf Willem Baron Van Imhoff</h3>
-            <p className="text-lg md:text-xl font-light text-gray-600 mb-4">(1746–1750)</p>
-          </div>
-          {/* UPDATED Text grid */}
-          <div className="grid md:grid-cols-3 gap-8 text-sm text-gray-600 text-center md:text-left px-4 md:px-0">
-            <p>Didirikan di Batavia (kini Jakarta) pada 26 Agustus 1746 oleh Gubernur Jenderal G.W. Baron van Imhoff.</p>
-            <p>Tujuannya adalah untuk menjamin kelancaran surat-menyurat bagi para pedagang dan pejabat, terutama dari dan ke Belanda.</p>
-            <p>Empat tahun kemudian, kantor pos lain didirikan di Semarang untuk menghubungkan jalur dagang utama.</p>
-          </div>
-        </motion.div>
-      </div>
+      )}
     </section>
   );
 };

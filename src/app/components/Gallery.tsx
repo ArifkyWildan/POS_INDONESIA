@@ -2,16 +2,28 @@
 
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
-import { SectionProps, GalleryImage } from '../types';
+
+// --- (Asumsi) Tipe-tipe ini didefinisikan di '../types' ---
+export interface SectionProps {
+  sectionRef: React.RefObject<HTMLElement>;
+}
+
+export interface GalleryImage {
+  src: string;
+  alt: string;
+}
+// ---
 
 // --- 5. Gallery Component ---
 const Gallery: FC<SectionProps> = ({ sectionRef }) => {
+  // Menggunakan gambar dari Unsplash yang lebih sesuai dengan tema & orientasi
+  // MODIFIKASI: Meminta resolusi (w=600) & kualitas (q=90) lebih tinggi
   const images: GalleryImage[] = [
-    { src: "https://placehold.co/400x500/a3a3a3/ffffff?text=Seni+Bust+18", alt: "Seni Bust" },
-    { src: "https://placehold.co/400x500/8b5cf6/ffffff?text=New+Art+Fest", alt: "New Art Fest" },
-    { src: "https://placehold.co/400x500/f59e0b/ffffff?text=Poster+M", alt: "Poster M" },
-    { src: "https://placehold.co/400x500/78350f/ffffff?text=The+Vilman", alt: "The Vilman" },
-    { src: "https://placehold.co/400x500/ef4444/ffffff?text=Blr", alt: "Blurry Face Art" },
+    { src: "/gallery1.jpg", alt: "Tattooed body" },
+    { src: "/gallery2.jpg", alt: "Tattooing process" },
+    { src: "/gallery3.jpg", alt: "Tattooed neck" },
+    { src: "/gallery4.jpg", alt: "Tattooed hand" },
+    { src: "/gallery5.jpg", alt: "Tattooed back" },
   ];
 
   return (
@@ -31,21 +43,30 @@ const Gallery: FC<SectionProps> = ({ sectionRef }) => {
           Gallery
         </motion.h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+        {/* MODIFIKASI: 
+          - Mengganti 'grid' responsif dengan 'grid-cols-5' yang kaku untuk 5 gambar.
+          - Menambah 'gap-2' (jarak kecil) antar gambar.
+        */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
           {images.map((img, index) => (
             <motion.div
               key={index}
-              className="overflow-hidden rounded-lg shadow-lg cursor-pointer"
+              className="overflow-hidden cursor-pointer relative" // Hapus 'rounded-lg' & 'shadow-lg'
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: (index % 5) * 0.1, ease: 'easeInOut' }}
-              whileHover={{ scale: 1.05, zIndex: 10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeInOut' }} // Delay dibuat berurutan
+              whileHover={{ 
+                scale: 1.05, 
+                zIndex: 10, 
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' // Shadow hanya saat hover
+              }}
             >
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-80 object-cover" // Fixed height for poster-like look
+                className="w-full h-96 md:h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-300" // Efek grayscale
+                onError={(e) => (e.currentTarget.src = `https://placehold.co/400x500/ef4444/ffffff?text=Error`)}
               />
             </motion.div>
           ))}

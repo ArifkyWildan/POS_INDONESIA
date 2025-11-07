@@ -1,18 +1,28 @@
 "use client";
 
-import React, { useState, useRef, RefObject, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Navbar from "./components/Navbar";
-import  Sejarah  from "./components/Sejarah";
-import  Rebranding  from "./components/Rebranding";
-import  Gallery  from "./components/Gallery";
-import  Testimonial  from "./components/Testimonial";
-import  JadwalMap  from "./components/JadwalMap";
-import  ScrollToTopButton  from "./components/ScrollToTopButton";
+import Sejarah from "./components/Sejarah";
+import Rebranding from "./components/Rebranding";
+import Gallery from "./components/Gallery";
+import Testimonial from "./components/Testimonial";
+import JadwalMap from "./components/JadwalMap";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import ChatbotButton from './components/ReusableChatbotButton';
+import ChatbotWidget from './components/ChatbotWidget'; // Import widget chat
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
+  const [isChatOpen, setIsChatOpen] = useState(false); // State untuk buka/tutup chat
+  
+  const handleOpenChat = () => {
+    setIsChatOpen(true); // Buka chat widget
+  };
 
-  // Refs tiap section untuk scroll
+  const handleCloseChat = () => {
+    setIsChatOpen(false); // Tutup chat widget
+  };
+
   const sections = {
     hero: useRef<HTMLDivElement>(null),
     sejarah: useRef<HTMLDivElement>(null),
@@ -22,7 +32,6 @@ export default function Home() {
     jadwal: useRef<HTMLDivElement>(null),
   };
 
-  // Scroll halus ke section
   const handleNavigate = (id: string) => {
     const ref = sections[id as keyof typeof sections];
     if (ref?.current) {
@@ -30,7 +39,6 @@ export default function Home() {
     }
   };
 
-  // Update active section saat scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -54,23 +62,34 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative bg-white text-gray-900">
-       <header
+    <main className="relative bg-indigo-900 text-white min-h-screen overflow-x-hidden">
+      {/* Sidebar/Navbar */}
+      <Navbar />
+
+      {/* Hero Section */}
+      <header
       id="hero"
-      className="relative h-[600px] flex items-center justify-center text-center overflow-hidden"
+      ref={sections.hero}
+      className="relative h-[600px] flex flex-col items-center justify-center text-center overflow-hidden lg:pl-20"
     >
-      
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/museum.jpg')",
-          backgroundAttachment: "fixed",
+          // Pastikan path '/museum1.jpeg' ini benar dan
+          // file-nya ada di folder 'public' Anda.
+          backgroundImage: "url('/museum1.jpeg')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover", // 'cover' akan menutupi area, mungkin memotong sedikit
+                                 // tapi tidak akan 'ketarik' (distorsi).
+                                 // Ini cara standar untuk background hero.
         }}
       >
+        {/* Lapisan overlay gelap */}
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto bg-white/90 rounded-xl shadow-2xl p-8 md:p-12 items-center justify-center">
+      {/* Konten di tengah */}
+      <div className="relative z-10 max-w-4xl mx-auto bg-white/90 rounded-xl shadow-2xl p-8 md:p-12 backdrop-blur-sm">
         <h1 className="text-gray-700 text-lg md:text-xl font-body mb-2 tracking-widest">
           Halo, Selamat Datang di
         </h1>
@@ -78,60 +97,65 @@ export default function Home() {
           MUSEUM POS INDONESIA
         </h2>
         <p className="mt-6 text-base md:text-lg text-gray-700 font-body leading-relaxed max-w-3xl mx-auto">
-          Museum Pos Indonesia, dahulu dikenal sebagai Gedung Museum PTT, adalah
-          salah satu museum tertua di Bandung. Didirikan pada tahun 1931,
-          museum ini menyimpan koleksi bersejarah terkait perjalanan pos,
-          telekomunikasi, dan telegraf di Indonesia sejak zaman kolonial
+          Museum Pos Indonesia, dahulu dikenal sebagai Gedung Museum PTT,
+          adalah salah satu museum tertua di Bandung. Didirikan pada tahun
+          1931, museum ini menyimpan koleksi bersejarah terkait perjalanan
+          pos, telekomunikasi, dan telegraf di Indonesia sejak zaman kolonial
           Belanda.
         </p>
       </div>
     </header>
 
-      {/* Sidebar/Navbar */}
-      <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
-
       {/* Content Container */}
-      <div className="md:ml-24">
-
-
-        {/* Sejarah */}
+      <div className="lg:pl-20">
         <section id="sejarah" ref={sections.sejarah}>
           <Sejarah />
         </section>
 
-        {/* Rebranding */}
         <section id="rebranding" ref={sections.rebranding}>
           <Rebranding />
         </section>
 
-        {/* Gallery */}
         <section id="gallery" ref={sections.gallery}>
           <Gallery />
         </section>
 
-        {/* Testimonial */}
         <section id="testimonial" ref={sections.testimonial}>
           <Testimonial />
         </section>
 
-        {/* Jadwal dan Map */}
         <section id="jadwal" ref={sections.jadwal}>
           <JadwalMap />
         </section>
 
-        {/* 👑 Footer tetap di page.tsx */}
-        <footer className="bg-[#223E8A] text-white py-8 text-center">
-          <p className="text-lg font-semibold tracking-wide">
-            © {new Date().getFullYear()} Museum Pos Indonesia. All rights reserved.
-          </p>
-          <p className="text-sm opacity-80 mt-2">
-            Designed & Developed by <span className="font-bold">King W</span> 👑
-          </p>
+        {/* Footer */}
+        <footer className="relative bg-[#223E8A] text-white pt-20 pb-16">
+          {/* Chatbot Button di Footer */}
+          <div className="absolute top-0 right-8 md:right-16 -translate-y-1/2 z-10">
+            <ChatbotButton onClick={handleOpenChat} />
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-lg">
+              <h2 className="text-3xl font-bold uppercase tracking-wider text-white font-heading">
+                Museum Pos Indonesia
+              </h2>
+              <p className="mt-4 text-base text-indigo-100 leading-relaxed font-body">
+                MUSEUM POS INDONESIA telah hadir sejak masa Hindia Belanda
+                dengan nama Museum PTT (Pos Telegrop dan Telepon), tepatnya pada
+                tahun 1931 terletak dibagian sayap kanan bawah Gedung Kantor
+                Pusat PTT Jalan Cilaki No.73 Bandung 40115.
+              </p>
+            </div>
+          </div>
         </footer>
       </div>
 
       {/* Tombol Scroll ke atas */}
       <ScrollToTopButton />
+
+      {/* Chatbot Widget - Muncul ketika isChatOpen = true */}
+      <ChatbotWidget isOpen={isChatOpen} onClose={handleCloseChat} />
     </main>
   );
 }

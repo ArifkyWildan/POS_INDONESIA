@@ -5,8 +5,9 @@ import { motion } from 'framer-motion';
 
 // --- (Asumsi) Tipe-tipe ini didefinisikan di '../types' ---
 export interface SectionProps {
-  sectionRef: React.RefObject<HTMLElement>;
+  sectionRef: React.RefObject<HTMLDivElement | null>;
 }
+
 
 export interface GalleryImage {
   src: string;

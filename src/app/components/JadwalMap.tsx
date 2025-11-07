@@ -6,8 +6,9 @@ import { motion } from "framer-motion";
 // --- Type Definitions (for a self-contained component) ---
 // You can keep your ../types import if you prefer
 export interface SectionProps {
-  sectionRef: React.RefObject<HTMLElement>;
+  sectionRef: React.RefObject<HTMLDivElement | null>;
 }
+
 
 export interface ScheduleItem {
   day: string;

@@ -23,17 +23,14 @@ export default function Home() {
     setIsChatOpen(false); // Tutup chat widget
   };
 
-  interface SectionProps {
-  sectionRef: RefObject<HTMLDivElement>;
-}
 
   const sections = {
-    hero: useRef<HTMLDivElement>(null),
-    sejarah: useRef<HTMLDivElement>(null),
-    rebranding: useRef<HTMLDivElement>(null),
-    gallery: useRef<HTMLDivElement>(null),
-    testimonial: useRef<HTMLDivElement>(null),
-    jadwal: useRef<HTMLDivElement>(null),
+    hero: useRef<HTMLDivElement | null>(null),
+    sejarah: useRef<HTMLDivElement | null>(null),
+    rebranding: useRef<HTMLDivElement | null>(null),
+    gallery: useRef<HTMLDivElement | null>(null),
+    testimonial: useRef<HTMLDivElement | null>(null),
+    jadwal: useRef<HTMLDivElement | null>(null),
   };
 
   const handleNavigate = (id: string) => {
@@ -117,19 +114,19 @@ export default function Home() {
         </section>
 
         <section id="rebranding" ref={sections.rebranding}>
-          <Rebranding />
+          <Rebranding sectionRef={sections.rebranding} />
         </section>
 
         <section id="gallery" ref={sections.gallery}>
-          <Gallery />
+          <Gallery sectionRef={sections.gallery} />
         </section>
 
         <section id="testimonial" ref={sections.testimonial}>
-          <Testimonial />
+          <Testimonial sectionRef={sections.testimonial} />
         </section>
 
         <section id="jadwal" ref={sections.jadwal}>
-          <JadwalMap />
+          <JadwalMap sectionRef={sections.jadwal} />
         </section>
 
         {/* Footer */}

@@ -23,10 +23,6 @@ export default function Home() {
     setIsChatOpen(false); // Tutup chat widget
   };
 
-  interface SectionProps {
-  sectionRef: RefObject<HTMLDivElement>;
-}
-
   const sections = {
     hero: useRef<HTMLDivElement | null>(null),
     sejarah: useRef<HTMLDivElement | null>(null),

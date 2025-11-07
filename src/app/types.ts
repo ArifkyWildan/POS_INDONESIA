@@ -3,9 +3,8 @@ import { LucideIcon } from 'lucide-react';
 
 // --- Type Definitions ---
 export interface SectionProps {
-  sectionRef: RefObject<HTMLElement>;
+  sectionRef: RefObject<HTMLDivElement | null>;
 }
-
 export interface NavItem {
   id: string;
   icon: LucideIcon;

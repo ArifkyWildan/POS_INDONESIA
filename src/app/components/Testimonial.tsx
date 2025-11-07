@@ -13,9 +13,10 @@ interface TestimonialItem {
 }
 
 // Tipe untuk props yang diterima oleh komponen Section
-interface SectionProps {
-  sectionRef: RefObject<HTMLElement>;
+export interface SectionProps {
+  sectionRef: React.RefObject<HTMLDivElement | null>;
 }
+
 
 // ─── Komponen Testimonial ─────────────────────────────────────
 

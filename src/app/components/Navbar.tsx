@@ -1,34 +1,31 @@
-import { useState, useEffect } from "react";
+"use client";
 
-// Simple SVG Icon Components
+import { useState, useEffect } from "react";
+import Link from "next/link";
+
+// --- ICON BARU MENGGUNAKAN GAMBAR ---
 const HomeIcon = () => (
-  <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-  </svg>
+  <img
+    src="/home.webp"
+    alt="Home"
+    className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+  />
 );
 
 const LandmarkIcon = () => (
-  <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-  </svg>
+  <img
+    src="/koleksi.webp"
+    alt="Sejarah"
+    className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+  />
 );
 
 const RedoIcon = () => (
-  <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-  </svg>
-);
-
-const ImageIcon = () => (
-  <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-  </svg>
-);
-
-const MessageIcon = () => (
-  <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-  </svg>
+  <img
+    src="/vr.webp"
+    alt="Rebranding"
+    className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+  />
 );
 
 const MenuIcon = () => (
@@ -43,17 +40,16 @@ const XIcon = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
+// --- NAV ITEM ---
 const navItems = [
   { href: "/#hero", icon: HomeIcon, label: "Home", type: "link" as const },
   { href: "/#sejarah", icon: LandmarkIcon, label: "Sejarah", type: "modal" as const },
   { href: "/#rebranding", icon: RedoIcon, label: "Rebranding", type: "link" as const },
-  { href: "/#gallery", icon: ImageIcon, label: "Galeri", type: "link" as const },
-  { href: "/#testimonial", icon: MessageIcon, label: "Testimoni", type: "link" as const },
 ];
 
-// Collection cards data
+// --- KOLEKSI SEJARAH ---
 const sejarahCollections = [
-  { id: 1, title: "CHAPTER VI", subtitle: "Awal Mula Pos Indonesia", image: "/museum.jpg" },
+  { id: 1, title: "CHAPTER VI", subtitle: "Awal Mula Pos Indonesia", image: "/museum.jpg", href: "/pos-sejarah" },
   { id: 2, title: "GLOBAL PROJECT ATLANTIS", subtitle: "Ekspansi Dunia", image: "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop" },
   { id: 3, title: "MARY JAMES BROWN", subtitle: "Tokoh Penting", image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop" },
   { id: 4, title: "NEW REVOLUTION AT 1942", subtitle: "Era Kemerdekaan", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop" },
@@ -131,48 +127,24 @@ const Navbar = () => {
     <>
       <style>{`
         @keyframes slideInFromLeft {
-          from {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
+          from { transform: translateX(-100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
         }
         @keyframes fadeInOverlay {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        .animate-slide-in {
-          animation: slideInFromLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .animate-fade-in {
-          animation: fadeInOverlay 0.3s ease-out;
-        }
-        .animate-fade-up {
-          animation: fadeInUp 0.6s ease-out forwards;
-          opacity: 0;
-        }
+        .animate-slide-in { animation: slideInFromLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .animate-fade-in { animation: fadeInOverlay 0.3s ease-out; }
+        .animate-fade-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
       `}</style>
 
-      {/* Main Navbar - Design Original dari Kode Anda */}
+      {/* Main Navbar */}
       <nav className="fixed top-0 inset-x-0 bg-indigo-900 text-white z-50 flex justify-between items-center py-3 px-4 shadow-2xl sm:py-3 lg:top-0 lg:bottom-0 lg:left-0 lg:w-20 lg:right-auto lg:flex-col lg:py-6 lg:justify-start lg:items-center transition-all duration-300">
-        
         <div className="text-white font-bold text-lg lg:hidden">POS IND</div>
         <div className="hidden lg:block">
           <Logo />
@@ -186,7 +158,7 @@ const Navbar = () => {
           <MenuIcon />
         </button>
 
-        {/* Desktop Navigation - Sesuai Kode Original */}
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:flex-col lg:items-center lg:space-y-4 lg:w-full">
           {navItems.map((item) => {
             const isActive = getIsActive(item) || (isSejarahModalOpen && item.type === "modal");
@@ -198,15 +170,10 @@ const Navbar = () => {
                 href={item.type === "link" ? item.href : "#"}
                 onClick={(e) => handleNavClick(e, item)}
                 title={item.label}
-                className={`
-                  group relative flex justify-center items-center
+                className={`group relative flex justify-center items-center
                   w-12 h-12 lg:w-full lg:py-3 
                   transition-all duration-300 rounded-xl cursor-pointer
-                  ${
-                    isActive
-                      ? "text-white bg-indigo-700/40"
-                      : "text-indigo-300 hover:text-white hover:bg-indigo-700/20"
-                  }
+                  ${isActive ? "text-white bg-indigo-700/40" : "text-indigo-300 hover:text-white hover:bg-indigo-700/20"}
                 `}
               >
                 <Icon />
@@ -219,7 +186,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu - Design Original */}
+      {/* Mobile Menu */}
       <div className={`fixed inset-0 z-[60] bg-indigo-950 flex flex-col items-center justify-center transition-transform duration-300 ease-in-out lg:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <button
           onClick={() => setIsMenuOpen(false)}
@@ -240,9 +207,7 @@ const Navbar = () => {
                 href={item.type === "link" ? item.href : "#"}
                 onClick={(e) => {
                   handleNavClick(e, item);
-                  if (item.type === "link") {
-                    setIsMenuOpen(false);
-                  }
+                  if (item.type === "link") setIsMenuOpen(false);
                 }}
                 title={item.label}
                 className={`flex items-center w-full px-6 py-3 text-2xl font-medium rounded-lg transition-colors duration-200 ${isActive ? "text-white bg-indigo-700/50" : "text-indigo-200 hover:text-white"}`}
@@ -255,7 +220,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Sejarah Modal Panel - NEW DESIGN */}
+      {/* Sejarah Modal */}
       {isSejarahModalOpen && (
         <div
           className="fixed inset-0 z-[55] bg-black/80 backdrop-blur-sm animate-fade-in"
@@ -274,7 +239,7 @@ const Navbar = () => {
               <XIcon />
             </button>
 
-            {/* Header Section dengan Design Baru */}
+            {/* Header */}
             <div className="relative px-8 py-12 lg:px-16 lg:py-16 border-b border-white/5">
               <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
                 <div className="flex items-baseline gap-3 mb-4">
@@ -290,7 +255,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Collection Grid dengan Design seperti Foto */}
+            {/* Collection Grid */}
             <div className="px-8 py-10 lg:px-16 lg:py-12">
               <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <h2 className="text-xl font-semibold text-white/90 mb-8 uppercase tracking-wider flex items-center gap-3">
@@ -300,41 +265,48 @@ const Navbar = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {sejarahCollections.map((collection, index) => (
-                  <div
-                    key={collection.id}
-                    className="group relative overflow-hidden rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition-all duration-500 cursor-pointer border border-white/5 hover:border-indigo-500/30 animate-fade-up"
-                    style={{ animationDelay: `${0.3 + index * 0.08}s` }}
-                  >
-                    {/* Image Container */}
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={collection.image}
-                        alt={collection.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
-                      />
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
-                      
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-indigo-900/0 group-hover:bg-indigo-900/20 transition-all duration-500"></div>
-                    </div>
+                {sejarahCollections.map((collection, index) => {
+                  const CardContent = (
+                    <div
+                      key={collection.id}
+                      className="group relative overflow-hidden rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition-all duration-500 cursor-pointer border border-white/5 hover:border-indigo-500/30 animate-fade-up"
+                      style={{ animationDelay: `${0.3 + index * 0.08}s` }}
+                    >
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={collection.image}
+                          alt={collection.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
+                      </div>
 
-                    {/* Content Overlay - Design seperti foto */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-5">
-                      <h3 className="text-white font-bold text-base lg:text-lg uppercase tracking-wide mb-1 drop-shadow-2xl leading-tight">
-                        {collection.title}
-                      </h3>
-                      <p className="text-slate-300 text-xs drop-shadow-lg">{collection.subtitle}</p>
-                    </div>
+                      <div className="absolute inset-0 flex flex-col justify-end p-5">
+                        <h3 className="text-white font-bold text-base lg:text-lg uppercase tracking-wide mb-1 drop-shadow-2xl leading-tight">
+                          {collection.title}
+                        </h3>
+                        <p className="text-slate-300 text-xs drop-shadow-lg">{collection.subtitle}</p>
+                      </div>
 
-                    {/* Border Accent on Hover */}
-                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-indigo-500/30 transition-all duration-500 rounded-lg"></div>
-                  </div>
-                ))}
+                      <div className="absolute inset-0 border-2 border-transparent group-hover:border-indigo-500/30 transition-all duration-500 rounded-lg"></div>
+                    </div>
+                  );
+
+                  return collection.href ? (
+                    <Link
+                      href={collection.href}
+                      key={collection.id}
+                      onClick={() => setIsSejarahModalOpen(false)}
+                    >
+                      {CardContent}
+                    </Link>
+                  ) : (
+                    CardContent
+                  );
+                })}
               </div>
 
-              {/* Info Footer */}
+              {/* Footer Info */}
               <div className="mt-12 p-6 bg-indigo-950/20 rounded-lg border border-indigo-500/10 animate-fade-up" style={{ animationDelay: '0.85s' }}>
                 <p className="text-slate-300 text-sm leading-relaxed">
                   Jelajahi perjalanan sejarah Pos Indonesia dari masa ke masa. 

@@ -10,6 +10,7 @@ import JadwalMap from "./components/JadwalMap";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import ChatbotButton from './components/ReusableChatbotButton';
 import ChatbotWidget from './components/ChatbotWidget'; // Import widget chat
+const ChatbotWidgetTyped = (ChatbotWidget as unknown) as React.FC<{ isOpen: boolean; onClose: () => void }>;
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -130,11 +131,6 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="relative bg-[#223E8A] text-white pt-20 pb-16">
-          {/* Chatbot Button di Footer */}
-          <div className="absolute top-0 right-8 md:right-16 -translate-y-1/2 z-10">
-            <ChatbotButton onClick={handleOpenChat} />
-          </div>
-
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-lg">
               <h2 className="text-3xl font-bold uppercase tracking-wider text-white font-heading">
@@ -151,11 +147,8 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* Tombol Scroll ke atas */}
-      <ScrollToTopButton />
-
       {/* Chatbot Widget - Muncul ketika isChatOpen = true */}
-      <ChatbotWidget isOpen={isChatOpen} onClose={handleCloseChat} />
+      <ChatbotWidgetTyped isOpen={isChatOpen} onClose={handleCloseChat} />
     </main>
   );
 }

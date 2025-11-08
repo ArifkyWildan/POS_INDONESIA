@@ -6,17 +6,17 @@ import {
   Redo,
   Image,
   MessageSquare,
-  Menu, // Impor ikon 'garis tiga'
-  X, // Impor ikon 'tutup'
+  Menu,
+  X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const navItems = [
-  { href: "/#hero", icon: Home, label: "Home" },
-  { href: "/#sejarah", icon: Landmark, label: "Sejarah" },
-  { href: "/#rebranding", icon: Redo, label: "Rebranding" },
-  { href: "/#gallery", icon: Image, label: "Galeri" },
-  { href: "/#testimonial", icon: MessageSquare, label: "Testimoni" },
+  { href: "/#hero", icon: Home, label: "Home", type: "link" as const },
+  { href: "/#sejarah", icon: Landmark, label: "Sejarah", type: "modal" as const },
+  { href: "/#rebranding", icon: Redo, label: "Rebranding", type: "link" as const },
+  { href: "/#gallery", icon: Image, label: "Galeri", type: "link" as const },
+  { href: "/#testimonial", icon: MessageSquare, label: "Testimoni", type: "link" as const },
 ];
 
 const Logo: React.FC = () => (
@@ -38,8 +38,8 @@ const Logo: React.FC = () => (
 const Navbar: React.FC = () => {
   const [pathname, setPathname] = useState("");
   const [hash, setHash] = useState("");
-  // State untuk mengontrol menu mobile (terbuka/tertutup)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSejarahModalOpen, setIsSejarahModalOpen] = useState(false);
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -49,7 +49,6 @@ const Navbar: React.FC = () => {
     handleLocationChange();
     window.addEventListener("hashchange", handleLocationChange);
 
-    // Mencegah body scroll saat menu mobile terbuka
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -58,11 +57,10 @@ const Navbar: React.FC = () => {
 
     return () => {
       window.removeEventListener("hashchange", handleLocationChange);
-      document.body.style.overflow = "auto"; // Pastikan scroll kembali normal saat unmount
+      document.body.style.overflow = "auto";
     };
-  }, [isMenuOpen, hash]); // Tambahkan hash dan isMenuOpen sebagai dependensi
+  }, [isMenuOpen, hash]);
 
-  // Fungsi helper untuk menentukan item aktif (menghindari duplikasi)
   const getIsActive = (item: (typeof navItems)[0]) => {
     const currentAnchor = hash.replace("#", "");
     const itemAnchor = item.href.replace("/#", "");
@@ -75,39 +73,44 @@ const Navbar: React.FC = () => {
     );
   };
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: (typeof navItems)[0]
+  ) => {
+    if (item.type === "modal") {
+      e.preventDefault();
+      setIsSejarahModalOpen(true);
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <>
-      {/* Navigasi Utama */}
       <nav
         className="
           fixed top-0 inset-x-0 
           bg-indigo-900 text-white z-50 
-          flex justify-between items-center py-3 px-4 /* Mobile: Top Bar */
+          flex justify-between items-center py-3 px-4
           shadow-2xl
           sm:py-3
-          lg:top-0 lg:bottom-0 lg:left-0 lg:w-20 lg:right-auto /* Desktop: Left Bar */
+          lg:top-0 lg:bottom-0 lg:left-0 lg:w-20 lg:right-auto
           lg:flex-col lg:py-6 lg:justify-start lg:items-center
           transition-all duration-300
         "
       >
-        {/* Mobile: Nama Brand */}
         <div className="text-white font-bold text-lg lg:hidden">POS IND</div>
-
-        {/* Desktop: Logo */}
         <div className="hidden lg:block">
           <Logo />
         </div>
 
-        {/* Mobile: Tombol Hamburger */}
         <button
-          onClick={() => setIsMenuOpen(true)} // Buka menu
+          onClick={() => setIsMenuOpen(true)}
           className="lg:hidden z-50 p-1"
           aria-label="Buka menu"
         >
           <Menu className="w-7 h-7" />
         </button>
 
-        {/* Desktop: Navigasi Ikon (Sidebar Kiri) */}
         <div
           className="
             hidden lg:flex lg:flex-col lg:items-center 
@@ -121,12 +124,13 @@ const Navbar: React.FC = () => {
             return (
               <a
                 key={item.href}
-                href={item.href}
+                href={item.type === "link" ? item.href : "#"}
+                onClick={(e) => handleNavClick(e, item)}
                 title={item.label}
                 className={`
                   group relative flex justify-center items-center
                   w-12 h-12 lg:w-full lg:py-3 
-                  transition-all duration-300 rounded-xl
+                  transition-all duration-300 rounded-xl cursor-pointer
                   ${
                     isActive
                       ? "text-white bg-indigo-700/40"
@@ -135,7 +139,6 @@ const Navbar: React.FC = () => {
                 `}
               >
                 <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
-                {/* Tooltip untuk desktop */}
                 <span
                   className="
                     absolute left-full ml-3 top-1/2 -translate-y-1/2
@@ -153,7 +156,6 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile: Menu Overlay (tampil saat isMenuOpen true) */}
       <div
         className={`
           fixed inset-0 z-[60] bg-indigo-950 
@@ -163,16 +165,14 @@ const Navbar: React.FC = () => {
           ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        {/* Tombol Tutup (di dalam overlay) */}
         <button
-          onClick={() => setIsMenuOpen(false)} // Tutup menu
+          onClick={() => setIsMenuOpen(false)}
           className="absolute top-4 right-4 text-white p-2"
           aria-label="Tutup menu"
         >
           <X className="w-8 h-8" />
         </button>
 
-        {/* Navigasi Teks (di dalam overlay) */}
         <div className="flex flex-col items-center space-y-6">
           {navItems.map((item) => {
             const isActive = getIsActive(item);
@@ -181,9 +181,14 @@ const Navbar: React.FC = () => {
             return (
               <a
                 key={item.href}
-                href={item.href}
+                href={item.type === "link" ? item.href : "#"}
+                onClick={(e) => {
+                  handleNavClick(e, item);
+                  if (item.type === "link") {
+                    setIsMenuOpen(false);
+                  }
+                }}
                 title={item.label}
-                onClick={() => setIsMenuOpen(false)} // Tutup menu saat item diklik
                 className={`
                   flex items-center w-full px-6 py-3 
                   text-2xl font-medium rounded-lg
@@ -202,6 +207,7 @@ const Navbar: React.FC = () => {
           })}
         </div>
       </div>
+
     </>
   );
 };

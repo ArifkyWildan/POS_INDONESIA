@@ -1,0 +1,39 @@
+[33meef0016[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mwildan[m[33m, [m[1;31morigin/vanya[m[33m)[m HEAD@{0}: pull origin vanya: Fast-forward
+[33m4d27c84[m HEAD@{1}: reset: moving to HEAD
+[33m4d27c84[m HEAD@{2}: pull origin vanya: Fast-forward
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{3}: reset: moving to HEAD
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{4}: checkout: moving from main to wildan
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{5}: checkout: moving from wildan to main
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{6}: checkout: moving from main to wildan
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{7}: checkout: moving from wildan to main
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{8}: pull origin main: Fast-forward
+[33m6d9858d[m[33m ([m[1;31morigin/wildan[m[33m)[m HEAD@{9}: checkout: moving from main to wildan
+[33m80d0018[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{10}: pull origin main --rebase: Fast-forward
+[33m6d9858d[m[33m ([m[1;31morigin/wildan[m[33m)[m HEAD@{11}: pull origin wildan: Fast-forward
+[33md2e851b[m HEAD@{12}: checkout: moving from wildan to main
+[33m6d9858d[m[33m ([m[1;31morigin/wildan[m[33m)[m HEAD@{13}: commit: up
+[33m1cf3ca3[m HEAD@{14}: commit: up
+[33md2e851b[m HEAD@{15}: pull origin main: Fast-forward
+[33m20d143d[m HEAD@{16}: checkout: moving from main to wildan
+[33md2e851b[m HEAD@{17}: commit: up
+[33m483b584[m HEAD@{18}: commit: up
+[33mf6e1106[m HEAD@{19}: pull origin main: Fast-forward
+[33m8833b81[m HEAD@{20}: pull origin main --rebase (finish): returning to refs/heads/main
+[33m8833b81[m HEAD@{21}: pull origin main --rebase (pick): up
+[33m7958bd8[m HEAD@{22}: pull origin main --rebase (pick): up
+[33mb1a9f9c[m HEAD@{23}: pull origin main --rebase (start): checkout b1a9f9c8ed52dbdb405795fd6d14e874b8ae9a3b
+[33mb708588[m HEAD@{24}: commit: up
+[33m20d143d[m HEAD@{25}: pull origin wildan: Fast-forward
+[33mb683ef2[m HEAD@{26}: checkout: moving from wildan to main
+[33m20d143d[m HEAD@{27}: commit: up
+[33m4c3974b[m HEAD@{28}: commit: up
+[33mfc4bb76[m HEAD@{29}: commit: up
+[33md614600[m HEAD@{30}: commit: up
+[33mb683ef2[m HEAD@{31}: checkout: moving from main to wildan
+[33mb683ef2[m HEAD@{32}: pull origin wildan: Fast-forward
+[33me1c7251[m HEAD@{33}: checkout: moving from wildan to main
+[33mb683ef2[m HEAD@{34}: commit: up
+[33me1c7251[m HEAD@{35}: checkout: moving from main to wildan
+[33me1c7251[m HEAD@{36}: pull origin main: Fast-forward
+[33m3bad13a[m HEAD@{37}: Branch: renamed refs/heads/master to refs/heads/main
+[33m3bad13a[m HEAD@{39}: commit (initial): first commit

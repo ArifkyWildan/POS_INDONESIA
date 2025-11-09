@@ -264,47 +264,60 @@ const Navbar = () => {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {sejarahCollections.map((collection, index) => {
-                  const CardContent = (
-                    <div
-                      key={collection.id}
-                      className="group relative overflow-hidden rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition-all duration-500 cursor-pointer border border-white/5 hover:border-indigo-500/30 animate-fade-up"
-                      style={{ animationDelay: `${0.3 + index * 0.08}s` }}
-                    >
-                      <div className="relative h-48 overflow-hidden">
-                        <img
-                          src={collection.image}
-                          alt={collection.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
-                      </div>
-
-                      <div className="absolute inset-0 flex flex-col justify-end p-5">
-                        <h3 className="text-white font-bold text-base lg:text-lg uppercase tracking-wide mb-1 drop-shadow-2xl leading-tight">
-                          {collection.title}
-                        </h3>
-                        <p className="text-slate-300 text-xs drop-shadow-lg">{collection.subtitle}</p>
-                      </div>
-
-                      <div className="absolute inset-0 border-2 border-transparent group-hover:border-indigo-500/30 transition-all duration-500 rounded-lg"></div>
-                    </div>
-                  );
-
-                  return collection.href ? (
-                    <Link
-                      href={collection.href}
-                      key={collection.id}
-                      onClick={() => setIsSejarahModalOpen(false)}
-                    >
-                      {CardContent}
-                    </Link>
-                  ) : (
-                    CardContent
-                  );
-                })}
+               {/* Grid Container */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sejarahCollections.map((collection, index) => {
+            const CardContent = (
+              <div
+                key={collection.id}
+                // Menghilangkan hover:shadow-indigo-500/30
+                className="group relative overflow-hidden rounded-xl bg-slate-800/30 transition-all duration-500 cursor-pointer border border-white/10 hover:border-indigo-400/50 shadow-xl animate-fade-up" 
+                style={{ animationDelay: `${0.3 + index * 0.08}s` }}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={collection.image}
+                    alt={collection.title}
+                    // Retain zoom effect on image
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
+                   
+                  />
+                  {/* Container Overlay Indigo Transparan & 2 Text (Muncul saat Hover) */}
+                  <div className="absolute inset-0 flex flex-col items-start justify-end p-5 text-left
+                                 bg-transparent group-hover:bg-indigo-900/70 
+                                 transition-all duration-500 opacity-0 group-hover:opacity-100">
+                      
+                    <h3 className="text-white font-extrabold text-xl uppercase tracking-wider drop-shadow-2xl mb-1">
+                      {collection.title}
+                    </h3>
+                    <p className="text-indigo-300 text-sm tracking-wide">
+                        {collection.subtitle}
+                    </p>
+                  </div>
+                </div>
               </div>
+            );
+
+            return collection.href ? (
+              <Link
+                href={collection.href}
+                key={collection.id}
+                onClick={(e) => {
+                    e.preventDefault();
+                    console.log(`Navigating to ${collection.href}: ${collection.title}`);
+                }}
+              >
+                {CardContent}
+              </Link>
+            ) : (
+              // Non-link version
+              <div key={collection.id}>
+                 {CardContent}
+                 <p className="text-xs text-red-400 mt-2"> (Konten Belum Tersedia) </p>
+              </div>
+            );
+          })}
+        </div>
 
               {/* Footer Info */}
               <div className="mt-12 p-6 bg-indigo-950/20 rounded-lg border border-indigo-500/10 animate-fade-up" style={{ animationDelay: '0.85s' }}>

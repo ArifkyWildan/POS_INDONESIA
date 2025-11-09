@@ -91,13 +91,13 @@ export default function Home() {
 
       {/* Konten di tengah */}
       <div className="relative z-10 max-w-4xl mx-auto bg-white/90 rounded-xl shadow-2xl p-8 md:p-12 backdrop-blur-sm">
-        <h1 className="text-gray-700 text-lg md:text-xl font-body mb-2 tracking-widest">
+        <h1 className="text-indigo-900 text-lg md:text-xl font-body mb-2 tracking-widest">
           Halo, Selamat Datang di
         </h1>
-        <h2 className="text-gray-900 text-5xl md:text-7xl font-heading tracking-tight">
+        <h2 className="text-indigo-900 text-5xl md:text-7xl font-bold font-heading tracking-tight">
           MUSEUM POS INDONESIA
         </h2>
-        <p className="mt-6 text-base md:text-lg text-gray-700 font-body leading-relaxed max-w-3xl mx-auto">
+        <p className="mt-6 text-base md:text-lg text-indigo-900 font-body leading-relaxed max-w-3xl mx-auto">
           Museum Pos Indonesia, dahulu dikenal sebagai Gedung Museum PTT,
           adalah salah satu museum tertua di Bandung. Didirikan pada tahun
           1931, museum ini menyimpan koleksi bersejarah terkait perjalanan

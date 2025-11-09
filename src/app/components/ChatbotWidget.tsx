@@ -5,31 +5,22 @@ import React, { useState, useRef, useEffect } from 'react';
 // --- Ikon SVG ---
 // Ikon untuk tombol chat, dibuat ulang dari gambar yang diberikan
 const PosBotIcon: React.FC = () => (
-  <svg width="64" height="64" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Badan bubble oranye */}
-    <path 
-      d="M71.5 39.5C71.5 57.4493 57.4493 71.5 39.5 71.5C34.223 71.5 29.2132 70.334 24.787 68.2134C19.897 72.8287 13.5011 75.3364 6.5 76C7.81895 68.3188 9.57143 61.218 12.115 55.102C9.52599 50.2731 8 45.0347 8 39.5C8 21.5507 22.0507 7.5 39.5 7.5C57.4493 7.5 71.5 21.5507 71.5 39.5Z" 
-      fill="#F97316" // Orange-600
-    />
-    {/* Headset (putih) */}
-    <rect x="20" y="27" width="40" height="30" rx="15" fill="white"/>
-    {/* Mata (lingkaran dalam oranye) */}
-    <circle cx="32" cy="42" r="5" fill="#F97316"/>
-    <circle cx="48" cy="42" r="5" fill="#F97316"/>
-    {/* Mata (lingkaran luar putih) */}
-    <circle cx="32" cy="42" r="8" stroke="white" strokeWidth="3"/>
-    <circle cx="48" cy="42" r="8" stroke="white" strokeWidth="3"/>
-    {/* Senyum (putih) */}
-    <path 
-      d="M30 51C30 49.8954 34.0294 49 39.5 49C44.9706 49 49 49.8954 49 51" 
-      stroke="white" 
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-    {/* Mikrofon (biru) */}
-    <circle cx="58" cy="45" r="7" fill="#2563EB"/>
-    <path d="M54 43C53 37 49 29 42 28" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-  </svg>
+  <img 
+    src="/chatbot-icon.png" // <-- Replace this with your actual image URL
+    alt="PosBot Icon" 
+    width="78" 
+    height="78" 
+    // You can add a style to control sizing if needed
+  />
+);
+const PosBotHover: React.FC = () => (
+  <img 
+    src="/chatbot-popup.png" // <-- Replace this with your actual image URL
+    alt="PosBot Icon" 
+    width="112" 
+    height="74" 
+    // You can add a style to control sizing if needed
+  />
 );
 
 // Ikon X (Tutup)
@@ -430,24 +421,22 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ onClick }) => {
       {/* Tombol Ikon */}
       <button
         onClick={onClick}
-        className="w-16 h-16 rounded-full bg-orange-500 shadow-lg flex items-center justify-center text-white transform transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-orange-300 active:scale-95"
+        className="w-16 h-16 rounded-full  flex items-center justify-center text-white transform transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-orange-300 active:scale-95"
         aria-label="Buka chat bantuan"
       >
-        <div className="w-12 h-12">
-            <PosBotIcon />
+        <div className="w-16 h-16">
+          <PosBotIcon />
         </div>
       </button>
 
       {/* Tooltip "Need Help?" saat hover */}
-      <div className="absolute bottom-1/2 translate-y-1/2 right-20 w-auto p-0 m-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="relative bg-blue-900 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md">
-          Need Help?
-          {/* Segitiga pointer untuk speech bubble */}
-          <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0
-            border-t-8 border-t-transparent
-            border-b-8 border-b-transparent
-            border-l-8 border-l-blue-900">
-          </div>
+      <div className="absolute bottom-1/2 translate-y-1/2 right-10 w-auto p-0 m-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="relative ">
+         <div className="w-34 h-14">
+          <PosBotHover />
+        </div>
+          
+         
         </div>
       </div>
     </div>

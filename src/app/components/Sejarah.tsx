@@ -13,21 +13,21 @@ interface SejarahItem {
 const sejarahData: SejarahItem[] = [
   {
     image: "/museum2.jpeg",
-    title: "Gustaaf Willem Baron van Imhoff (1746)",
+    title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "Pada masa Gubernur Jenderal Gustaaf Willem Baron van Imhoff, sistem pos di Hindia Belanda mulai diperkenalkan untuk menghubungkan Batavia dengan daerah lain.",
+      "gustaaf willem baron van imhoff dilahirkan di leer, Jerman 8 Agustus 1705 dan Meninggal pada tanggal 1 November 1750 di Batavia. gustaaf willem baron van imhoff membuka kantor pos pertama di batavia.",
   },
   {
-    image: "museum3.jpeg",
-    title: "Kantor Pos Bandung (1906)",
+    image: "/museum3.jpeg",
+    title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "Bangunan megah Kantor Pos Bandung yang kini menjadi Museum Pos Indonesia berdiri pada tahun 1906 sebagai pusat aktivitas pos dan telegraf.",
+      "gustaaf willem baron van imhoff dilahirkan di leer, Jerman 8 Agustus 1705 dan Meninggal pada tanggal 1 November 1750 di Batavia. gustaaf willem baron van imhoff membuka kantor pos pertama di batavia.",
   },
   {
-    image: "museum4.jpeg",
-    title: "Perkembangan Modern",
+    image: "/museum4.jpeg",
+    title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "Memasuki era digital, Pos Indonesia terus berinovasi dengan layanan berbasis teknologi untuk menjawab kebutuhan komunikasi masa kini.",
+      "gustaaf willem baron van imhoff dilahirkan di leer, Jerman 8 Agustus 1705 dan Meninggal pada tanggal 1 November 1750 di Batavia. gustaaf willem baron van imhoff membuka kantor pos pertama di batavia.",
   },
 ];
 

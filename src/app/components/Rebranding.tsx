@@ -9,27 +9,27 @@ const Rebranding: FC<SectionProps> = ({ sectionRef }) => {
   const logos: (Logo & { title: string; desc: string })[] = [
     {
       src: "/logopos1.jpeg",
-      alt: "Logo PTT",
+      alt: "PN POSTEL 1956-1965",
       title: "Logo PTT (1946)",
-      desc: "Logo pertama milik Dinas Pos, Telegraf, dan Telepon (PTT) setelah kemerdekaan Indonesia.",
+      desc: "Tahun 1961, status Jawatan berubah menjadi PN POSTEL sesuai PP No. 240 Tahun 1961.",
     },
     {
       src: "/logopos2.jpeg",
-      alt: "Logo Pos dan Giro",
+      alt: "PN POSTEL 1956-1965",
       title: "Logo Pos dan Giro (1965)",
-      desc: "Menandakan transformasi dari PTT menjadi Direktorat Jenderal Pos dan Giro di bawah Departemen Perhubungan.",
+      desc: "PN POSTEL dipecah menjadi PN Pos & Giro dan PN Telekomunikasi melalui PP No. 29 & 30 Tahun 1965.",
     },
     {
       src: "/logopos3.jpeg",
-      alt: "Logo Pos Indonesia 1995",
+      alt: "Logo PT Pos Indonesia (Persero) 1995",
       title: "Logo Pos Indonesia (1995)",
-      desc: "Perubahan menjadi perusahaan umum dengan simbol burung garuda terbang membawa surat.",
+      desc: "Menampilkan burung merpati pos yang melambangkan kecepatan, kebebasan, dan jangkauan global.",
     },
     {
       src: "/logopos4.jpeg",
-      alt: "Logo Pos Indonesia Modern",
+      alt: "Keputusan Direksi Nomor 95/Dirut/1112",
       title: "Logo Pos Indonesia Modern",
-      desc: "Identitas modern dengan konsep globalisasi dan kecepatan layanan digital Pos Indonesia.",
+      desc: "Burung merpati terbang lurus ke depan melambangkan kecepatan, ketepatan, dan kepercayaan.",
     },
   ];
 
@@ -89,7 +89,7 @@ const Rebranding: FC<SectionProps> = ({ sectionRef }) => {
                   {logo.title}
                 </h3>
                 <p
-                  className="text-sm md:text-base leading-relaxed"
+                  className="text-xs md:text-base leading-relaxed"
                   style={{ color: "#2E3192" }}
                 >
                   {logo.desc}

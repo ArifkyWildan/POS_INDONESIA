@@ -78,7 +78,7 @@ export default function Home() {
         style={{
           // Pastikan path '/museum1.jpeg' ini benar dan
           // file-nya ada di folder 'public' Anda.
-          backgroundImage: "url('/museum1.jpeg')",
+          backgroundImage: "url('/museumm.webp')",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover", // 'cover' akan menutupi area, mungkin memotong sedikit
                                  // tapi tidak akan 'ketarik' (distorsi).

@@ -88,10 +88,11 @@ const sejarahCollections = [
   },
   {
     id: 2,
-    title: "GLOBAL PROJECT ATLANTIS",
+    title: "Prangko",
     subtitle: "Ekspansi Dunia",
     image:
       "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop",
+    href: "/prangko",
   },
   {
     id: 3,
@@ -403,19 +404,6 @@ const Navbar = () => {
                     CardContent
                   );
                 })}
-              </div>
-
-              {/* Footer Info */}
-              <div
-                className="mt-12 p-6 bg-indigo-950/20 rounded-lg border border-indigo-500/10 animate-fade-up"
-                style={{ animationDelay: "0.85s" }}
-              >
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Jelajahi perjalanan sejarah Pos Indonesia dari masa ke masa.
-                  Setiap koleksi menceritakan kisah penting dalam perkembangan
-                  layanan pos di Indonesia dan kontribusinya terhadap kemajuan
-                  bangsa.
-                </p>
               </div>
             </div>
           </div>

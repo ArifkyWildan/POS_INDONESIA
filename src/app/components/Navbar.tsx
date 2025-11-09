@@ -29,32 +29,98 @@ const RedoIcon = () => (
 );
 
 const MenuIcon = () => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  <svg
+    className="w-7 h-7"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 6h16M4 12h16M4 18h16"
+    />
   </svg>
 );
 
 const XIcon = ({ className = "w-6 h-6" }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );
 
 // --- NAV ITEM ---
 const navItems = [
   { href: "/#hero", icon: HomeIcon, label: "Home", type: "link" as const },
-  { href: "/#sejarah", icon: LandmarkIcon, label: "Sejarah", type: "modal" as const },
-  { href: "/#rebranding", icon: RedoIcon, label: "Rebranding", type: "link" as const },
+  {
+    href: "/#sejarah",
+    icon: LandmarkIcon,
+    label: "Sejarah",
+    type: "modal" as const,
+  },
+  {
+    href: "/#rebranding",
+    icon: RedoIcon,
+    label: "Rebranding",
+    type: "link" as const,
+  },
 ];
 
 // --- KOLEKSI SEJARAH ---
 const sejarahCollections = [
-  { id: 1, title: "CHAPTER VI", subtitle: "Awal Mula Pos Indonesia", image: "/museum.jpg", href: "/pos-sejarah" },
-  { id: 2, title: "GLOBAL PROJECT ATLANTIS", subtitle: "Ekspansi Dunia", image: "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop" },
-  { id: 3, title: "MARY JAMES BROWN", subtitle: "Tokoh Penting", image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop" },
-  { id: 4, title: "NEW REVOLUTION AT 1942", subtitle: "Era Kemerdekaan", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop" },
-  { id: 5, title: "ATLANTIS PROJECT", subtitle: "Era Modern", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop" },
-  { id: 6, title: "ELIZABETH WILSON", subtitle: "Pelopor Wanita", image: "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=400&h=300&fit=crop" },
+  {
+    id: 1,
+    title: "CHAPTER VI",
+    subtitle: "Awal Mula Pos Indonesia",
+    image: "/museum.jpg",
+    href: "/pos-sejarah",
+  },
+  {
+    id: 2,
+    title: "GLOBAL PROJECT ATLANTIS",
+    subtitle: "Ekspansi Dunia",
+    image:
+      "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop",
+  },
+  {
+    id: 3,
+    title: "MARY JAMES BROWN",
+    subtitle: "Tokoh Penting",
+    image:
+      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop",
+  },
+  {
+    id: 4,
+    title: "NEW REVOLUTION AT 1942",
+    subtitle: "Era Kemerdekaan",
+    image:
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop",
+  },
+  {
+    id: 5,
+    title: "ATLANTIS PROJECT",
+    subtitle: "Era Modern",
+    image:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop",
+  },
+  {
+    id: 6,
+    title: "ELIZABETH WILSON",
+    subtitle: "Pelopor Wanita",
+    image:
+      "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=400&h=300&fit=crop",
+  },
 ];
 
 const Logo = () => (
@@ -99,17 +165,22 @@ const Navbar = () => {
     };
   }, [isMenuOpen, isSejarahModalOpen, hash]);
 
-  const getIsActive = (item: typeof navItems[0]) => {
+  const getIsActive = (item: (typeof navItems)[0]) => {
     const currentAnchor = hash.replace("#", "");
     const itemAnchor = item.href.replace("/#", "");
     return (
-      (item.href === "/" && pathname === "/" && (hash === "" || hash === "#" || hash === "#hero")) ||
+      (item.href === "/" &&
+        pathname === "/" &&
+        (hash === "" || hash === "#" || hash === "#hero")) ||
       (item.href.startsWith("/#") && currentAnchor === itemAnchor) ||
       (item.href === "/#hero" && (hash === "" || hash === "#hero"))
     );
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: (typeof navItems)[0]
+  ) => {
     if (item.type === "modal") {
       e.preventDefault();
       setIsSejarahModalOpen(!isSejarahModalOpen);
@@ -161,7 +232,9 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:flex-col lg:items-center lg:space-y-4 lg:w-full">
           {navItems.map((item) => {
-            const isActive = getIsActive(item) || (isSejarahModalOpen && item.type === "modal");
+            const isActive =
+              getIsActive(item) ||
+              (isSejarahModalOpen && item.type === "modal");
             const Icon = item.icon;
 
             return (
@@ -173,7 +246,11 @@ const Navbar = () => {
                 className={`group relative flex justify-center items-center
                   w-12 h-12 lg:w-full lg:py-3 
                   transition-all duration-300 rounded-xl cursor-pointer
-                  ${isActive ? "text-white bg-indigo-700/40" : "text-indigo-300 hover:text-white hover:bg-indigo-700/20"}
+                  ${
+                    isActive
+                      ? "text-white bg-indigo-700/40"
+                      : "text-indigo-300 hover:text-white hover:bg-indigo-700/20"
+                  }
                 `}
               >
                 <Icon />
@@ -187,7 +264,11 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[60] bg-indigo-950 flex flex-col items-center justify-center transition-transform duration-300 ease-in-out lg:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <div
+        className={`fixed inset-0 z-[60] bg-indigo-950 flex flex-col items-center justify-center transition-transform duration-300 ease-in-out lg:hidden ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         <button
           onClick={() => setIsMenuOpen(false)}
           className="absolute top-4 right-4 text-white p-2"
@@ -210,7 +291,11 @@ const Navbar = () => {
                   if (item.type === "link") setIsMenuOpen(false);
                 }}
                 title={item.label}
-                className={`flex items-center w-full px-6 py-3 text-2xl font-medium rounded-lg transition-colors duration-200 ${isActive ? "text-white bg-indigo-700/50" : "text-indigo-200 hover:text-white"}`}
+                className={`flex items-center w-full px-6 py-3 text-2xl font-medium rounded-lg transition-colors duration-200 ${
+                  isActive
+                    ? "text-white bg-indigo-700/50"
+                    : "text-indigo-200 hover:text-white"
+                }`}
               >
                 <Icon />
                 <span className="ml-4">{item.label}</span>
@@ -241,10 +326,15 @@ const Navbar = () => {
 
             {/* Header */}
             <div className="relative px-8 py-12 lg:px-16 lg:py-16 border-b border-white/5">
-              <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
+              <div
+                className="animate-fade-up"
+                style={{ animationDelay: "0.1s" }}
+              >
                 <div className="flex items-baseline gap-3 mb-4">
                   <div className="w-12 h-0.5 bg-indigo-500"></div>
-                  <p className="text-indigo-300 text-sm font-medium tracking-widest uppercase">Chapter</p>
+                  <p className="text-indigo-300 text-sm font-medium tracking-widest uppercase">
+                    Chapter
+                  </p>
                 </div>
                 <h1 className="text-5xl lg:text-7xl font-bold text-white uppercase tracking-tight mb-4">
                   Museum Pos Indonesia
@@ -257,74 +347,74 @@ const Navbar = () => {
 
             {/* Collection Grid */}
             <div className="px-8 py-10 lg:px-16 lg:py-12">
-              <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <div
+                className="animate-fade-up"
+                style={{ animationDelay: "0.2s" }}
+              >
                 <h2 className="text-xl font-semibold text-white/90 mb-8 uppercase tracking-wider flex items-center gap-3">
                   <div className="w-8 h-0.5 bg-indigo-500"></div>
                   Collection
                 </h2>
               </div>
 
-               {/* Grid Container */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sejarahCollections.map((collection, index) => {
-            const CardContent = (
-              <div
-                key={collection.id}
-                // Menghilangkan hover:shadow-indigo-500/30
-                className="group relative overflow-hidden rounded-xl bg-slate-800/30 transition-all duration-500 cursor-pointer border border-white/10 hover:border-indigo-400/50 shadow-xl animate-fade-up" 
-                style={{ animationDelay: `${0.3 + index * 0.08}s` }}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={collection.image}
-                    alt={collection.title}
-                    // Retain zoom effect on image
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
-                   
-                  />
-                  {/* Container Overlay Indigo Transparan & 2 Text (Muncul saat Hover) */}
-                  <div className="absolute inset-0 flex flex-col items-start justify-end p-5 text-left
+              {/* Grid Container */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {sejarahCollections.map((collection, index) => {
+                  const CardContent = (
+                    <div
+                      key={collection.id}
+                      // Menghilangkan hover:shadow-indigo-500/30
+                      className="group relative overflow-hidden rounded-xl bg-slate-800/30 transition-all duration-500 cursor-pointer border border-white/10 hover:border-indigo-400/50 shadow-xl animate-fade-up"
+                      style={{ animationDelay: `${0.3 + index * 0.08}s` }}
+                    >
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={collection.image}
+                          alt={collection.title}
+                          // Retain zoom effect on image
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
+                        />
+                        {/* Container Overlay Indigo Transparan & 2 Text (Muncul saat Hover) */}
+                        <div
+                          className="absolute inset-0 flex flex-col items-start justify-end p-5 text-left
                                  bg-transparent group-hover:bg-indigo-900/70 
-                                 transition-all duration-500 opacity-0 group-hover:opacity-100">
-                      
-                    <h3 className="text-white font-extrabold text-xl uppercase tracking-wider drop-shadow-2xl mb-1">
-                      {collection.title}
-                    </h3>
-                    <p className="text-indigo-300 text-sm tracking-wide">
-                        {collection.subtitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
+                                 transition-all duration-500 opacity-0 group-hover:opacity-100"
+                        >
+                          <h3 className="text-white font-extrabold text-xl uppercase tracking-wider drop-shadow-2xl mb-1">
+                            {collection.title}
+                          </h3>
+                          <p className="text-indigo-300 text-sm tracking-wide">
+                            {collection.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
 
-            return collection.href ? (
-              <Link
-                href={collection.href}
-                key={collection.id}
-                onClick={(e) => {
-                    e.preventDefault();
-                    console.log(`Navigating to ${collection.href}: ${collection.title}`);
-                }}
-              >
-                {CardContent}
-              </Link>
-            ) : (
-              // Non-link version
-              <div key={collection.id}>
-                 {CardContent}
-                 <p className="text-xs text-red-400 mt-2"> (Konten Belum Tersedia) </p>
+                  return collection.href ? (
+                    <Link
+                      href={collection.href}
+                      key={collection.id}
+                      onClick={() => setIsSejarahModalOpen(false)}
+                    >
+                      {CardContent}
+                    </Link>
+                  ) : (
+                    CardContent
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
 
               {/* Footer Info */}
-              <div className="mt-12 p-6 bg-indigo-950/20 rounded-lg border border-indigo-500/10 animate-fade-up" style={{ animationDelay: '0.85s' }}>
+              <div
+                className="mt-12 p-6 bg-indigo-950/20 rounded-lg border border-indigo-500/10 animate-fade-up"
+                style={{ animationDelay: "0.85s" }}
+              >
                 <p className="text-slate-300 text-sm leading-relaxed">
-                  Jelajahi perjalanan sejarah Pos Indonesia dari masa ke masa. 
-                  Setiap koleksi menceritakan kisah penting dalam perkembangan layanan pos di Indonesia 
-                  dan kontribusinya terhadap kemajuan bangsa.
+                  Jelajahi perjalanan sejarah Pos Indonesia dari masa ke masa.
+                  Setiap koleksi menceritakan kisah penting dalam perkembangan
+                  layanan pos di Indonesia dan kontribusinya terhadap kemajuan
+                  bangsa.
                 </p>
               </div>
             </div>

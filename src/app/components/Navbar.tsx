@@ -81,8 +81,8 @@ const navItems = [
 const sejarahCollections = [
   {
     id: 1,
-    title: "CHAPTER VI",
-    subtitle: "Awal Mula Pos Indonesia",
+    title: "Sejarah POS",
+    subtitle: "Sejarah Perposan, Sejarah Museum Pos Indonesia, Sejarah Kantor Pos, Gedung Pos Tempo Dulu",
     image: "/museum.jpg",
     href: "/pos-sejarah",
   },

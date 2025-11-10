@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronRight, ChevronLeft, Home, BookOpen, Building, Map, X, Clock, Archive } from 'lucide-react';
+
 // Warna Kustom Utama: #2E3192 (Dark Indigo/Violet)
 
 // --- CONTENT DEFINITIONS ---
@@ -458,31 +459,6 @@ const PosSejarah: React.FC = () => {
         return activeItem.content;
     };
 
-<<<<<<< HEAD
-  // Fungsi untuk kembali ke home/reset dengan animasi smooth
-   // Fungsi untuk kembali ke modal Sejarah
-  const handleBack = () => {
-    setIsExiting(true);
-    // Tunggu transisi opacity sebelum navigasi
-    setTimeout(() => {
-      // Ganti URL hash ke #sejarah agar Navbar mendeteksi dan membuka modal
-      window.location.href = "/#";
-    }, 300);
-  };
-
-
-  return (
-    <div className="min-h-screen bg-white font-['Inter'] flex flex-col">
-      
-      {/* 2. Main Content Wrapper: Tambahkan kelas transisi dan opacity berdasarkan state isExiting */}
-      <div className={`flex-grow flex flex-col transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
-        
-        {/* Header (POS IND Logo + Back Button) */}
-        {/* Border bawah menggunakan warna kustom #2E3192 */}
-        <header className="bg-white py-4 sm:py-6 border-b-4 border-[#2E3192] shadow-md">
-          <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center">
-=======
     // Fungsi untuk kembali ke home/reset dengan animasi smooth
     const handleBack = () => {
         setIsExiting(true);
@@ -515,7 +491,6 @@ const PosSejarah: React.FC = () => {
             
             {/* 2. Main Content Wrapper: Tambahkan kelas transisi dan opacity berdasarkan state isExiting */}
             <div className={`flex-grow flex flex-col transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
->>>>>>> a05c4df (Save local changes before pulling)
                 
                 {/* Header (POS IND Logo + Back Button) */}
                 {/* Border bawah menggunakan warna kustom #2E3192 */}
@@ -584,7 +559,20 @@ const PosSejarah: React.FC = () => {
                     {renderContent()}
                 </main>
                 
-               
+                {/* Floating Chat Button */}
+                <div className="fixed bottom-8 right-8 z-50">
+                    <button className="bg-orange-400 hover:bg-orange-500 text-white rounded-full p-4 shadow-xl transition-transform duration-200 transform hover:scale-110">
+                        {/* Simple Chat Bubble Icon */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path d="M21 6c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12l4 4V6z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     );

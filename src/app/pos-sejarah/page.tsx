@@ -158,14 +158,16 @@ const PosSejarah: React.FC = () => {
   };
 
   // Fungsi untuk kembali ke home/reset dengan animasi smooth
+   // Fungsi untuk kembali ke modal Sejarah
   const handleBack = () => {
     setIsExiting(true);
-    // Tunggu 300ms untuk menyelesaikan transisi opacity sebelum simulasi navigasi
+    // Tunggu transisi opacity sebelum navigasi
     setTimeout(() => {
-        // Simulasi navigasi ke halaman utama/reset, yang paling aman di lingkungan ini adalah reset halaman
-        window.location.href = window.location.origin;
+      // Ganti URL hash ke #sejarah agar Navbar mendeteksi dan membuka modal
+      window.location.href = "/#";
     }, 300);
   };
+
 
   return (
     <div className="min-h-screen bg-white font-['Inter'] flex flex-col">

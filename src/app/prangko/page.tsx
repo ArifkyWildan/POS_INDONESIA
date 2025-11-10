@@ -60,7 +60,7 @@ const STAMPS_DATA: Stamp[] = [
   },
   {
     id: '2',
-    title: 'Borobudur Sunrise',
+    title: 'Prangko Flora dan Fauna',
     year: 1975,
     artist: 'Affandi',
     image: 'https://placehold.co/400x550/340068/ffffff?text=Borobudur+75',
@@ -231,8 +231,13 @@ const App: React.FC = () => {
 
   const handleSelectStamp = (id: string) => {
     if (id === '1') {
-      router.push("/prangko-budaya"); // 👉 Arahkan ke halaman PrangkoBudaya
-    } else {
+      router.push("/prangko-budaya"); // 🔹 ke halaman Prangko Budaya
+    } else if (id === '2') {
+      router.push("/flora-fauna"); // 🔹 ke halaman Flora Fauna
+    } else if (id === '3') {
+      router.push("/bersejah"); // 🔹 ke halaman Flora Fauna
+    }
+    else {
       setSelectedStampId(id);
       window.scrollTo(0, 0);
     }

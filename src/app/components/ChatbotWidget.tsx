@@ -567,12 +567,6 @@ const App: React.FC = () => {
                 // Meneruskan toggleChat sebagai onClose untuk penutupan final setelah rating
                 <ChatbotWidget onClose={toggleChat} />
             )}
-
-            {/* Konten dummy untuk memberikan konteks visual */}
-            <div className="p-10 text-center text-gray-700">
-                <h1 className="text-3xl font-bold mb-4">Simulasi Halaman Utama Website</h1>
-                <p>Chatbot PosBot muncul di kanan bawah. Klik ikon untuk memulai.</p>
-            </div>
         </div>
     );
 }

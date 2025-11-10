@@ -242,7 +242,7 @@ export default function MuseumPrangko() {
         {/* Museum Header */}
         <div className="mb-8 pb-6 border-b-2 border-[#2E3192]/20">
           <button 
-            onClick={() => window.location.href = '/'}
+            onClick={() => window.location.href = '/prangko'}
             className="flex items-center gap-2 text-[#2E3192] hover:text-[#1e2060] transition-colors mb-6"
           >
             <ArrowLeft className="w-5 h-5" />

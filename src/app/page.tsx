@@ -12,6 +12,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import ChatbotButton from './components/ReusableChatbotButton';
 import ChatbotWidget from './components/ChatbotWidget';
 import { Bebas_Neue } from "next/font/google";
+
 const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
@@ -26,13 +27,14 @@ export default function Home() {
   const handleOpenChat = () => setIsChatOpen(true);
   const handleCloseChat = () => setIsChatOpen(false);
 
+  // Change all refs to HTMLElement instead of HTMLDivElement
   const sections = {
-    hero: useRef<HTMLDivElement | null>(null),
-    sejarah: useRef<HTMLDivElement | null>(null),
-    rebranding: useRef<HTMLDivElement | null>(null),
-    gallery: useRef<HTMLDivElement | null>(null),
-    testimonial: useRef<HTMLDivElement | null>(null),
-    jadwal: useRef<HTMLDivElement | null>(null),
+    hero: useRef<HTMLElement | null>(null),
+    sejarah: useRef<HTMLElement | null>(null),
+    rebranding: useRef<HTMLElement | null>(null),
+    gallery: useRef<HTMLElement | null>(null),
+    testimonial: useRef<HTMLElement | null>(null),
+    jadwal: useRef<HTMLElement | null>(null),
   };
 
   const handleNavigate = (id: string) => {
@@ -107,16 +109,16 @@ export default function Home() {
           <Sejarah />
         </section>
         <section id="rebranding" ref={sections.rebranding}>
-          <Rebranding sectionRef={sections.rebranding} />
+          <Rebranding />
         </section>
         <section id="gallery" ref={sections.gallery}>
-          <Gallery sectionRef={sections.gallery} />
+          <Gallery />
         </section>
         <section id="testimonial" ref={sections.testimonial}>
-          <Testimonial sectionRef={sections.testimonial} />
+          <Testimonial />
         </section>
         <section id="jadwal" ref={sections.jadwal}>
-          <JadwalMap sectionRef={sections.jadwal} />
+          <JadwalMap />
         </section>
 
         <footer className="relative bg-[#223E8A] text-white pt-20 pb-16">

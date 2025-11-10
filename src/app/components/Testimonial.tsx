@@ -11,7 +11,7 @@ interface TestimonialItem {
 }
 
 export interface SectionProps {
-  sectionRef: React.RefObject<HTMLDivElement | null>;
+ sectionRef?: React.RefObject<HTMLElement | null>;
 }
 
 // ─── Komponen Testimonial ─────────────────────────────────────

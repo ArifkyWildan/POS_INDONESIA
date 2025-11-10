@@ -1,6 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Bebas_Neue } from "next/font/google";
+
+// Import font Bebas Neue dari Google Fonts via Next.js (auto optimized)
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 // --- Tipe data item sejarah ---
 interface SejarahItem {
@@ -15,19 +22,19 @@ const sejarahData: SejarahItem[] = [
     image: "/museum2.jpeg",
     title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "gustaaf willem baron van imhoff dilahirkan di leer, Jerman 8 Agustus 1705 dan Meninggal pada tanggal 1 November 1750 di Batavia. gustaaf willem baron van imhoff membuka kantor pos pertama di batavia.",
+      "Gustaaf Willem Baron van Imhoff dilahirkan di Leer, Jerman 8 Agustus 1705 dan meninggal pada 1 November 1750 di Batavia. Ia membuka kantor pos pertama di Batavia.",
   },
   {
     image: "/museum3.jpeg",
     title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "gustaaf willem baron van imhoff dilahirkan di leer, Jerman 8 Agustus 1705 dan Meninggal pada tanggal 1 November 1750 di Batavia. gustaaf willem baron van imhoff membuka kantor pos pertama di batavia.",
+      "Gustaaf Willem Baron van Imhoff dilahirkan di Leer, Jerman 8 Agustus 1705 dan meninggal pada 1 November 1750 di Batavia. Ia membuka kantor pos pertama di Batavia.",
   },
   {
     image: "/museum4.jpeg",
     title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "gustaaf willem baron van imhoff dilahirkan di leer, Jerman 8 Agustus 1705 dan Meninggal pada tanggal 1 November 1750 di Batavia. gustaaf willem baron van imhoff membuka kantor pos pertama di batavia.",
+      "Gustaaf Willem Baron van Imhoff dilahirkan di Leer, Jerman 8 Agustus 1705 dan meninggal pada 1 November 1750 di Batavia. Ia membuka kantor pos pertama di Batavia.",
   },
 ];
 
@@ -54,9 +61,12 @@ const Sejarah: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<SejarahItem | null>(null);
 
   return (
-    <section className="bg-white text-gray-900 py-20 px-5 font-sans">
+    <section className="bg-white text-indigo-900 py-20 px-5 font-sans">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-wide uppercase">
+        {/* ✅ Judul menggunakan font Bebas Neue */}
+        <h2
+          className={`${bebasNeue.className} text-3xl md:text-5xl font-bold tracking-wide uppercase text-[#2E3192]`}
+        >
           SEJARAH POS INDONESIA
         </h2>
       </div>
@@ -66,7 +76,7 @@ const Sejarah: React.FC = () => {
         {sejarahData.map((item, index) => (
           <motion.div
             key={index}
-            className="flex flex-col bg-white border border-gray-200 rounded-2xl shadow-md p-4"
+            className="flex flex-col bg-gray-100 border border-gray-200 rounded-2xl p-4 px-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.15 }}
@@ -90,7 +100,7 @@ const Sejarah: React.FC = () => {
             <div className="border-b border-gray-300 mt-3 mb-5"></div>
 
             {/* Gambar */}
-            <div className="w-full h-64 rounded-lg overflow-hidden">
+            <div className="w-full h-54 rounded-lg overflow-hidden">
               <img
                 src={item.image}
                 alt={item.title}

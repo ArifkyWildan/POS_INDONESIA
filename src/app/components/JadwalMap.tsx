@@ -50,7 +50,7 @@ const JadwalMap: FC<SectionProps> = ({ sectionRef }) => {
             // DESIGN UPDATE: Increased padding for more breathing room
             className="p-8 md:p-12 lg:p-16 bg-white" // Re-apply base color for consistency
           >
-            <h3 className="text-3xl font-bold mb-8 uppercase tracking-wide">
+            <h3 className="text-3xl font-bold text-indigo-900 mb-8 uppercase tracking-wide">
               Jadwal Operasional
             </h3>
 

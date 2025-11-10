@@ -1,27 +1,21 @@
 "use client";
 
-import React, { FC, RefObject } from "react";
+import React, { FC } from "react";
 import { motion } from "framer-motion";
 
 // ─── Tipe Data ────────────────────────────────────────────────
-
-// Tipe untuk setiap item testimonial
 interface TestimonialItem {
   quote: string;
   author: string;
   role: string;
 }
 
-// Tipe untuk props yang diterima oleh komponen Section
 export interface SectionProps {
   sectionRef: React.RefObject<HTMLDivElement | null>;
 }
 
-
 // ─── Komponen Testimonial ─────────────────────────────────────
-
 const Testimonial: FC<SectionProps> = ({ sectionRef }) => {
-  // Data testimonial
   const testimonials: TestimonialItem[] = [
     {
       quote:
@@ -47,16 +41,24 @@ const Testimonial: FC<SectionProps> = ({ sectionRef }) => {
     <section
       ref={sectionRef}
       id="testimonial"
-      className="py-20 md:py-32 bg-white text-gray-800"
+      className="py-20 md:py-32 bg-white text-indigo-900"
     >
+      {/* Import font BEBAS NEUE */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        .font-bebas {
+          font-family: 'Bebas Neue', sans-serif;
+        }
+      `}</style>
+
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Judul Section */}
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase"
+          className="text-3xl md:text-5xl  text-center mb-4 uppercase font-bebas text-[#2E3192]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
           Testimonial
         </motion.h2>
@@ -67,7 +69,7 @@ const Testimonial: FC<SectionProps> = ({ sectionRef }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.4, delay: 0.1, ease: "easeInOut" }}
+          transition={{ duration: 0.4, delay: 0.1, ease: 'easeInOut' }}
         >
           Apa kata mereka yang telah berkunjung ke Museum Pos Indonesia.
         </motion.p>
@@ -84,7 +86,7 @@ const Testimonial: FC<SectionProps> = ({ sectionRef }) => {
               transition={{
                 duration: 0.5,
                 delay: index * 0.1,
-                ease: "easeInOut",
+                ease: 'easeInOut',
               }}
             >
               {/* Isi Kutipan */}

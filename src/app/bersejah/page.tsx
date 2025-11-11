@@ -18,12 +18,12 @@ const App: React.FC = () => {
 
     const BackButton: React.FC = () => (
         <a href="/prangko" className="flex items-center text-sm font-semibold px-4 py-2 rounded-full border transition duration-200 
-                                      text-[#172b60] border-[#172b60] hover:bg-[#172b60] hover:text-white">
+            text-[#172b60] border-[#172b60] hover:bg-[#172b60] hover:text-white">
             {/* SVG Arrow Left (Ikon Panah) */}
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Kembali ke Daftar Prangko
+            Kembali
         </a>
     );
 
@@ -47,17 +47,24 @@ const App: React.FC = () => {
         // Menggunakan div utama sebagai pengganti body, menerapkan background-color #f0f4f8
         <div className="min-h-screen bg-[#f0f4f8] font-sans text-gray-800 antialiased">
             
-            {/* Area Judul dan Tombol Kembali */}
-            <div className="container mx-auto px-4 md:px-8 pt-10 pb-8">
-                <div className="flex justify-between items-center mb-6">
+            {/* Header dengan Logo Pos Indonesia */}
+            <header className="bg-white border-b-2 border-gray-200 py-4 mb-8">
+                <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
                     <BackButton />
-                    <div></div> {/* Empty space for balancing */}
+                    <div className="text-4xl md:text-5xl font-black tracking-tight">
+                        <span className="text-[#172b60]">POS</span>
+                        <span className="text-red-600"> IND</span>
+                    </div>
                 </div>
+            </header>
+            
+            {/* Area Judul */}
+            <div className="container mx-auto px-4 md:px-8 pb-8">
                 {/* Judul Utama Halaman */}
-                <h1 className="text-5xl font-extrabold tracking-tight text-[#172b60]">
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#172b60]">
                     KOLEKSI PRANGKO BERSEJARAH
                 </h1>
-                <p className="text-xl text-gray-600 mt-2">Sebuah Pameran Digital dari Museum Filateli Indonesia</p>
+                <p className="text-lg md:text-xl text-gray-600 mt-2">Sebuah Pameran Digital dari Museum Filateli Indonesia</p>
             </div>
 
             <main className="container mx-auto px-4 md:px-8 py-4">

@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Heart, Search, ChevronLeft, Layers, CornerDownRight } from 'lucide-react';
+import { ChevronLeft, Layers } from 'lucide-react';
 
 // --- INTERFACE (Tipe Data) ---
 interface Stamp {
@@ -53,60 +53,60 @@ const STAMPS_DATA: Stamp[] = [
     title: 'Prangko Keberagaman Budaya Nusantara',
     year: 1950,
     artist: 'S. Sujono',
-    image: 'https://placehold.co/400x550/00204a/ffffff?text=Garuda+1950',
+    image: 'https://placehold.co/400x550/172b60/ffffff?text=Garuda+1950',
     location: 'National Museum of Art, Jakarta',
     description: 'Prangko pertama yang dikeluarkan setelah pengakuan kedaulatan Indonesia...',
-    color: '#00204a',
+    color: '#172b60',
   },
   {
     id: '2',
     title: 'Prangko Flora dan Fauna',
     year: 1975,
     artist: 'Affandi',
-    image: 'https://placehold.co/400x550/340068/ffffff?text=Borobudur+75',
+    image: 'https://placehold.co/400x550/24459d/ffffff?text=Borobudur+75',
     location: 'Museum Filateli Indonesia, Bandung',
     description: 'Bagian dari seri Warisan Budaya...',
-    color: '#340068',
+    color: '#24459d',
   },
   {
     id: '3',
-    title: 'Komodo Dragon',
+    title: 'Prangko Bersejarah',
     year: 1990,
     artist: 'I. Nyoman Masriadi',
-    image: 'https://placehold.co/400x550/064201/ffffff?text=Komodo+90',
+    image: 'https://placehold.co/400x550/172b60/ffffff?text=Komodo+90',
     location: 'Koleksi Pribadi, Jakarta',
     description: 'Dirilis untuk mempromosikan upaya konservasi...',
-    color: '#064201',
+    color: '#172b60',
   },
   {
     id: '4',
-    title: 'Wayang Kulit Series',
+    title: 'Prangko Peristiwa Bersejarah',
     year: 2005,
     artist: 'T. D. J. P. Moerdowo',
-    image: 'https://placehold.co/400x550/551100/000000?text=Wayang+05',
+    image: 'https://placehold.co/400x550/24459d/ffffff?text=Wayang+05',
     location: 'Museum Pos Indonesia, Bandung',
     description: 'Seri prangko yang didedikasikan untuk seni pertunjukan...',
-    color: '#551100',
+    color: '#24459d',
   },
   {
     id: '5',
-    title: 'Batik Parang Rusak',
+    title: 'Prangko Para Tokoh Indonesia',
     year: 2015,
     artist: 'Astri Wulandari',
-    image: 'https://placehold.co/400x550/4b0082/ffffff?text=Batik+15',
+    image: 'https://placehold.co/400x550/172b60/ffffff?text=Batik+15',
     location: 'Museum Kearsipan Nasional',
     description: 'Prangko modern yang merayakan seni Batik...',
-    color: '#4b0082',
+    color: '#172b60',
   },
   {
     id: '6',
-    title: 'Underwater Raja Ampat',
+    title: 'Prangko Prisma',
     year: 2020,
     artist: 'Andi Rahmat',
-    image: 'https://placehold.co/400x550/005f5f/ffffff?text=Raja+Ampat+20',
+    image: 'https://placehold.co/400x550/24459d/ffffff?text=Raja+Ampat+20',
     location: 'Kementerian Komunikasi dan Informatika',
     description: 'Dirilis untuk mendukung pariwisata bahari...',
-    color: '#005f5f',
+    color: '#24459d',
   },
 ];
 
@@ -122,7 +122,7 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, index, totalCards, onClick
 
   return (
     <motion.div
-      className="absolute cursor-pointer w-64 h-96 rounded-xl overflow-hidden shadow-2xl bg-white transform-gpu origin-bottom"
+      className="absolute cursor-pointer w-48 h-72 sm:w-56 sm:h-80 md:w-64 md:h-96 rounded-xl overflow-hidden shadow-2xl bg-white transform-gpu origin-bottom"
       style={{
         zIndex,
         x: shiftX,
@@ -141,9 +141,9 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, index, totalCards, onClick
       onClick={() => onClick(stamp.id)}
     >
       <img src={image} alt={title} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-4 flex flex-col justify-end text-white">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-3 md:p-4 flex flex-col justify-end text-white">
         <p className="text-xs font-light opacity-70 mb-1">{artist} / {year}</p>
-        <h3 className="text-xl font-bold leading-tight">{title}</h3>
+        <h3 className="text-base sm:text-lg md:text-xl font-bold leading-tight">{title}</h3>
       </div>
     </motion.div>
   );
@@ -151,24 +151,60 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, index, totalCards, onClick
 
 // --- LIST PRANGKO ---
 const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
+  const router = useRouter();
   const totalCards = STAMPS_DATA.length;
+  
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-50 px-4 pt-20">
-      <div className="max-w-4xl mx-auto text-center mb-10 px-4">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 px-4 pt-4 md:pt-6">
+      {/* Header Museum Pos Indonesia */}
+      <div className="w-full max-w-7xl mx-auto mb-6 md:mb-8">
+        <div className="bg-gradient-to-r from-[#172b60] to-[#24459d] shadow-lg rounded-lg p-3 md:p-4 flex items-center justify-between">
+          <button 
+            onClick={() => router.push('/')}
+            className="flex items-center space-x-2 text-white hover:text-blue-100 transition-colors duration-200 font-semibold text-sm md:text-base"
+          >
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+            <span>Kembali</span>
+          </button>
+          <div className="flex items-center space-x-2 md:space-x-3">
+            <span className="text-2xl md:text-4xl font-black text-white">POS</span>
+            <span className="text-2xl md:text-4xl font-black text-red-500">IND</span>
+          </div>
+          <div className="w-16 md:w-20"></div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center mb-6 md:mb-10 px-4">
         <motion.h1
-          className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4"
+          className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#172b60] via-[#24459d] to-[#172b60] mb-3 md:mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Koleksi Prangko Nasional
         </motion.h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
           Jelajahi koleksi prangko bersejarah Indonesia.
         </p>
+        <div className="bg-gradient-to-br from-blue-50 to-slate-50 rounded-xl p-4 md:p-6 shadow-md border-2 border-[#24459d]/20">
+          <p className="text-xl md:text-2xl font-bold text-[#172b60] mb-3 md:mb-4">
+            🏷️ Apa Itu Prangko?
+          </p>
+          <div className="text-sm md:text-base text-gray-700 text-left space-y-3 md:space-y-4 leading-relaxed">
+            <p>
+              Prangko adalah tanda bukti pembayaran jasa pengiriman surat atau paket yang dikeluarkan oleh lembaga pos resmi suatu negara. Biasanya berupa kertas kecil bergambar yang ditempel di amplop atau paket sebelum dikirim.
+            </p>
+            <p>
+              Namun, prangko bukan hanya alat pembayaran pos — ia juga merupakan karya seni mini. Setiap prangko memiliki desain unik yang menggambarkan sejarah, budaya, tokoh penting, peristiwa bersejarah, atau kekayaan alam dari negara penerbitnya. Karena itu, prangko juga menjadi media dokumentasi budaya dan sejarah yang sangat berharga.
+            </p>
+            <p>
+              Seiring perkembangan zaman, fungsi prangko kini tidak hanya praktis, tetapi juga kolektibel. Banyak orang di seluruh dunia menjadi filatelis (kolektor prangko), yang mengumpulkan, meneliti, dan memamerkan prangko sebagai bagian dari warisan sejarah dan seni.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="relative h-[500px] w-full max-w-7xl mx-auto flex justify-center items-center mb-40 overflow-visible">
+      <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] w-full max-w-7xl mx-auto flex justify-center items-center mb-20 md:mb-40 overflow-visible px-4">
         <AnimatePresence>
           {STAMPS_DATA.map((stamp, index) => (
             <StampCard
@@ -195,7 +231,7 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
   );
 };
 
-// --- KOMPONEN DETAIL (tidak diubah) ---
+// --- KOMPONEN DETAIL ---
 const DetailItem: React.FC<DetailItemProps> = ({ icon, label, value }) => (
   <div className="flex items-start space-x-3">
     <div className="pt-1">{icon}</div>
@@ -210,7 +246,7 @@ const Button: React.FC<ButtonProps> = ({ icon, label, primary, onClick }) => (
   <button
     className={`flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-xl transition duration-300 shadow-md ${
       primary
-        ? 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800'
+        ? 'bg-gradient-to-r from-[#172b60] to-[#24459d] text-white hover:from-[#24459d] hover:to-[#172b60] active:scale-95'
         : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 active:bg-gray-200'
     }`}
     onClick={onClick}
@@ -231,13 +267,16 @@ const App: React.FC = () => {
 
   const handleSelectStamp = (id: string) => {
     if (id === '1') {
-      router.push("/prangko-budaya"); // 🔹 ke halaman Prangko Budaya
+      router.push("/prangko-budaya");
     } else if (id === '2') {
-      router.push("/flora-fauna"); // 🔹 ke halaman Flora Fauna
+      router.push("/flora-fauna");
     } else if (id === '3') {
-      router.push("/bersejah"); // 🔹 ke halaman Flora Fauna
-    }
-    else {
+      router.push("/bersejah");
+    } else if (id === '4') {
+      router.push("/peristiwa-sejarah");
+    } else if (id === '5') {
+      router.push("/tokoh-indonesia");
+    } else {
       setSelectedStampId(id);
       window.scrollTo(0, 0);
     }
@@ -251,7 +290,7 @@ const App: React.FC = () => {
   const currentView: 'list' | 'detail' = selectedStamp ? 'detail' : 'list';
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans antialiased">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 font-sans antialiased">
       <AnimatePresence mode="wait">
         {currentView === 'list' && (
           <motion.div key="list" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }}>

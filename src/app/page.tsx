@@ -137,10 +137,8 @@ export default function Home() {
                 Museum Pos Indonesia
               </h2>
               <p className="mt-4 text-base text-indigo-100 leading-relaxed font-body">
-                MUSEUM POS INDONESIA telah hadir sejak masa Hindia Belanda
-                dengan nama Museum PTT (Pos Telegrop dan Telepon), tepatnya pada
-                tahun 1931 terletak dibagian sayap kanan bawah Gedung Kantor
-                Pusat PTT Jalan Cilaki No.73 Bandung 40115.
+                Cilaki St No.73, Citarum, Bandung Wetan, 
+                Bandung City, West Java 40115
               </p>
 
               {/* Bagian Ikon Media Sosial Baru dengan React Icons */}

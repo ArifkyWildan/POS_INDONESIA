@@ -1,13 +1,41 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, Home, BookOpen, Building, Map, X, Clock, Archive } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Home, BookOpen, Building, Map, X, Clock, Archive, ChevronDown } from 'lucide-react';
 
 // Warna Kustom Utama: #2E3192 (Dark Indigo/Violet)
+const MAIN_INDIGO = '#2E3192';
 
 // --- CONTENT DEFINITIONS ---
 
-// Content for the "SEJARAH PERPOSSAN" tab (Existing)
+// Component Title Block untuk Sejarah Perpossan (dari gambar splash screen)
+const PerposanTitleBlock = () => (
+    <div className="bg-white py-12 px-4 mb-16 border-b-8 border-[#2E3192]">
+        <div className="container mx-auto max-w-6xl">
+            <div className="flex items-center justify-between">
+                {/* Global Icon */}
+                <div className="hidden lg:block w-1/3">
+                    <svg className="w-48 h-48 text-gray-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="1">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 18.92c-3.79-.43-7.58-2.61-9.92-5.92 2.34-3.31 6.13-5.49 9.92-5.92V21zm2 0V2.08c3.79.43 7.58 2.61 9.92 5.92-2.34 3.31-6.13 5.49-9.92 5.92zM12 2c3.79-.43 7.58 2.61 9.92 5.92C19.58 4.61 15.79 2.43 12 2zm-2 0c-3.79.43-7.58 2.61-9.92 5.92 2.34 3.31 6.13 5.49 9.92 5.92V2zM12 12c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM12 17c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 12c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM12 17c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    </svg>
+                </div>
+
+                {/* Title */}
+                <div className="w-full lg:w-2/3 flex flex-col items-start lg:items-end">
+                    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold text-[#2E3192] leading-none mb-4">
+                        Sejarah
+                        <br />
+                        Perposan
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+
+// Content for the "SEJARAH PERPOSSAN" tab
 const SejarahPerpossanContent = () => (
     <div className="py-8">
         {/* Breadcrumb */}
@@ -18,25 +46,37 @@ const SejarahPerpossanContent = () => (
             <span className="text-gray-500">Sejarah Perpossan</span>
         </div>
 
+        {/* Title Block from image (Globe + Sejarah Perposan) */}
+        <PerposanTitleBlock />
+
         {/* Kisah Pos Zaman Kuno */}
         <section className="mb-16">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
+                Kisah Pos
+                <br />
+                Zaman Kuno
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-8 items-start">
                 {/* Image/Stamp Block (Left) */}
-                <div className="flex justify-center md:justify-end order-2 md:order-1">
-                    <div className="bg-gray-900 p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-3 sm:p-4 rounded shadow-2xl rotate-3 border-4 border-white transform hover:rotate-0 transition-transform duration-300">
+                <div className="md:col-span-1 flex justify-center md:justify-end">
+                    <div className="bg-gray-900 p-6 sm:p-8 rounded-lg max-w-xs w-full">
+                        <div className="bg-white p-3 sm:p-4 rounded shadow-2xl rotate-1 border-4 border-white transform hover:rotate-0 transition-transform duration-300">
                             <div className="relative">
-                                {/* Placeholder Image: President Sukarno Stamp */}
+                                {/* Placeholder Image: President Suharto Stamp (based on the 1993 700p label) */}
                                 <img
-                                    src="https://placehold.co/800x1200/4c0c93/ffffff?text=Stamp+Sukarno"
-                                    alt="Perangko Indonesia"
+                                    src="/suharto.jpeg"
+                                    alt="Prangko Indonesia Soeharto 1993"
                                     className="w-full aspect-[2/3] object-cover"
-                                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x1200/4c0c93/ffffff?text=Stamp+Sukarno' }}
+                                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x1200/4c0c93/ffffff?text=Stamp+Soeharto+1993' }}
                                 />
                                 <div className="absolute bottom-2 left-2 right-2 bg-red-600 text-white text-center py-1">
                                     <span className="text-xs font-bold tracking-widest">
                                         REPUBLIK INDONESIA
                                     </span>
+                                </div>
+                                <div className="absolute top-2 left-2 bg-gray-800 text-white px-2 py-1 text-xs font-bold rounded-sm">
+                                    1993
                                 </div>
                                 <div className="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 text-sm font-bold rounded-sm">
                                     700p
@@ -47,26 +87,19 @@ const SejarahPerpossanContent = () => (
                 </div>
 
                 {/* Text Block (Right) */}
-                <div className="order-1 md:order-2">
-                    {/* Judul menggunakan warna kustom #2E3192 */}
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Kisah Pos
-                        <br />
-                        Zaman Kuno
-                    </h2>
-
+                <div className="md:col-span-2">
                     <div className="mb-6 rounded-lg overflow-hidden border-2 border-gray-200 shadow-md">
                         {/* Placeholder Image: Historical Group Photo */}
                         <img
-                            src="https://placehold.co/600x300/e9d5ff/4c0c93?text=Ancient+Postal+History"
-                            alt="Sejarah Pos"
+                            src="/acient.png"
+                            alt="Sejarah Pos Kuno"
                             className="w-full h-auto object-cover"
-                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x300/e9d5ff/4c0c93?text=Ancient+Postal+History' }}
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x300/e9d5ff/4c0c93?text=Ancient+Postal+Couriers' }}
                         />
                     </div>
 
                     <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
-                        Sistem pengiriman pesan telah ada sejak peradaban kuno, mulai dari Mesir hingga Tiongkok, menggunakan kurir berlari, kuda, dan merpati pos. Di era modern, layanan pos berevolusi menjadi infrastruktur komunikasi global yang menghubungkan seluruh dunia.
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
                     </p>
                 </div>
             </div>
@@ -74,23 +107,21 @@ const SejarahPerpossanContent = () => (
 
         {/* Universal Postal Union */}
         <section className="mb-12">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-                {/* Text Block (Left) */}
-                <div className="order-1">
-                    {/* Judul menggunakan warna kustom #2E3192 */}
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Universal
-                        <br />
-                        Postal Union (UPU)
-                    </h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
+                Universal
+                <br />
+                Postal Union (UPU)
+            </h2>
 
-                    <div className="flex items-center space-x-4 mb-6">
+            <div className="grid md:grid-cols-3 gap-8 items-start">
+                {/* Text Block (Left) */}
+                <div className="md:col-span-2 order-1">
+                    <div className="flex items-center space-x-4 mb-6 p-3 bg-gray-100 rounded-lg border border-gray-200">
                         {/* UPU Logo SVG menggunakan warna kustom #2E3192 */}
-                        <svg viewBox="0 0 24 24" className="w-16 h-16 text-[#2E3192]" fill="currentColor">
+                        <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#2E3192] flex-shrink-0" fill="currentColor">
                             <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                         </svg>
                         <div className="text-sm">
-                            {/* Teks menggunakan warna kustom #2E3192 */}
                             <div className="font-bold text-[#2E3192]">UNIVERSAL</div>
                             <div className="font-bold text-[#2E3192]">POSTAL</div>
                             <div className="font-bold text-[#2E3192]">UNION</div>
@@ -98,25 +129,25 @@ const SejarahPerpossanContent = () => (
                     </div>
 
                     <p className="text-gray-700 leading-relaxed mb-6 text-base sm:text-lg">
-                        UPU didirikan pada tahun 1874 di Bern, Swiss, untuk menyatukan layanan pos global dan membuat satu wilayah pos tunggal di seluruh dunia. Organisasi ini memastikan pertukaran surat internasional berjalan lancar dan efisien.
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
                     </p>
 
                     {/* Tombol menggunakan warna kustom #2E3192 */}
-                    <button className="text-[#2E3192] font-extrabold hover:underline transition-colors text-base sm:text-lg">
+                    <button className="text-red-600 font-extrabold hover:underline transition-colors text-base sm:text-lg mt-2">
                         Awali Terbentuk <ChevronRight className="inline h-5 w-5 ml-1"/>
                     </button>
                 </div>
 
                 {/* Image Block (Right) */}
-                <div className="flex justify-center md:justify-start order-2">
-                    <div className="bg-gray-900 p-6 sm:p-8 rounded-lg max-w-sm w-full">
+                <div className="md:col-span-1 flex justify-center md:justify-start order-2">
+                    <div className="bg-gray-900 p-6 sm:p-8 rounded-lg max-w-xs w-full">
                         <div className="bg-white p-2 rounded shadow-2xl">
                             {/* Placeholder Image: Historical Figure B (Black and White) */}
                             <img
-                                src="https://placehold.co/600x800/e0e0e0/000000?text=Henry+Harriman"
-                                alt="Historical figure"
+                                src="/figure.png"
+                                alt="Tokoh Sejarah Pos"
                                 className="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x800/e0e0e0/000000?text=Henry+Harriman' }}
+                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x800/e0e0e0/000000?text=Historical+Figure' }}
                             />
                         </div>
                     </div>
@@ -126,8 +157,96 @@ const SejarahPerpossanContent = () => (
     </div>
 );
 
-// Content for the "SEJARAH KANTOR POS" tab (New)
+
+// Content for the "SEJARAH KANTOR POS" tab (SEHARUSNYA: MUSEUM PTT/AHMAD TAHIR)
+// Label navigasi disesuaikan menjadi "SEJARAH MUSEUM INDONESIA"
 const SejarahKantorPosContent = () => (
+    <div className="py-8">
+        {/* Breadcrumb */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm mb-6">
+            <div className="flex items-center space-x-2 mb-2 sm:mb-0">
+                <span className="font-bold text-[#2E3192]">MUSEUM POS INDONESIA</span>
+            </div>
+            <span className="text-gray-500">Sejarah Museum Indonesia</span>
+        </div>
+
+        {/* Pendirian Museum PTT (Konten dari Gambar 210837.jpg) */}
+        <section className="mb-16 bg-gray-200 p-6 sm:p-10 rounded-xl shadow-lg">
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                {/* Text Block (Left) */}
+                <div className="order-1 lg:col-span-1 flex flex-col justify-center h-full">
+                    <h2 className="text-4xl sm:text-5xl font-extrabold text-red-800 mb-6 leading-tight">
+                        Sejarah
+                        <br />
+                        Museum
+                        <br />
+                        Pos
+                        <br />
+                        Indonesia
+                    </h2>
+                </div>
+
+                {/* Visual Block (Right/Center) */}
+                <div className="order-2 lg:col-span-2">
+                    <div className="mb-6 rounded-lg overflow-hidden shadow-2xl">
+                        {/* Placeholder Image: Museum Building */}
+                        <img
+                            src="/museum1.jpeg"
+                            alt="Gedung Museum Pos Indonesia"
+                            className="w-full h-auto object-cover"
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/900x400/e0e0e0/2E3192?text=Gedung+Museum+Pos' }}
+                        />
+                    </div>
+                    <p className="text-gray-800 leading-relaxed text-sm sm:text-base">
+                        Museum Pos Indonesia telah hadir sejak masa Hindia Belanda dengan nama **Museum PTT (Pos Telegrap dan Telepon)**, tepatnya pada tahun **1931** terletak dibagian sayap kanan bawah Gedung Kantor Pusat PTT Jl. Cilaki No. 73 Bandung 40115. Koleksi Museum PTT masih terbatas pada berbagai jenis Prangko, namun saat ini koleksinya semakin bertambah terdiri atas benda-benda yang bernilai sejarah seperti Peralatan Pos, Visualisasi dan Diorama Kegiatan Layanan Pos yang memiliki nilai sejarah dalam perjalanan PT Pos Indonesia (Persero) serta Prangko-Prangko dari berbagai Negara.
+                    </p>
+                    <p className="text-gray-800 leading-relaxed text-sm sm:text-base mt-3">
+                        Akibat adanya pergolakan revolusi dan perang kemerdekaan, keberadaan Museum PTT kurang mendapat perhatian, bahkan nyaris terlupakan. Menyadari demikian besarnya peranan museum sebagai sarana pendidikan, informasi dan rekreasi untuk generasi muda di masa sekarang dan mendatang, maka pada tahun 1980 Direksi Perum Pos dan Giro membentuk Phalatila untuk menghidupkan kembali museum. Pada tanggal **27 September 1983** bersamaan dengan hari Bakti Postel ke-38, Museum ini secara resmi dibuka untuk umum oleh Menteri Pariwisata Pos dan Telekomunikasi yang pada saat itu dijabat oleh **Ahmad Tahir** dan diberi nama Museum Pos dan Giro. Sejalan dengan perkembangan perusahaan Pos dimana terhitung tanggal 20 Juni 1995 nama dan status Perusahaan Umum Pos dan Giro menjadi PT Pos Indonesia (Persero), maka Museum Pos dan Giro berubah menjadi Museum Pos Indonesia hingga saat ini.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {/* Peresmian Achmad Tahir (Konten dari Gambar 210846.jpg) */}
+        <section className="mb-12 bg-white p-6 sm:p-10 rounded-xl shadow-lg">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Visual Block (Left) */}
+                <div className="order-2 md:order-1 flex justify-center">
+                    <div className="w-full max-w-sm rounded-lg overflow-hidden shadow-2xl border-4 border-gray-300 -rotate-2">
+                        {/* Placeholder Image: Ahmad Tahir Signing */}
+                        <img
+                            src="/achmad.jpeg"
+                            alt="Ahmad Tahir Menandatangani Sampul"
+                            className="w-full h-auto object-cover"
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x400/9e9e9e/424242?text=Ahmad+Tahir+Peresmian' }}
+                        />
+                    </div>
+                </div>
+
+                {/* Text Block (Right) */}
+                <div className="order-1 md:order-2 text-gray-800 leading-relaxed">
+                    <div className="text-red-600 font-bold mb-2">
+                        27 SEPTEMBER 1983
+                    </div>
+                    <h3 className="text-3xl font-extrabold text-[#2E3192] mb-4">
+                        ACHMAD TAHIR
+                    </h3>
+                    <p className="font-semibold text-sm mb-4">
+                        Menteri Pariwisata Pos dan Telekomunikasi
+                    </p>
+                    <p className="text-sm">
+                        Bersamaan dengan peringatan Hari Bhakti Postel ke-38 dilakukan penandatangan sampul-sampul peringatan, sekaligus peresmian Museum Pos dan Giro.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+);
+
+
+// Content for the "SEJARAH MUSEUM POS INDONESIA" tab (SEHARUSNYA: GUSTAAF WILLEM/BATAVIA 1746)
+// Label navigasi disesuaikan menjadi "SEJARAH KANTOR POS"
+const SejarahMuseumPosContent = () => (
     <div className="py-8">
         {/* Breadcrumb */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm mb-6">
@@ -137,209 +256,135 @@ const SejarahKantorPosContent = () => (
             <span className="text-gray-500">Sejarah Kantor Pos</span>
         </div>
 
-        {/* Pendirian Kantor Pos Batavia 1746 */}
+        {/* Pendirian Kantor Pos Batavia 1746 (Konten dari Gambar 212020.jpg) */}
         <section className="mb-16">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 leading-tight">
+                SEJARAH KANTOR POS
+            </h2>
             <div className="grid md:grid-cols-2 gap-8 items-start">
                 {/* Text Block (Left) */}
                 <div className="order-1">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Awal Mula:
-                        <br />
-                        Kantor Pos Batavia
-                    </h2>
-
-                    <div className="mb-6 rounded-lg overflow-hidden border-2 border-red-600 shadow-lg">
-                        {/* Placeholder Image: Peta Batavia Lama */}
-                        <img
-                            src="https://placehold.co/600x300/2E3192/FFFFFF?text=Peta+Batavia+1746"
-                            alt="Peta Batavia Lama"
-                            className="w-full h-auto object-cover"
-                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x300/2E3192/FFFFFF?text=Peta+Batavia+1746' }}
-                        />
-                    </div>
-
-                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg mb-4">
-                        Sejarah modern kantor pos di Indonesia dimulai pada tanggal **26 Agustus 1746**. Gubernur Jenderal **Gustaaf Willem Baron van Imhoff** mendirikan kantor pos pertama di Batavia (Jakarta) dan Semarang.
+                    <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4">
+                        Kantor Pos pertama didirikan di Batavia oleh Gubernur Jenderal Gustaaf Willem Baron Van Imhoff pada tanggal **26 Agustus 1746** dengan tujuan untuk lebih menjamin keamanan surat-surat penduduk, terutama bagi mereka yang datang dan pergi ke negeri Belanda. Pengantar Kantor Pos tersebut terdiri dari dua orang "**Postmeester**" yang disumpah dan dibantu dengan dua orang Kerani (klerk) yang disumpah pula termasuk pegawai Kantor Pos ini ialah beberapa pengantar Pos.
                     </p>
-                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
-                        Pendirian ini bertujuan untuk memastikan komunikasi yang efisien antara pemerintah kolonial di Batavia dengan wilayah-wilayah di luar Jawa, terutama Semarang.
+                    <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                        Setelah Kantor pos Batavia didirikan, maka empat tahun kemudian didirikan kantor pos Semarang untuk mengadakan Perhubungan Pos yang teratur
                     </p>
                 </div>
 
                 {/* Visual Block (Right) */}
                 <div className="flex justify-center md:justify-start order-2">
-                    <div className="bg-red-600 p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-2 rounded shadow-2xl -rotate-3 border-4 border-white transform hover:rotate-0 transition-transform duration-300">
-                            <div className="relative p-4">
-                                <Building className="w-16 h-16 text-[#2E3192] mx-auto mb-3"/>
-                                <h3 className="text-xl font-bold text-center text-gray-900 mb-2">Kantor Pertama</h3>
-                                <p className="text-center text-sm text-gray-600">Jalur utama Batavia - Semarang</p>
-                                <div className="absolute top-0 right-0 bg-[#2E3192] text-white px-2 py-1 text-xs font-bold rounded-bl-lg">
-                                    1746
-                                </div>
-                            </div>
-                        </div>
+                    <div className="w-full max-w-md rounded-lg overflow-hidden shadow-2xl border-4 border-gray-700">
+                        {/* Placeholder Image: Kantor Pos Batavia */}
+                        <img
+                            src="https://placehold.co/600x400/a0a0a0/000000?text=Kantor+Pos+Batavia+1746"
+                            alt="Kantor Pos Batavia Tempo Dulu"
+                            className="w-full h-auto object-cover grayscale"
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x400/a0a0a0/000000?text=Kantor+Pos+Batavia+1746' }}
+                        />
                     </div>
                 </div>
             </div>
+            <div className="mt-8 text-gray-700 leading-relaxed text-sm sm:text-base">
+                <p className="mb-4">
+                    ...antara kedua tempat itu dan untuk mempercepat pengirimannya. Rute perjalanan Pos kala itu melalui Krawang, Cirebon dan Pekalongan. Dari sejarah pos semasa kompeni dapat diteliti bahwa kata "**Kantor**" yang dikenal sekarang berasal dari kata *COMPTOIR* lama kelamaan menjadi "**Kantoor**" (Bahasa Belanda) dalam Bahasa Indonesia "Kantor" sedangkan kata "**Pos**" berasal dari kata kerja latin *Ponere* yang berubah menjadi *Posita* ini menjadi "**Posta**" dalam Bahasa Italia menjadi *Poste* dalam Bahasa Perancis dan *Post* dalam Bahasa Inggris, Belanda dan Jerman.
+                </p>
+                <p>
+                    Istilah "*Post Comtpoir*" antara lain Nampak pula pada Cap tanggal jaman Pemerintahan Daendels yang kemudian dibelandakan menjadi "*Postkantoor*" dan menjadi istilah Indonesia adalah "**Kantor Pos**".
+                </p>
+            </div>
         </section>
 
-        {/* Evolusi Layanan Pos */}
-        <section className="mb-12">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
+        {/* Gustaaf Willem Baron Van Imhoff (Konten dari Gambar 212012.jpg) */}
+        <section className="mb-12 bg-yellow-100 p-6 sm:p-10 rounded-xl shadow-inner border-l-4 border-yellow-500">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
                 {/* Visual Block (Left) */}
-                <div className="flex justify-center md:justify-end order-1">
-                    <div className="bg-[#2E3192] p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-2 rounded shadow-2xl">
-                            {/* Placeholder Image: Kuda dan Kurir Pos */}
-                            <img
-                                src="https://placehold.co/600x800/2E3192/e0e0e0?text=Kuda+Kurir+Pos"
-                                alt="Kurir Pos Kuno"
-                                className="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x800/2E3192/e0e0e0?text=Kuda+Kurir+Pos' }}
-                            />
+                <div className="order-1 flex justify-center md:justify-end">
+                    <div className="w-full max-w-sm relative">
+                        {/* Map & Compass Background */}
+                        <div className="absolute inset-0 bg-gray-600 rounded-lg opacity-20" style={{ backgroundImage: "url('https://placehold.co/600x600/1e293b/7e8a9f?text=Map+Background')" }}></div>
+
+                        {/* Compass Overlay */}
+                        <div className="absolute top-4 left-4 p-2 bg-white rounded-full shadow-lg">
+                            <Map className="h-8 w-8 text-gray-700 rotate-12"/>
                         </div>
-                    </div>
-                </div>
 
-                {/* Text Block (Right) */}
-                <div className="order-2">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Perkembangan
-                        <br />
-                        Menuju PTT
-                    </h2>
-
-                    <p className="text-gray-700 leading-relaxed mb-6 text-base sm:text-lg">
-                        Seiring waktu, layanan pos berkembang pesat. Pada tahun 1875, jawatan pos resmi dibentuk dan kemudian bergabung dengan layanan telegraf dan telepon, menjadi **Post-, Telegraaf-, en Telefoondienst (PTT)**.
-                    </p>
-
-                    <ul className="space-y-3 p-4 bg-red-50 rounded-lg border border-red-200">
-                        <li className="flex items-start text-gray-700">
-                            <ChevronRight className="h-5 w-5 text-red-600 mt-1 mr-2 flex-shrink-0"/> <span>1746: Kantor Pos pertama di Batavia dan Semarang.</span>
-                        </li>
-                        <li className="flex items-start text-gray-700">
-                            <ChevronRight className="h-5 w-5 text-red-600 mt-1 mr-2 flex-shrink-0"/> <span>1862: Penerbitan prangko pertama Hindia Belanda.</span>
-                        </li>
-                        <li className="flex items-start text-gray-700">
-                            <ChevronRight className="h-5 w-5 text-red-600 mt-1 mr-2 flex-shrink-0"/> <span>1875: Pembentukan jawatan pos resmi PTT.</span>
-                        </li>
-                    </ul>
-
-                    {/* Tombol menggunakan warna kustom #2E3192 */}
-                    <button className="text-red-600 font-extrabold hover:underline transition-colors text-base sm:text-lg mt-4">
-                        Lihat Perangko <ChevronRight className="inline h-5 w-5 ml-1"/>
-                    </button>
-                </div>
-            </div>
-        </section>
-    </div>
-);
-
-// Content for the "SEJARAH MUSEUM POS INDONESIA" tab (New)
-const SejarahMuseumPosContent = () => (
-    <div className="py-8">
-        {/* Breadcrumb */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm mb-6">
-            <div className="flex items-center space-x-2 mb-2 sm:mb-0">
-                <span className="font-bold text-[#2E3192]">MUSEUM POS INDONESIA</span>
-            </div>
-            <span className="text-gray-500">Sejarah Museum Pos Indonesia</span>
-        </div>
-
-        {/* Pendirian Museum PTT */}
-        <section className="mb-16">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-                {/* Image Block (Left) */}
-                <div className="flex justify-center md:justify-end order-2 md:order-1">
-                    <div className="bg-gray-900 p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-3 sm:p-4 rounded shadow-2xl rotate-3 border-4 border-white transform hover:rotate-0 transition-transform duration-300">
-                            <div className="relative">
-                                {/* Placeholder Image: Museum Building */}
-                                <img
-                                    src="https://placehold.co/800x600/2E3192/ffffff?text=Museum+Pos+Bandung"
-                                    alt="Gedung Museum Pos Indonesia"
-                                    className="w-full aspect-[4/3] object-cover"
-                                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x600/2E3192/ffffff?text=Museum+Pos+Bandung' }}
-                                />
-                                <div className="absolute bottom-2 left-2 right-2 bg-gray-900 text-white text-center py-1">
-                                    <span className="text-xs font-bold tracking-widest">
-                                        GEDUNG MUSEUM POS INDONESIA
-                                    </span>
-                                </div>
+                        {/* Portrait */}
+                        <div className="relative z-10 p-4">
+                            <div className="w-full aspect-square rounded-full overflow-hidden border-8 border-yellow-500 shadow-2xl mx-auto" style={{
+                                backgroundImage: `url('https://placehold.co/400x400/d7e0f4/2E3192?text=Gustaaf+Willem')`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            }}>
+                                {/* Placeholder for portrait image inside the circle */}
+                                <div className="w-full h-full bg-cover bg-center" style={{ 
+                                    backgroundImage: `url('https://placehold.co/400x400/d7e0f4/2E3192?text=Gustaaf+Willem')`,
+                                    mixBlendMode: 'multiply',
+                                    opacity: 0.8
+                                }}></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Text Block (Right) */}
-                <div className="order-1 md:order-2">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Museum PTT
+                <div className="order-2 text-gray-800 leading-relaxed">
+                    <h3 className="text-3xl sm:text-4xl font-extrabold text-red-800 mb-2">
+                        GUSTAAF WILLEM
                         <br />
-                        Cikal Bakal
-                    </h2>
-
-                    <div className="flex items-center space-x-4 mb-6 p-3 bg-red-100 rounded-lg border border-red-300">
-                         <Map className="h-6 w-6 text-red-600 flex-shrink-0"/> 
-                         <p className="text-red-800 font-semibold text-sm">Lokasi: Bandung, Jawa Barat</p>
+                        BARON VAN IMHOFF
+                    </h3>
+                    <div className="text-lg font-semibold text-[#2E3192] mb-4">
+                        1705 - 1750
                     </div>
-
-                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg mb-4">
-                        Museum Pos Indonesia awalnya didirikan pada tanggal **27 Juli 1931** dengan nama **Museum Pos, Telegraf dan Telepon (PTT)**. Tujuannya adalah untuk mengumpulkan dan melestarikan benda-benda bersejarah yang berkaitan dengan pos, telegraf, dan telepon di Indonesia.
+                    <p className="text-sm sm:text-base mb-3">
+                        Gustaaf Willem Baron van Imhoff merupakan Gubernur Jenderal. Dilahirkan di Leer (Jerman)
                     </p>
-                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
-                        Gedungnya berada di samping Gedung Sate, Bandung, yang merupakan salah satu karya arsitektur megah masa Hindia Belanda.
+                    <p className="text-sm sm:text-base">
+                        8 Agustus 1705 dan meninggal pada tanggal 1 November 1750 di Batavia. Gustaaf Willem Baron Van Imhoff membuka kantor pos pertama di Batavia.
                     </p>
-                </div>
-            </div>
-        </section>
-
-        {/* Koleksi Filateli dan Artifact */}
-        <section className="mb-12">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-                {/* Text Block (Left) */}
-                <div className="order-1">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Jantung Koleksi:
-                        <br />
-                        Filateli Dunia
-                    </h2>
-
-                    <p className="text-gray-700 leading-relaxed mb-6 text-base sm:text-lg">
-                        Koleksi utamanya adalah **filateli**, yaitu ribuan perangko dari berbagai negara dan zaman, mulai dari perangko Hindia Belanda hingga prangko Republik Indonesia terbaru. Ini adalah cermin sejarah komunikasi bangsa.
-                    </p>
-
-                    <div className="flex items-center space-x-3 mb-6">
-                        <Archive className="h-8 w-8 text-red-600"/>
-                        <p className="font-bold text-lg text-gray-800">10,000+ Koleksi Perangko dan Benda Pos</p>
-                    </div>
-
-                    <button className="text-[#2E3192] font-extrabold hover:underline transition-colors text-base sm:text-lg">
-                        Lihat Koleksi Unggulan <ChevronRight className="inline h-5 w-5 ml-1"/>
-                    </button>
-                </div>
-
-                {/* Image Block (Right) */}
-                <div className="flex justify-center md:justify-start order-2">
-                    <div className="bg-red-600 p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-2 rounded shadow-2xl">
-                            {/* Placeholder Image: Prangko Vintage */}
-                            <img
-                                src="https://placehold.co/600x800/e0e0e0/000000?text=Vintage+Stamp+Collection"
-                                alt="Koleksi Prangko"
-                                className="w-full aspect-[3/4] object-cover filter saturate-150 hover:saturate-100 transition-all duration-500"
-                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x800/e0e0e0/000000?text=Vintage+Stamp+Collection' }}
-                            />
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
     </div>
 );
 
-// Content for the "GEDUNG POS TEMPO DULU" tab (New)
+
+// Component Title Block untuk Gedung Pos Tempo Dulu
+const GedungPosTitleBlock = () => (
+    <div className="bg-yellow-400 p-8 sm:p-12 mb-16 rounded-xl shadow-xl">
+        <div className="container mx-auto max-w-6xl">
+            <div className="flex flex-col lg:flex-row items-center justify-between">
+                {/* Visual Kiri: Foto Gedung Pos Lama */}
+                <div className="w-full lg:w-1/3 flex justify-center lg:justify-start mb-6 lg:mb-0">
+                    <div className="bg-white p-4 rounded-lg shadow-2xl rotate-1 transform hover:rotate-0 transition-transform duration-300 border-4 border-gray-100">
+                        {/* Placeholder Image: Gedung Pos Lama Hitam Putih */}
+                        <img
+                            src="https://placehold.co/500x350/ffffff/000000?text=Post+Telegraaf+Kantoor"
+                            alt="Gedung Pos Tempo Dulu"
+                            className="w-full max-w-xs object-cover"
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/500x350/ffffff/000000?text=Post+Telegraaf+Kantoor' }}
+                        />
+                    </div>
+                </div>
+
+                {/* Title Kanan */}
+                <div className="w-full lg:w-2/3 flex flex-col items-center lg:items-end text-center lg:text-right">
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-red-800 leading-none mb-4">
+                        Gedung Pos
+                        <br />
+                        Tempo Dulu
+                    </h1>
+                    {/* Arrow Down */}
+                    <ChevronDown className="h-10 w-10 text-red-800 mt-4 animate-bounce" />
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+
+// Content for the "GEDUNG POS TEMPO DULU" tab
 const GedungPosTempoDuluContent = () => (
     <div className="py-8">
         {/* Breadcrumb */}
@@ -350,91 +395,14 @@ const GedungPosTempoDuluContent = () => (
             <span className="text-gray-500">Gedung Pos Tempo Dulu</span>
         </div>
 
+        {/* Title Block dari gambar 213821.jpg */}
+        <GedungPosTitleBlock />
+
         {/* Arsitektur Kolonial */}
-        <section className="mb-16">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-                {/* Visual Block (Left) */}
-                <div className="flex justify-center md:justify-end order-2 md:order-1">
-                    <div className="bg-gray-900 p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-3 sm:p-4 rounded shadow-2xl rotate-3 border-4 border-white transform hover:rotate-0 transition-transform duration-300">
-                            <div className="relative">
-                                {/* Placeholder Image: Post Office Building Bandung */}
-                                <img
-                                    src="https://placehold.co/800x600/2E3192/FFFFFF?text=Gedung+Pos+Bandung+Kolonial"
-                                    alt="Gedung Pos Bandung"
-                                    className="w-full aspect-[4/3] object-cover"
-                                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x600/2E3192/FFFFFF?text=Gedung+Pos+Bandung+Kolonial' }}
-                                />
-                                <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 text-xs font-bold rounded-sm">
-                                    BANDUNG
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                {/* Text Block (Right) */}
-                <div className="order-1 md:order-2">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Arsitektur
-                        <br />
-                        Indisch & Neo-Klasik
-                    </h2>
-
-                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg mb-4">
-                        Banyak kantor pos bersejarah di Indonesia dibangun pada masa kolonial Belanda dengan gaya arsitektur yang khas, menggabungkan sentuhan Eropa (Neo-Klasik, Art Deco) dengan adaptasi iklim tropis (**Indisch**).
-                    </p>
-                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
-                        Gedung-gedung ini dicirikan oleh tiang-tiang tinggi, fasad simetris, dan penggunaan material lokal untuk menciptakan ruang yang sejuk dan megah.
-                    </p>
-                    <ul className="mt-4 space-y-2">
-                        <li className="flex items-center text-red-600 font-semibold"><Clock className="h-5 w-5 mr-2"/> Ciri: Simetri dan Kolom Doric.</li>
-                        <li className="flex items-center text-red-600 font-semibold"><Building className="h-5 w-5 mr-2"/> Contoh: Kantor Pos Besar Jakarta (Lap. Banteng).</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
         {/* Transportasi Pos */}
-        <section className="mb-12">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-                {/* Text Block (Left) */}
-                <div className="order-1">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-6 leading-tight">
-                        Kendaraan
-                        <br />
-                        Pengantar Pesan
-                    </h2>
 
-                    <p className="text-gray-700 leading-relaxed mb-6 text-base sm:text-lg">
-                        Di masa lampau, surat dan paket diangkut menggunakan berbagai moda transportasi: kuda, kereta pos (stagecoach), hingga kereta api. Transportasi pos adalah nadi yang menghubungkan pulau-pulau di Nusantara.
-                    </p>
-
-                    <p className="text-gray-700 leading-relaxed mb-6 text-base sm:text-lg font-bold text-red-600">
-                        Kereta api menjadi tulang punggung pengiriman pos antar kota besar di Jawa.
-                    </p>
-
-                    <button className="text-[#2E3192] font-extrabold hover:underline transition-colors text-base sm:text-lg">
-                        Jelajahi Jalur Pos <ChevronRight className="inline h-5 w-5 ml-1"/>
-                    </button>
-                </div>
-
-                {/* Image Block (Right) */}
-                <div className="flex justify-center md:justify-start order-2">
-                    <div className="bg-red-600 p-6 sm:p-8 rounded-lg max-w-sm w-full">
-                        <div className="bg-white p-2 rounded shadow-2xl">
-                            {/* Placeholder Image: Kereta Pos Lama */}
-                            <img
-                                src="https://placehold.co/600x800/e0e0e0/000000?text=Kereta+Pos+Vintage"
-                                alt="Kereta Pos Lama"
-                                className="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x800/e0e0e0/000000?text=Kereta+Pos+Vintage' }}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 );
 
@@ -442,14 +410,17 @@ const GedungPosTempoDuluContent = () => (
 // --- MAIN COMPONENT ---
 
 const PosSejarah: React.FC = () => {
+    // Label dan Content dipertukarkan sesuai permintaan user
     const menuItems = [
         { id: 'perpossan', title: 'SEJARAH', subtitle: 'PERPOSSAN', icon: BookOpen, content: <SejarahPerpossanContent /> },
-        // Updated to use the new content components
-        { id: 'kantor', title: 'SEJARAH', subtitle: 'KANTOR POS', icon: Building, content: <SejarahKantorPosContent /> },
-        { id: 'museum', title: 'SEJARAH', subtitle: 'MUSEUM POS INDONESIA', icon: Home, content: <SejarahMuseumPosContent /> },
+        // Nav Label: SEJARAH MUSEUM INDONESIA (karena kontennya Museum PTT)
+        { id: 'kantor', title: 'SEJARAH MUSEUM', subtitle: 'INDONESIA', icon: Building, content: <SejarahKantorPosContent /> },
+        // Nav Label: SEJARAH KANTOR POS (karena kontennya Batavia 1746)
+        { id: 'museum', title: 'SEJARAH KANTOR', subtitle: 'POS', icon: Home, content: <SejarahMuseumPosContent /> },
         { id: 'gedung', title: 'GEDUNG POS', subtitle: 'TEMPO DULU', icon: Map, content: <GedungPosTempoDuluContent /> },
     ];
 
+    // MODIFIKASI: Set default active tab ke 'perpossan' (index 0)
     const [activeTab, setActiveTab] = useState(menuItems[0].id);
     const [isExiting, setIsExiting] = useState(false);
 
@@ -464,8 +435,7 @@ const PosSejarah: React.FC = () => {
         setIsExiting(true);
         // Tunggu 300ms untuk menyelesaikan transisi opacity sebelum simulasi navigasi
         setTimeout(() => {
-            // Simulasi navigasi ke halaman utama/reset, yang paling aman di lingkungan ini adalah reset halaman
-            // Note: In a real Next.js app, this would use a router like router.push('/')
+            // Simulasi navigasi ke halaman utama/reset
             window.location.href = window.location.origin;
         }, 300);
     };

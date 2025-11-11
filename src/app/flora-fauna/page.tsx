@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { useRouter } from "next/navigation"; // ✅ untuk navigasi antar halaman
+import { useRouter } from "next/navigation";
 
 // --- DATA MOCKUP PRANGKO ---
 interface Stamp {
@@ -175,7 +175,7 @@ const StampCard: React.FC<{ stamp: Stamp; isLarge: boolean }> = ({
 
 // --- MAIN COMPONENT ---
 export default function App() {
-  const router = useRouter(); // ✅ router instance
+  const router = useRouter();
   const [filter, setFilter] = useState<"Semua" | "Flora" | "Fauna">("Semua");
 
   const title = "Koleksi Prangko Indonesia";
@@ -193,13 +193,12 @@ export default function App() {
   const mainStamp = filteredStamps[0] || null;
   const secondaryStamps = filteredStamps.slice(1);
 
-  // 🔙 Fungsi untuk kembali ke halaman utama prangko
   const handleBackToPrangko = () => {
     router.push("/prangko");
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8 font-sans relative">
+    <div className="min-h-screen bg-gray-50 font-sans">
       <script src="https://cdn.tailwindcss.com"></script>
       <style>{`
         .font-serif { font-family: 'Georgia', serif; }
@@ -213,65 +212,78 @@ export default function App() {
         }
       `}</style>
 
-      {/* --- BUTTON KEMBALI DI KANAN ATAS --- */}
-      <button
-        onClick={handleBackToPrangko}
-        className="absolute top-4 right-4 flex items-center px-4 py-2 bg-[#172b60] text-white text-sm rounded-lg shadow-lg hover:bg-[#24459d] transition-all duration-200 z-10"
-      >
-        <ArrowLeftIcon />
-        Kembali ke Halaman Prangko
-      </button>
+      {/* --- TOP NAVIGATION BAR --- */}
+      <div className="bg-white border-b border-gray-200 py-4 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <button
+            onClick={handleBackToPrangko}
+            className="flex items-center text-[#172b60] hover:text-[#24459d] font-medium transition-colors duration-200"
+          >
+            <ArrowLeftIcon />
+            Kembali
+          </button>
+          
+          <div className="flex items-center">
+            <span className="text-2xl md:text-3xl font-extrabold tracking-tight">
+              <span className="text-[#172b60]">POS</span>
+              <span className="text-red-600"> IND</span>
+            </span>
+          </div>
+        </div>
+      </div>
 
-      <div className="max-w-7xl mx-auto">
-        {/* --- HEADER --- */}
-        <header className="mb-8 p-6 rounded-3xl shadow-xl bg-gradient-header text-white relative mt-12">
-          <p className="text-sm font-light uppercase tracking-widest opacity-80 mb-1">
-            {title}
-          </p>
-          <h1 className="font-serif text-5xl md:text-6xl font-extrabold leading-tight">
-            {subtitle}
-          </h1>
+      <div className="p-4 md:p-8">
+        <div className="max-w-7xl mx-auto">
+          {/* --- HEADER --- */}
+          <header className="mb-8 p-6 rounded-3xl shadow-xl bg-gradient-header text-white relative">
+            <p className="text-sm font-light uppercase tracking-widest opacity-80 mb-1">
+              {title}
+            </p>
+            <h1 className="font-serif text-5xl md:text-6xl font-extrabold leading-tight">
+              {subtitle}
+            </h1>
 
-          {/* Filter Buttons */}
-          <div className="mt-6 flex justify-start">
-            <div className="flex space-x-2 p-1 bg-white/20 rounded-xl">
-              {(["Semua", "Flora", "Fauna"] as const).map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`filter-button px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ${
-                    filter === cat
-                      ? "active"
-                      : "text-white/80 hover:bg-white/30"
-                  }`}
-                >
-                  {cat}
-                </button>
+            {/* Filter Buttons */}
+            <div className="mt-6 flex justify-start">
+              <div className="flex space-x-2 p-1 bg-white/20 rounded-xl">
+                {(["Semua", "Flora", "Fauna"] as const).map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setFilter(cat)}
+                    className={`filter-button px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ${
+                      filter === cat
+                        ? "active"
+                        : "text-white/80 hover:bg-white/30"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </header>
+
+          {/* --- GRID CONTENT --- */}
+          {filteredStamps.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
+              {mainStamp && (
+                <div className="md:col-span-1 md:row-span-2">
+                  <StampCard stamp={mainStamp} isLarge={true} />
+                </div>
+              )}
+              {secondaryStamps.map((stamp) => (
+                <StampCard key={stamp.id} stamp={stamp} isLarge={false} />
               ))}
             </div>
-          </div>
-        </header>
-
-        {/* --- GRID CONTENT --- */}
-        {filteredStamps.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
-            {mainStamp && (
-              <div className="md:col-span-1 md:row-span-2">
-                <StampCard stamp={mainStamp} isLarge={true} />
-              </div>
-            )}
-            {secondaryStamps.map((stamp) => (
-              <StampCard key={stamp.id} stamp={stamp} isLarge={false} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center p-12 bg-white rounded-xl shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-700">
-              Prangko Tidak Ditemukan
-            </h2>
-            <p className="text-gray-500 mt-2">Coba ganti filter Anda.</p>
-          </div>
-        )}
+          ) : (
+            <div className="text-center p-12 bg-white rounded-xl shadow-lg">
+              <h2 className="text-2xl font-bold text-gray-700">
+                Prangko Tidak Ditemukan
+              </h2>
+              <p className="text-gray-500 mt-2">Coba ganti filter Anda.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

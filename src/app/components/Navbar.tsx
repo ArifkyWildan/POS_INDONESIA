@@ -70,7 +70,7 @@ const navItems = [
     type: "modal" as const,
   },
   {
-    href: "/#rebranding",
+    href: "https://indonesiavirtualtour.com/wisata-virtual/museum-pos-indonesia",
     icon: RedoIcon,
     label: "Rebranding",
     type: "link" as const,
@@ -82,46 +82,27 @@ const sejarahCollections = [
   {
     id: 1,
     title: "Sejarah POS",
-    subtitle: "Sejarah Perposan, Sejarah Museum Pos Indonesia, Sejarah Kantor Pos, Gedung Pos Tempo Dulu",
-    image: "/museum.jpg",
+    subtitle:
+      "Sejarah Perposan, Sejarah Museum Pos Indonesia, Sejarah Kantor Pos, Gedung Pos Tempo Dulu",
+    image: "/koleksi1.webp",
     href: "/pos-sejarah",
   },
   {
     id: 2,
-    title: "Prangko",
-    subtitle: "Ekspansi Dunia",
+    title: "Koleksi Filateli",
+    subtitle: "Prangko Bersejarah, Prangko Peristiwa Bersejarah, Prangko Para Tokoh Indonseia, Prangko Keberagaman Budaya Nusantara, Prangko Flora & Fauna",
     image:
-      "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop",
+      "/koleksi1.webp",
     href: "/prangko",
   },
   {
     id: 3,
-    title: "MARY JAMES BROWN",
-    subtitle: "Tokoh Penting",
+    title: "Koleksi Peralatan",
+    subtitle: "Koleksi Peralatan",
     image:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop",
-  },
-  {
-    id: 4,
-    title: "NEW REVOLUTION AT 1942",
-    subtitle: "Era Kemerdekaan",
-    image:
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop",
-  },
-  {
-    id: 5,
-    title: "ATLANTIS PROJECT",
-    subtitle: "Era Modern",
-    image:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop",
-  },
-  {
-    id: 6,
-    title: "ELIZABETH WILSON",
-    subtitle: "Pelopor Wanita",
-    image:
-      "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=400&h=300&fit=crop",
-  },
+      "/koleksi1.webp",
+    href: "/koleksi-peralatan",
+  }
 ];
 
 const Logo = () => (
@@ -244,6 +225,14 @@ const Navbar = () => {
                 href={item.type === "link" ? item.href : "#"}
                 onClick={(e) => handleNavClick(e, item)}
                 title={item.label}
+                target={
+                  item.href.startsWith("http") ? "_blank" : undefined
+                }
+                rel={
+                  item.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className={`group relative flex justify-center items-center
                   w-12 h-12 lg:w-full lg:py-3 
                   transition-all duration-300 rounded-xl cursor-pointer
@@ -292,6 +281,14 @@ const Navbar = () => {
                   if (item.type === "link") setIsMenuOpen(false);
                 }}
                 title={item.label}
+                target={
+                  item.href.startsWith("http") ? "_blank" : undefined
+                }
+                rel={
+                  item.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className={`flex items-center w-full px-6 py-3 text-2xl font-medium rounded-lg transition-colors duration-200 ${
                   isActive
                     ? "text-white bg-indigo-700/50"
@@ -343,6 +340,9 @@ const Navbar = () => {
                 <p className="text-slate-400 text-base lg:text-lg max-w-2xl">
                   National Historical Studies in Postal
                 </p>
+                <p className="text-slate-200 mt-4 lg:text-lg max-w-2xl">
+                  Jelajahi perjalanan panjang komunikasi dan logistik Indonesia melalui koleksi bersejarah Museum Pos. Setiap benda menyimpan kisah tentang perubahan zaman, inovasi, dan peran Pos Indonesia dalam menghubungkan seluruh negeri.
+                </p>
               </div>
             </div>
 
@@ -364,7 +364,6 @@ const Navbar = () => {
                   const CardContent = (
                     <div
                       key={collection.id}
-                      // Menghilangkan hover:shadow-indigo-500/30
                       className="group relative overflow-hidden rounded-xl bg-slate-800/30 transition-all duration-500 cursor-pointer border border-white/10 hover:border-indigo-400/50 shadow-xl animate-fade-up"
                       style={{ animationDelay: `${0.3 + index * 0.08}s` }}
                     >
@@ -372,10 +371,8 @@ const Navbar = () => {
                         <img
                           src={collection.image}
                           alt={collection.title}
-                          // Retain zoom effect on image
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75"
                         />
-                        {/* Container Overlay Indigo Transparan & 2 Text (Muncul saat Hover) */}
                         <div
                           className="absolute inset-0 flex flex-col items-start justify-end p-5 text-left
                                  bg-transparent group-hover:bg-indigo-900/70 

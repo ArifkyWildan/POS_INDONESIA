@@ -13,6 +13,15 @@ import ChatbotButton from './components/ReusableChatbotButton';
 import ChatbotWidget from './components/ChatbotWidget';
 import { Bebas_Neue } from "next/font/google";
 
+// --- Import Ikon dari react-icons/fa ---
+import {
+  FaInstagram,
+  FaFacebookF,
+  FaTiktok,
+  FaYoutube,
+  FaXTwitter // Untuk ikon X (Twitter)
+} from 'react-icons/fa6'; // Menggunakan fa6 (Font Awesome 6) yang memiliki FaXTwitter
+
 const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
@@ -89,7 +98,7 @@ export default function Home() {
             Halo, Selamat Datang di
           </h1>
           <h2
-            className={`${bebasNeue.className} text-indigo-900 text-5xl md:text-7xl font-bold tracking-tight`}
+            className={`${bebasNeue.className} text-indigo-900 text-5xl md:text-8xl md:mt-8 font-bold tracking-tight`}
           >
             MUSEUM POS INDONESIA
           </h2>
@@ -133,6 +142,61 @@ export default function Home() {
                 tahun 1931 terletak dibagian sayap kanan bawah Gedung Kantor
                 Pusat PTT Jalan Cilaki No.73 Bandung 40115.
               </p>
+
+              {/* Bagian Ikon Media Sosial Baru dengan React Icons */}
+              <div className="mt-8 flex space-x-6">
+                <a
+                  href="https://www.instagram.com/museumposindonesia/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="text-white hover:text-indigo-300 transition-colors"
+                >
+                  {/* Penggunaan FaInstagram */}
+                  <FaInstagram className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://www.facebook.com/posindonesia/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="text-white hover:text-indigo-300 transition-colors"
+                >
+                  {/* Penggunaan FaFacebookF */}
+                  <FaFacebookF className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@posindonesia_official"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                  className="text-white hover:text-indigo-300 transition-colors"
+                >
+                  {/* Penggunaan FaTiktok */}
+                  <FaTiktok className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://twitter.com/posindonesia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X (Twitter)"
+                  className="text-white hover:text-indigo-300 transition-colors"
+                >
+                  {/* Penggunaan FaXTwitter */}
+                  <FaXTwitter className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://www.youtube.com/c/PosIndonesiajuara"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="text-white hover:text-indigo-300 transition-colors"
+                >
+                  {/* Penggunaan FaYoutube */}
+                  <FaYoutube className="h-6 w-6" />
+                </a>
+              </div>
+              {/* Akhir Bagian Ikon Media Sosial */}
             </div>
           </div>
         </footer>

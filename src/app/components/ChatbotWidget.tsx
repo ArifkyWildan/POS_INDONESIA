@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Send, Star } from 'lucide-react';
+import ScrollToTopButton from './ScrollToTopButton';
 
 // --- Ikon Gambar (Sesuai Permintaan User) ---
 // Catatan: URL gambar ini (/chatbot-icon.png, /chatbot-popup.png) tidak akan dimuat di lingkungan ini.
@@ -225,13 +226,7 @@ const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onClose }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     // Scroll otomatis ke bawah saat ada pesan baru
-    const scrollToBottom = (): void => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    useEffect(() => {
-        scrollToBottom();
-    }, [messages, isTyping]);
+    
 
     // Pesan sambutan pertama kali
     useEffect(() => {
@@ -472,7 +467,7 @@ const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onClose }) => {
                         type="text"
                         name="chatInput" 
                         placeholder="Ketik pertanyaan Anda..."
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" 
+                        className="flex-1 px-4 py-2 border text-black border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" 
                         disabled={isTyping || showCloseConfirm || showRatingModal} // Disable input saat modal aktif
                     />
                     <button

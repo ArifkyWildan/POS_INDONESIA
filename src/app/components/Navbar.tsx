@@ -101,27 +101,7 @@ const sejarahCollections = [
     image:
       "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop",
   },
-  {
-    id: 4,
-    title: "NEW REVOLUTION AT 1942",
-    subtitle: "Era Kemerdekaan",
-    image:
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop",
-  },
-  {
-    id: 5,
-    title: "ATLANTIS PROJECT",
-    subtitle: "Era Modern",
-    image:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop",
-  },
-  {
-    id: 6,
-    title: "ELIZABETH WILSON",
-    subtitle: "Pelopor Wanita",
-    image:
-      "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=400&h=300&fit=crop",
-  },
+ 
 ];
 
 const Logo = () => (

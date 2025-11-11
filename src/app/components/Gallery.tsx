@@ -45,7 +45,7 @@ const Gallery: FC<SectionProps> = ({ sectionRef }) => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
-          Gallery
+          NEWS FOR TODAY
         </motion.h2>
 
         {/* Grid layout dengan efek hover */}

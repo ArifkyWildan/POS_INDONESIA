@@ -312,13 +312,13 @@ const SejarahMuseumPosContent = () => (
                         {/* Portrait */}
                         <div className="relative z-10 p-4">
                             <div className="w-full aspect-square rounded-full overflow-hidden border-8 border-yellow-500 shadow-2xl mx-auto" style={{
-                                backgroundImage: `url('https://placehold.co/400x400/d7e0f4/2E3192?text=Gustaaf+Willem')`,
+                                backgroundImage: `url('/gustav.webp')`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center'
                             }}>
                                 {/* Placeholder for portrait image inside the circle */}
                                 <div className="w-full h-full bg-cover bg-center" style={{ 
-                                    backgroundImage: `url('https://placehold.co/400x400/d7e0f4/2E3192?text=Gustaaf+Willem')`,
+                                    backgroundImage: `url('/gustav.webp')`,
                                     mixBlendMode: 'multiply',
                                     opacity: 0.8
                                 }}></div>
@@ -398,10 +398,36 @@ const GedungPosTempoDuluContent = () => (
         {/* Title Block dari gambar 213821.jpg */}
         <GedungPosTitleBlock />
 
-        {/* Arsitektur Kolonial */}
-
-
-        {/* Transportasi Pos */}
+        {/* --- KONTEN BARU: 2 FOTO MENURUN (Minimalis) --- */}
+        <section className="mb-16">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192] mb-8 leading-tight border-b-2 pb-2 border-red-600 text-center">
+                ARSITEKTUR KOLONIAL
+            </h2>
+            
+            {/* Image Column (Stacked Vertically, menggunakan full available width dengan padding dari main container) */}
+            <div className="flex flex-col space-y-8 w-full">
+                
+                {/* Foto 1: Gedung Pos Besar Bandung (Pusat) */}
+                <div className="rounded-lg overflow-hidden">
+                    <img 
+                        src="/postempo.webp"
+                        alt="Gedung Kantor Pos Besar Bandung"
+                        className="w-full h-auto object-cover rounded-lg"
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x600/f0f0f0/2E3192?text=Kantor+Pos+Bandung' }}
+                    />
+                </div>
+                
+                {/* Foto 2: Gedung Pos Jakarta / Batavia (Dulu) */}
+                <div className="rounded-lg overflow-hidden">
+                    <img 
+                        src="/postempo2.webp"
+                        alt="Kantor Pos Batavia Lama"
+                        className="w-full h-auto object-cover rounded-lg"
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/800x450/f0f0f0/2E3192?text=Kantor+Pos+Batavia' }}
+                    />
+                </div>
+            </div>
+        </section>
 
     </div>
 );

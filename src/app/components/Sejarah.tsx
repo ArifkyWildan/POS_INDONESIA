@@ -22,19 +22,19 @@ const sejarahData: SejarahItem[] = [
     image: "/museum2.jpeg",
     title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
     description:
-      "Gustaaf Willem Baron van Imhoff dilahirkan di Leer, Jerman 8 Agustus 1705 dan meninggal pada 1 November 1750 di Batavia. Ia membuka kantor pos pertama di Batavia.",
+      "Gustaaf Willem Baron van Imhoff adalah Gubernur Jenderal VOC yang berperan besar dalam perkembangan awal sistem pos di Indonesia. Ia lahir di Leer, Jerman, pada 8 Agustus 1705, dan meninggal dunia di Batavia pada 1 November 1750. Sebagai pemimpin pemerintahan, ia dikenal memiliki pandangan maju dan menyadari pentingnya sistem komunikasi yang efisien. Atas inisiatifnya, kantor pos pertama di Batavia resmi dibuka — menjadi awal mula layanan pos di Indonesia.",
   },
   {
     image: "/museum3.jpeg",
-    title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
+    title: "KANTOR POS PERTAMA di Indonesia (26 agustus 1946)",
     description:
-      "Gustaaf Willem Baron van Imhoff dilahirkan di Leer, Jerman 8 Agustus 1705 dan meninggal pada 1 November 1750 di Batavia. Ia membuka kantor pos pertama di Batavia.",
+      "Kantor pos pertama ini didirikan pada 26 Agustus 1746. Tujuannya adalah untuk menjamin keamanan surat-surat yang dikirim, terutama bagi mereka yang bepergian ke atau dari negeri Belanda. Dalam operasionalnya, kantor pos tersebut dikelola oleh dua orang Postmeester, dibantu oleh dua orang Kerani (klerk) serta beberapa pengantar pos. Mereka bertugas melayani masyarakat dan memastikan setiap surat sampai dengan aman ke tujuannya.",
   },
   {
     image: "/museum4.jpeg",
-    title: "Gustaaf Willem Baron van Imhoff (1705 - 1750)",
+    title: "Asal usul istilah kantor pos",
     description:
-      "Gustaaf Willem Baron van Imhoff dilahirkan di Leer, Jerman 8 Agustus 1705 dan meninggal pada 1 November 1750 di Batavia. Ia membuka kantor pos pertama di Batavia.",
+      "Dari sisi bahasa, istilah “kantor” berasal dari kata Belanda “Comptoir”, yang kemudian berkembang menjadi “Kantoor” dan diserap ke dalam Bahasa Indonesia. Sementara kata “pos” berakar dari bahasa Latin “Ponere”, yang berarti “menempatkan”. Istilah ini mengalami perubahan bentuk menjadi “Posta” dalam Bahasa Italia, “Poste” dalam Bahasa Prancis, dan “Post” dalam Bahasa Inggris, Belanda, serta Jerman. Pada masa pemerintahan Gubernur Jenderal Daendels, istilah “Post Comptoir” mulai digunakan untuk menyebut lembaga pengiriman surat. Seiring waktu, sebutan ini berubah menjadi “Postkantoor”, yang dalam Bahasa Indonesia dikenal hingga kini sebagai “Kantor Pos”.",
   },
 ];
 

@@ -277,7 +277,7 @@ const SejarahMuseumPosContent = () => (
                     <div className="w-full max-w-md rounded-lg overflow-hidden shadow-2xl border-4 border-gray-700">
                         {/* Placeholder Image: Kantor Pos Batavia */}
                         <img
-                            src="https://placehold.co/600x400/a0a0a0/000000?text=Kantor+Pos+Batavia+1746"
+                            src="/koleksi1.webp"
                             alt="Kantor Pos Batavia Tempo Dulu"
                             className="w-full h-auto object-cover grayscale"
                             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/600x400/a0a0a0/000000?text=Kantor+Pos+Batavia+1746' }}
@@ -360,7 +360,7 @@ const GedungPosTitleBlock = () => (
                     <div className="bg-white p-4 rounded-lg shadow-2xl rotate-1 transform hover:rotate-0 transition-transform duration-300 border-4 border-gray-100">
                         {/* Placeholder Image: Gedung Pos Lama Hitam Putih */}
                         <img
-                            src="https://placehold.co/500x350/ffffff/000000?text=Post+Telegraaf+Kantoor"
+                            src="/koleksi1.webp"
                             alt="Gedung Pos Tempo Dulu"
                             className="w-full max-w-xs object-cover"
                             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/500x350/ffffff/000000?text=Post+Telegraaf+Kantoor' }}

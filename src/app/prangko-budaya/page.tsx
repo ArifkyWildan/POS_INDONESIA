@@ -256,8 +256,95 @@ const COLOR_LIGHT_BG = '#f0f4f8'; // Light background for the overall page
 
 // --- KOMPONEN UTILS ---
 
-// Modal for Zooming Image
+// Modal for Zooming Image with Interactive Zoom & Pan
 const ZoomModal: React.FC<{ isOpen: boolean, onClose: () => void, imageUrl: string, title: string }> = ({ isOpen, onClose, imageUrl, title }) => {
+  const [scale, setScale] = useState<number>(1);
+  const [position, setPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStart, setDragStart] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
+
+  // Reset state when modal opens/closes
+  React.useEffect(() => {
+    if (isOpen) {
+      setScale(1);
+      setPosition({ x: 0, y: 0 });
+      setIsDragging(false);
+    }
+  }, [isOpen]);
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = e.deltaY * -0.01;
+    const newScale = Math.min(Math.max(1, scale + delta), 5); // Min 1x, Max 5x
+    setScale(newScale);
+    
+    // Reset position when zooming out to 1x
+    if (newScale === 1) {
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging && scale > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scale > 1 && e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({ 
+        x: e.touches[0].clientX - position.x, 
+        y: e.touches[0].clientY - position.y 
+      });
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isDragging && scale > 1 && e.touches.length === 1) {
+      setPosition({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y
+      });
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const zoomIn = () => {
+    const newScale = Math.min(scale + 0.5, 5);
+    setScale(newScale);
+  };
+
+  const zoomOut = () => {
+    const newScale = Math.max(scale - 0.5, 1);
+    setScale(newScale);
+    if (newScale === 1) {
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const resetZoom = () => {
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -265,33 +352,91 @@ const ZoomModal: React.FC<{ isOpen: boolean, onClose: () => void, imageUrl: stri
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-pointer"
-          onClick={onClose}
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
         >
           <motion.div
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.8, y: 50 }}
-            className="w-full max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-xl shadow-2xl p-6"
+            className="w-full h-full max-w-7xl bg-gray-900 relative"
             onClick={(e) => e.stopPropagation()}
-            style={{ border: `4px solid ${COLOR_ACCENT}` }}
           >
-            <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
-              <h3 className="text-xl font-serif font-bold text-gray-800">Prangko: {title}</h3>
+            {/* Header Controls */}
+            <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent p-4 flex justify-between items-center">
+              <h3 className="text-xl font-serif font-bold text-white">Prangko: {title}</h3>
               <button
                 onClick={onClose}
-                className={`text-gray-500 hover:text-red-600 transition-colors p-2 rounded-full bg-gray-100 hover:bg-red-100`}
+                className="text-white hover:text-red-500 transition-colors p-2 rounded-full bg-black/50 hover:bg-red-500/20"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <img 
-              src={imageUrl} 
-              alt={`Zoomed image of ${title}`}
-              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => { e.currentTarget.src = 'https://placehold.co/800x1000/172b60/ffffff?text=Image+Error'; }} // Fallback
-              className="w-full rounded-lg object-contain max-h-[80vh] border border-gray-300"
-            />
-            <p className="text-center text-sm text-gray-500 mt-4">Ketuk (atau klik) di mana saja untuk menutup.</p>
+
+            {/* Zoom Controls */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 bg-black/70 backdrop-blur-sm rounded-full px-6 py-3 flex items-center gap-4 border border-white/20">
+              <button
+                onClick={zoomOut}
+                disabled={scale <= 1}
+                className="text-white hover:text-blue-400 disabled:text-gray-600 disabled:cursor-not-allowed transition-colors text-2xl font-bold w-8 h-8 flex items-center justify-center"
+              >
+                −
+              </button>
+              <span className="text-white font-mono text-sm min-w-[60px] text-center">
+                {Math.round(scale * 100)}%
+              </span>
+              <button
+                onClick={zoomIn}
+                disabled={scale >= 5}
+                className="text-white hover:text-blue-400 disabled:text-gray-600 disabled:cursor-not-allowed transition-colors text-2xl font-bold w-8 h-8 flex items-center justify-center"
+              >
+                +
+              </button>
+              {scale > 1 && (
+                <button
+                  onClick={resetZoom}
+                  className="text-white hover:text-blue-400 transition-colors text-xs ml-2 px-3 py-1 bg-white/10 rounded-full"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
+
+            {/* Image Container */}
+            <div 
+              className="w-full h-full flex items-center justify-center overflow-hidden cursor-move"
+              onWheel={handleWheel}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <motion.img 
+                src={imageUrl} 
+                alt={`Zoomed image of ${title}`}
+                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => { 
+                  e.currentTarget.src = 'https://placehold.co/800x1000/172b60/ffffff?text=Image+Error'; 
+                }}
+                className="max-w-full max-h-full object-contain select-none"
+                style={{
+                  transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
+                  cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default',
+                  transition: isDragging ? 'none' : 'transform 0.2s ease-out'
+                }}
+                draggable={false}
+              />
+            </div>
+
+            {/* Instructions */}
+            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10 text-center">
+              <p className="text-white/70 text-sm bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
+                {scale > 1 
+                  ? "🖱️ Seret untuk menggeser • 🔍 Scroll untuk zoom" 
+                  : "🔍 Scroll atau gunakan tombol +/− untuk zoom"}
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -612,7 +757,7 @@ const MuseumPrangko: React.FC = () => {
                 </div>
                 <h4 className={`font-serif font-bold text-[${COLOR_DARK}] text-base mb-1`}>{stamp.name}</h4>
                 <p className="text-xs text-gray-600 font-serif italic">{stamp.region}</p>
-                <p className={`text-sm font-bold text-[${COLOR_GOLD}] mt-1`}>{stamp.nominal}</p> {/* Nominal di katalog */}
+                <p className={`text-sm font-bold text-[${COLOR_GOLD}] mt-1`}>{stamp.nominal}</p>
                 <div className="flex items-center gap-1 mt-2">
                   <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
                   <span className={`text-sm font-semibold text-[${COLOR_ACCENT}]`}>{stamp.rating}</span>

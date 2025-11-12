@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Link from "next/link";
 
 // Warna yang diminta oleh user
@@ -41,12 +41,46 @@ const historicalData = [
   },
 ];
 
+// Komponen Modal Zoom
+interface ZoomModalProps {
+  src: string;
+  alt: string;
+  onClose: () => void;
+}
+
+const ZoomModal: FC<ZoomModalProps> = ({ src, alt, onClose }) => {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div className="relative max-w-7xl max-h-[90vh] p-4">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition z-10"
+          style={{ color: DARK_BLUE }}
+        >
+          ✕
+        </button>
+        <img
+          src={src}
+          alt={alt}
+          className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        />
+        <p className="text-center text-white mt-3 text-sm font-sans">{alt}</p>
+      </div>
+    </div>
+  );
+};
+
 // Komponen item prangko
 interface StampItemProps {
   title: string;
   description: string;
   stamps: string[];
   reverse?: boolean;
+  onImageClick: (src: string, alt: string) => void;
 }
 
 const StampItem: FC<StampItemProps> = ({
@@ -54,6 +88,7 @@ const StampItem: FC<StampItemProps> = ({
   description,
   stamps,
   reverse = false,
+  onImageClick,
 }) => {
   return (
     <div
@@ -88,11 +123,12 @@ const StampItem: FC<StampItemProps> = ({
               <img
                 src={src}
                 alt={`Prangko ${title} - ${index + 1}`}
-                className="w-24 h-32 md:w-28 md:h-36 object-cover border-4 border-white shadow-lg rotate-1 transition transform hover:scale-105 hover:rotate-0"
+                className="w-24 h-32 md:w-28 md:h-36 object-cover border-4 border-white shadow-lg rotate-1 transition transform hover:scale-105 hover:rotate-0 cursor-pointer"
                 style={{
                   filter: "saturate(0.9) brightness(1.05)",
                   borderRadius: "2px",
                 }}
+                onClick={() => onImageClick(src, `Prangko ${title} - Seri ${index + 1}`)}
               />
               <span className="text-xs mt-1 text-gray-500 font-sans italic">
                 Seri {index + 1}
@@ -107,6 +143,8 @@ const StampItem: FC<StampItemProps> = ({
 
 // Komponen Utama
 const App: FC = () => {
+  const [zoomedImage, setZoomedImage] = useState<{src: string; alt: string} | null>(null);
+
   return (
     <div
       className="min-h-screen font-serif text-gray-800"
@@ -119,6 +157,15 @@ const App: FC = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Zoom Modal */}
+      {zoomedImage && (
+        <ZoomModal
+          src={zoomedImage.src}
+          alt={zoomedImage.alt}
+          onClose={() => setZoomedImage(null)}
+        />
+      )}
+
       {/* Top Navigation Bar */}
       <div 
         className="w-full py-4 px-6 shadow-md"
@@ -161,7 +208,6 @@ const App: FC = () => {
               borderBottom: `2px solid ${DARK_BLUE}`,
             }}
           >
-
             Peristiwa Bersejarah
           </h1>
         </header>
@@ -225,6 +271,7 @@ const App: FC = () => {
               description={item.description}
               stamps={item.stamps}
               reverse={index % 2 !== 0}
+              onImageClick={(src, alt) => setZoomedImage({ src, alt })}
             />
           ))}
         </main>

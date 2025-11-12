@@ -181,9 +181,9 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Koleksi Prangko Nasional
+          Koleksi Filateli
         </motion.h1>
-        <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
+        <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 mt-4">
           Jelajahi koleksi prangko bersejarah Indonesia.
         </p>
         <div className="bg-gradient-to-br from-blue-50 to-slate-50 rounded-xl p-4 md:p-6 shadow-md border-2 border-[#24459d]/20">

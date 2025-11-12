@@ -50,7 +50,7 @@ const chapterTitle: string = 'Tokoh Presiden Indonesia';
 const sectionTitle: string = 'Galeri Prangko Tokoh Indonesia';
 const sectionDescription: string = 'Koleksi lengkap prangko-prangko yang menampilkan para tokoh penting dalam sejarah Indonesia. Dari presiden pertama hingga pahlawan nasional, setiap prangko menceritakan kisah perjuangan dan dedikasi mereka untuk kemerdekaan dan kemajuan bangsa. Prangko-prangko ini tidak hanya bernilai historis, tetapi juga menjadi saksi bisu perjalanan Indonesia sebagai negara merdeka.';
 
-// --- Komponen Modal Zoom ---
+// --- Komponen Modal Zoom dengan Pan & Zoom ---
 interface ZoomModalProps {
   imageSrc: string;
   imageAlt: string;
@@ -58,29 +58,163 @@ interface ZoomModalProps {
 }
 
 const ZoomModal: React.FC<ZoomModalProps> = ({ imageSrc, imageAlt, onClose }) => {
+  const [scale, setScale] = useState<number>(1);
+  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = e.deltaY * -0.001;
+    const newScale = Math.min(Math.max(1, scale + delta), 5);
+    
+    if (newScale === 1) {
+      setPosition({ x: 0, y: 0 });
+    }
+    
+    setScale(newScale);
+  }, [scale]);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  }, [scale, position]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (isDragging && scale > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y,
+      });
+    }
+  }, [isDragging, dragStart, scale]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (scale > 1 && e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({ 
+        x: e.touches[0].clientX - position.x, 
+        y: e.touches[0].clientY - position.y 
+      });
+    }
+  }, [scale, position]);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (isDragging && scale > 1 && e.touches.length === 1) {
+      setPosition({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y,
+      });
+    }
+  }, [isDragging, dragStart, scale]);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const handleZoomIn = useCallback(() => {
+    setScale(prev => Math.min(prev + 0.5, 5));
+  }, []);
+
+  const handleZoomOut = useCallback(() => {
+    const newScale = Math.max(scale - 0.5, 1);
+    if (newScale === 1) {
+      setPosition({ x: 0, y: 0 });
+    }
+    setScale(newScale);
+  }, [scale]);
+
+  const handleReset = useCallback(() => {
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  }, []);
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 transition-opacity duration-300 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
       onClick={onClose}
     >
       <div
-        className="max-w-4xl max-h-[90vh] p-4 bg-white rounded-xl shadow-2xl relative transform transition-transform duration-300 scale-100 mx-4"
+        className="relative w-full h-full flex items-center justify-center overflow-hidden"
         onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        onWheel={handleWheel}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 p-2 text-white bg-red-600 rounded-full hover:bg-red-700 transition-colors z-50 text-lg font-bold w-8 h-8 flex items-center justify-center shadow-lg"
-          aria-label="Tutup"
-        >
-          &times;
-        </button>
+        {/* Tombol Kontrol */}
+        <div className="absolute top-4 right-4 flex flex-col gap-2 z-50">
+          <button
+            onClick={onClose}
+            className="p-2 text-white bg-red-600 rounded-full hover:bg-red-700 transition-colors text-lg font-bold w-10 h-10 flex items-center justify-center shadow-lg"
+            aria-label="Tutup"
+          >
+            &times;
+          </button>
+          <button
+            onClick={handleZoomIn}
+            className="p-2 text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors text-lg font-bold w-10 h-10 flex items-center justify-center shadow-lg"
+            aria-label="Zoom In"
+          >
+            +
+          </button>
+          <button
+            onClick={handleZoomOut}
+            className="p-2 text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors text-lg font-bold w-10 h-10 flex items-center justify-center shadow-lg"
+            aria-label="Zoom Out"
+          >
+            −
+          </button>
+          <button
+            onClick={handleReset}
+            className="p-2 text-white bg-gray-600 rounded-full hover:bg-gray-700 transition-colors text-xs font-bold w-10 h-10 flex items-center justify-center shadow-lg"
+            aria-label="Reset"
+          >
+            ↺
+          </button>
+        </div>
+
+        {/* Indikator Zoom */}
+        <div className="absolute top-4 left-4 bg-black bg-opacity-70 text-white px-3 py-2 rounded-lg text-sm font-semibold z-50">
+          {Math.round(scale * 100)}%
+        </div>
+
+        {/* Instruksi */}
+        {scale === 1 && (
+          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-lg text-sm text-center z-50">
+            Scroll mouse atau gunakan tombol +/- untuk zoom
+          </div>
+        )}
+
+        {/* Gambar */}
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="max-w-full max-h-[80vh] object-contain rounded-lg border-4 border-gray-200"
-          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => { (e.target as HTMLImageElement).src = 'https://placehold.co/500x500/172b60/ffffff?text=Image+Not+Found'; }}
+          className={`max-w-none max-h-none select-none transition-transform ${isDragging ? 'cursor-grabbing' : scale > 1 ? 'cursor-grab' : 'cursor-default'}`}
+          style={{
+            transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+            transformOrigin: 'center center',
+          }}
+          draggable={false}
+          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => { 
+            (e.target as HTMLImageElement).src = 'https://placehold.co/800x800/172b60/ffffff?text=Image+Not+Found'; 
+          }}
         />
-        <p className="text-center mt-3 text-gray-800 font-semibold text-sm md:text-base">{imageAlt}</p>
+
+        {/* Caption */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white px-6 py-3 rounded-lg text-sm md:text-base font-semibold max-w-2xl text-center z-50">
+          {imageAlt}
+        </div>
       </div>
     </div>
   );

@@ -180,7 +180,7 @@ const HeaderSection: React.FC = () => {
   const titleStyle: React.CSSProperties = {
     fontSize: '52px',
     fontWeight: 'bold',
-    color: ACCENT_YELLOW,
+    color: PRIMARY_BLUE,
     marginBottom: '20px',
   };
 
@@ -224,7 +224,6 @@ const HeaderSection: React.FC = () => {
             <li>Alat Komunikasi Awal (Telepon/Telegraf)</li>
           </ul>
         </div>
-        <div style={arrowStyle} title="Scroll ke bawah"></div>
       </div>
     </div>
   );

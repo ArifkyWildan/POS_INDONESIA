@@ -15,10 +15,12 @@ const PerposanTitleBlock = () => (
             <div className="flex items-center justify-between">
                 {/* Global Icon */}
                 <div className="hidden lg:block w-1/3">
-                    <svg className="w-48 h-48 text-gray-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="1">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 18.92c-3.79-.43-7.58-2.61-9.92-5.92 2.34-3.31 6.13-5.49 9.92-5.92V21zm2 0V2.08c3.79.43 7.58 2.61 9.92 5.92-2.34 3.31-6.13 5.49-9.92 5.92zM12 2c3.79-.43 7.58 2.61 9.92 5.92C19.58 4.61 15.79 2.43 12 2zm-2 0c-3.79.43-7.58 2.61-9.92 5.92 2.34 3.31 6.13 5.49 9.92 5.92V2zM12 12c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM12 17c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 12c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM12 17c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
-                    </svg>
+                    <img 
+                    src="/globe.webp" 
+                    alt="Globe Icon" 
+                    className="w-50 h-50 object-contain"
+                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/200x200/2E3192/ffffff?text=Globe' }}
+                    />
                 </div>
 
                 {/* Title */}
@@ -133,7 +135,7 @@ const SejarahPerpossanContent = () => (
                     </p>
 
                     {/* Tombol menggunakan warna kustom #2E3192 */}
-                    <button className="text-red-600 font-extrabold hover:underline transition-colors text-base sm:text-lg mt-2">
+                    <button className="text-[#2E3192] font-extrabold hover:underline transition-colors text-base sm:text-lg mt-2">
                         Awali Terbentuk <ChevronRight className="inline h-5 w-5 ml-1"/>
                     </button>
                 </div>
@@ -175,7 +177,7 @@ const SejarahKantorPosContent = () => (
             <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 {/* Text Block (Left) */}
                 <div className="order-1 lg:col-span-1 flex flex-col justify-center h-full">
-                    <h2 className="text-4xl sm:text-5xl font-extrabold text-red-800 mb-6 leading-tight">
+                    <h2 className="text-4xl sm:text-5xl font-extrabold text-[#2E3192] mb-6 leading-tight">
                         Sejarah
                         <br />
                         Museum
@@ -191,7 +193,7 @@ const SejarahKantorPosContent = () => (
                     <div className="mb-6 rounded-lg overflow-hidden shadow-2xl">
                         {/* Placeholder Image: Museum Building */}
                         <img
-                            src="/museum1.jpeg"
+                            src="/museumm.webp"
                             alt="Gedung Museum Pos Indonesia"
                             className="w-full h-auto object-cover"
                             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/900x400/e0e0e0/2E3192?text=Gedung+Museum+Pos' }}
@@ -225,7 +227,7 @@ const SejarahKantorPosContent = () => (
 
                 {/* Text Block (Right) */}
                 <div className="order-1 md:order-2 text-gray-800 leading-relaxed">
-                    <div className="text-red-600 font-bold mb-2">
+                    <div className="text-[#2E3192] font-bold mb-2">
                         27 SEPTEMBER 1983
                     </div>
                     <h3 className="text-3xl font-extrabold text-[#2E3192] mb-4">
@@ -329,7 +331,7 @@ const SejarahMuseumPosContent = () => (
 
                 {/* Text Block (Right) */}
                 <div className="order-2 text-gray-800 leading-relaxed">
-                    <h3 className="text-3xl sm:text-4xl font-extrabold text-red-800 mb-2">
+                    <h3 className="text-3xl sm:text-4xl font-extrabold text-[#2E3192]">
                         GUSTAAF WILLEM
                         <br />
                         BARON VAN IMHOFF
@@ -370,7 +372,7 @@ const GedungPosTitleBlock = () => (
 
                 {/* Title Kanan */}
                 <div className="w-full lg:w-2/3 flex flex-col items-center lg:items-end text-center lg:text-right">
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-red-800 leading-none mb-4">
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#2E3192] leading-none mb-4">
                         Gedung Pos
                         <br />
                         Tempo Dulu

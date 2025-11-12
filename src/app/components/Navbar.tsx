@@ -72,7 +72,7 @@ const navItems = [
   {
     href: "https://indonesiavirtualtour.com/wisata-virtual/museum-pos-indonesia",
     icon: RedoIcon,
-    label: "Rebranding",
+    label: "Virtual Reality",
     type: "link" as const,
   },
 ];

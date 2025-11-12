@@ -69,7 +69,7 @@ const JadwalMap: FC<SectionProps> = ({ sectionRef }) => {
                   <span
                     className={`text-lg ${
                       item.time === "TUTUP"
-                        ? "font-bold text-red-400"
+                        ? "font-bold text-indigo-900"
                         : "font-light"
                     }`}
                   >
@@ -80,7 +80,7 @@ const JadwalMap: FC<SectionProps> = ({ sectionRef }) => {
             </div>
 
             <motion.button
-              className="mt-10 bg-white text-red-400 font-bold py-3 px-8 rounded-lg shadow-md transition-all duration-300 ease-in-out"
+              className="mt-10 bg-white text-indigo-900 font-bold py-3 px-8 rounded-lg shadow-md transition-all duration-300 ease-in-out"
               // DESIGN UPDATE: Enhanced hover/tap effects
               whileHover={{
                 scale: 1.05,

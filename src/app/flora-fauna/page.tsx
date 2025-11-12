@@ -22,31 +22,31 @@ const initialStamps: Stamp[] = [
     id: 1,
     title: "Anggrek Bulan (Phalaenopsis)",
     category: "Flora",
-    denomination: 3000,
+    denomination: 40,
     year: 1993,
     description:
       "Diterbitkan dalam seri Flora Nasional, Anggrek Bulan adalah representasi keindahan alam Indonesia. Seri ini mendukung gerakan perlindungan dan pembangunan lingkungan hidup berkelanjutan, seperti yang dicanangkan sejak tahun 1993.",
-    image: "https://placehold.co/400x500/A0DE99/333?text=Anggrek+Bulan",
+    image: "/anggrek.webp",
   },
   {
     id: 2,
     title: "Badak Jawa (Rhinoceros sondaicus)",
     category: "Fauna",
-    denomination: 3000,
+    denomination: 300,
     year: 2005,
     description:
       "Salah satu spesies badak paling terancam di dunia. Prangko ini diterbitkan untuk menyuarakan upaya konservasi di Taman Nasional Ujung Kulon, fokus pada perlindungan satwa langka Indonesia.",
-    image: "https://placehold.co/400x500/C5D8B4/333?text=Badak+Jawa",
+    image: "/badakjawa.webp",
   },
   {
     id: 3,
     title: "Burung Cendrawasih (Paradiseidae)",
     category: "Fauna",
-    denomination: 3000,
+    denomination: 250,
     year: 1995,
     description:
       "Burung dari surga asal Papua, dikenal karena bulunya yang eksotis. Prangko seri ini bagian dari upaya promosi keragaman hayati Indonesia yang disebarluaskan ke 26 provinsi.",
-    image: "https://placehold.co/400x500/E59C7D/333?text=Cendrawasih",
+    image: "/cendrawasih.webp",
   },
   {
     id: 4,
@@ -56,7 +56,7 @@ const initialStamps: Stamp[] = [
     year: 2008,
     description:
       "Bagian dari 'Seri Kehidupan Bawah Laut', prangko ini menampilkan Penyu Lekang, salah satu jenis penyu yang dilindungi. Diterbitkan untuk meningkatkan kesadaran konservasi laut.",
-    image: "https://placehold.co/400x500/7DB9DE/fff?text=Penyu+Lekang",
+    image: "/penyu.webp",
   },
   {
     id: 5,
@@ -66,7 +66,7 @@ const initialStamps: Stamp[] = [
     year: 1998,
     description:
       "Seri peringatan Hari Lingkungan Hidup Sedunia (5 Juni 1998). Prangko ini mengangkat isu 'Ecophila' (Cinta Lingkungan) untuk menumbuhkan kesadaran perlindungan ekosistem yang berkelanjutan.",
-    image: "https://placehold.co/400x500/6A9D78/fff?text=Ecophila+1998",
+    image: "/ecophila.webp",
   },
 ];
 

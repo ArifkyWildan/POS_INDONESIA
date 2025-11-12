@@ -555,20 +555,7 @@ const PosSejarah: React.FC = () => {
                     {renderContent()}
                 </main>
                 
-                {/* Floating Chat Button */}
-                <div className="fixed bottom-8 right-8 z-50">
-                    <button className="bg-orange-400 hover:bg-orange-500 text-white rounded-full p-4 shadow-xl transition-transform duration-200 transform hover:scale-110">
-                        {/* Simple Chat Bubble Icon */}
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path d="M21 6c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12l4 4V6z" />
-                        </svg>
-                    </button>
-                </div>
+                
             </div>
         </div>
     );

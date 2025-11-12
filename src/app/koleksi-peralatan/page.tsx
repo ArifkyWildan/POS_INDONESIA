@@ -161,7 +161,7 @@ const HeaderSection: React.FC = () => {
   const imagePlaceholderStyle: React.CSSProperties = {
     flex: 1,
     height: '350px',
-    backgroundImage: `url('https://placehold.co/500x350/781b1b/ffffff?text=Timbangan+Surat+Kuno')`,
+    backgroundImage: `url('/peralatan2.webp')`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',

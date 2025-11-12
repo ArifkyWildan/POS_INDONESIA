@@ -92,7 +92,7 @@ const sejarahCollections = [
     title: "Koleksi Filateli",
     subtitle: "Prangko Bersejarah, Prangko Peristiwa Bersejarah, Prangko Para Tokoh Indonseia, Prangko Keberagaman Budaya Nusantara, Prangko Flora & Fauna",
     image:
-      "/koleksi1.webp",
+      "/collection1.webp",
     href: "/prangko",
   },
   {
@@ -100,7 +100,7 @@ const sejarahCollections = [
     title: "Koleksi Peralatan",
     subtitle: "Koleksi Peralatan",
     image:
-      "/koleksi1.webp",
+      "/collection.webp",
     href: "/koleksi-peralatan",
   }
 ];

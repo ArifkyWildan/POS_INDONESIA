@@ -14,41 +14,41 @@ interface StampItem {
 const mainContent: StampItem[] = [
   {
     id: 1,
-    imageSrc: 'https://placehold.co/200x260/24459d/ffffff?text=Prangko+Soekarno+I',
-    caption: 'Prangko Edisi Kemerdekaan 1950-an',
-    description: 'Bung Karno, Presiden pertama Republik Indonesia, diabadikan dalam seri prangko yang diterbitkan pasca-kemerdekaan. Desain ini sering menonjolkan simbol nasionalisme dan kedaulatan negara. Prangko ini adalah salah satu yang paling ikonik dan dicari kolektor.',
+    imageSrc: '/tokoh1.webp',
+    caption: 'Tokoh Presiden Indonesia',
+    description: 'Prangko seri presiden pertama Indonesia, Ir. Soekarno, diterbitkan pada tahun 1951. Prangko ini menampilkan potret Presiden Soekarno dengan latar belakang merah yang kuat, melambangkan semangat perjuangan dan kemerdekaan Indonesia. Desain prangko ini menjadi salah satu ikon filateli Indonesia yang paling dikenal di dunia.',
   },
   {
     id: 2,
-    imageSrc: 'https://placehold.co/200x260/24459d/ffffff?text=Prangko+Hatta',
-    caption: 'Edisi Wakil Presiden Mohammad Hatta',
-    description: 'Sebagai Bapak Proklamator dan Wakil Presiden pertama, Mohammad Hatta juga mendapat kehormatan diabadikan dalam prangko. Seri ini umumnya dirilis berpasangan dengan seri Soekarno, menandai duet kepemimpinan dwitunggal.',
+    imageSrc: '/tokoh2.webp',
+    caption: 'Soeharto (1966 - 1997)',
+    description: 'Bapak presiden Soeharto berpendapat bahwa prangko tidak hanya memperlihatkan keberagaman budaya, tetapi juga mencerminkan sejarah. Nah maka dari itu, mengembangkan hobi mengoleksi prangko dianggap penting untuk melatih seseorang menjadi pribadi yang rajin, ulet, tekun, dan tidak lupa akan sejarah.',
   },
   {
     id: 3,
-    imageSrc: 'https://placehold.co/200x260/24459d/ffffff?text=Prangko+Kartini',
-    caption: 'Seri Tokoh Wanita Indonesia: R.A. Kartini',
-    description: 'Pahlawan nasional pelopor kebangkitan wanita pribumi, R.A. Kartini, dihormati melalui prangko. Seri ini sering dirilis bertepatan dengan Hari Kartini, menyoroti kontribusinya pada pendidikan dan kesetaraan gender.',
+    imageSrc: '/tokoh3.webp',
+    caption: 'B.J. Habibie (1998 - 1999)',
+    description: 'Bapak B.J. Habibie merupakan presiden ketiga sekaligus orang pertama di Indonesia yang berhasil membuat pesawat yang dinamakan N250 Gatot Kaca. Pada saat itu, beliau menjabat sebagai Menteri Riset dan Teknologi.',
   },
   {
     id: 4,
-    imageSrc: 'https://placehold.co/200x120/24459d/ffffff?text=Prangko+Tokoh+Dwitunggal',
-    caption: 'Edisi Gabungan Dwitunggal Soekarno-Hatta',
-    description: 'Prangko yang menampilkan kedua proklamator dalam satu desain. Biasanya dirilis pada momen-momen penting sejarah, seperti peringatan hari Proklamasi atau ulang tahun berdirinya negara.',
+    imageSrc: '/tokoh5.webp',
+    caption: 'Megawati (2001 - 2004)',
+    description: 'Ibu Megawati merupakan presiden perempuan pertama di Indonesia. Beliau menjadi Presiden setelah MPR mengadakan Sidang Istimewa MPR pada tahun 2001. Beliau juga merupakan ketua umum Partai Demokrasi Indonesia Perjuangan (PDI-P).',
     isWide: true,
   },
   {
     id: 5,
-    imageSrc: 'https://placehold.co/200x260/24459d/ffffff?text=Prangko+Jenderal+Sudirman',
-    caption: 'Prangko Pahlawan Revolusi: Sudirman',
-    description: 'Panglima Besar Jenderal Sudirman, simbol perjuangan militer, diabadikan dalam prangko yang mewakili semangat patriotisme dan pertahanan negara. Desainnya mencerminkan ketegasan dan kewibawaan militer.',
+    imageSrc: '/tokoh6.webp',
+    caption: 'Presiden Soekarno (Seri Biru)',
+    description: 'Varian prangko Presiden Soekarno dengan latar belakang biru yang melambangkan kedamaian dan stabilitas. Diterbitkan pada pertengahan 1950-an, prangko ini menunjukkan komitmen pemerintah dalam membangun identitas nasional melalui medium filateli yang dapat diakses oleh seluruh rakyat Indonesia.',
   },
 ];
 
 const mainTitle: string = 'Prangko Para Tokoh Indonesia';
 const chapterTitle: string = 'Tokoh Presiden Indonesia';
-const sectionTitle: string = 'Seri Pahlawan/Tokoh Negara';
-const sectionDescription: string = 'Seri prangko ini menghimpun berbagai pahlawan nasional dan tokoh penting yang berjasa besar dalam sejarah Indonesia. Setiap prangko menjadi pengingat akan kontribusi mereka dalam pembangunan bangsa dan negara.';
+const sectionTitle: string = 'Galeri Prangko Tokoh Indonesia';
+const sectionDescription: string = 'Koleksi lengkap prangko-prangko yang menampilkan para tokoh penting dalam sejarah Indonesia. Dari presiden pertama hingga pahlawan nasional, setiap prangko menceritakan kisah perjuangan dan dedikasi mereka untuk kemerdekaan dan kemajuan bangsa. Prangko-prangko ini tidak hanya bernilai historis, tetapi juga menjadi saksi bisu perjalanan Indonesia sebagai negara merdeka.';
 
 // --- Komponen Modal Zoom ---
 interface ZoomModalProps {

@@ -15,7 +15,7 @@ interface CollectionItemProps {
   title: string;
   year: string;
   imageSrc: string;
-  description: string | JSX.Element;
+  description: string | React.ReactElement;
   layout: 'left' | 'right';
   backgroundColor: string;
 }
@@ -308,7 +308,7 @@ const CollectionsPage: React.FC = () => {
     {
       title: "Gerobak Angkut",
       year: "1870",
-      imageSrc: "https://placehold.co/600x400/8d7945/ffffff?text=Gerobak+Angkut",
+      imageSrc: "/peralatan3.webp",
       description: "Merupakan alat angkut pos yang dipergunakan untuk membawa kiriman-kiriman pos seperti surat dan paket. Gerobak angkut ini dipergunakan di kantor Pos Maluku pada masa kolonial Belanda tahun 1870.",
       layout: 'left' as const,
       backgroundColor: ACCENT_YELLOW,
@@ -316,7 +316,7 @@ const CollectionsPage: React.FC = () => {
     {
       title: "Brievenbus",
       year: "1890",
-      imageSrc: "https://placehold.co/600x400/b02c2c/ffffff?text=Brievenbus+1890",
+      imageSrc: "peralatan4.webp",
       description: (
         <>
           Brievenbus merupakan kotak surat yang sudah ada sejak tahun 1818 di Batavia (sekarang Jakarta). Kotak surat ini terbuat dari besi tuang baja di produksi di kota Liffi, Belanda. Kotak ini dapat menampung surat dengan berat sekitar 400 kg. Dipergunakan untuk kotak surat di jalan-jalan yang strategis. Kotak ini akan dikosongkan diproses dan dikirim 14/19/20.
@@ -328,7 +328,7 @@ const CollectionsPage: React.FC = () => {
     {
       title: "Bis Surat Pembantu",
       year: "1920", 
-      imageSrc: "https://placehold.co/600x400/944e27/ffffff?text=Bis+Surat+Pembantu",
+      imageSrc: "/peralatan1.webp",
       description: "",
       layout: 'left' as const,
       backgroundColor: ACCENT_YELLOW,

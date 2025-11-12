@@ -82,13 +82,13 @@ const App: React.FC = () => {
                         <div className="flex flex-col md:flex-row gap-8 items-start">
                             <div className="w-full md:w-1/3 flex flex-col items-center">
                                 <StampImage
-                                    src="https://placehold.co/200x250/24459d/ffffff?text=FOTO+SIR+ROWLAND+HILL"
+                                    src="/bersejarah1.webp"
                                     alt="Potret Sir Rowland Hill"
                                     className="rounded-lg shadow-lg mb-4"
                                 />
                                 <div className="text-sm text-center">
-                                    <StampImage src="https://placehold.co/100x120/8b4513/ffffff?text=PRANGKO+1840" alt="Contoh Prangko Era Hill" className="inline-block w-16 h-20 mx-1 my-2 shadow-md" />
-                                    <StampImage src="https://placehold.co/100x120/24459d/ffffff?text=PRANGKO+1841" alt="Contoh Prangko Era Hill" className="inline-block w-16 h-20 mx-1 my-2 shadow-md" />
+                                    <StampImage src="/bersejarah2.webp" alt="Contoh Prangko Era Hill" className="inline-block w-16 h-20 mx-1 my-2 shadow-md" />
+                                    <StampImage src="/bersejarah3.webp" alt="Contoh Prangko Era Hill" className="inline-block w-16 h-20 mx-1 my-2 shadow-md" />
                                     <p className="mt-2 text-xs italic text-gray-500">Prangko yang dibuat setelah ide Sir Rowland Hill.</p>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@ const App: React.FC = () => {
                                     
                                     <div className="flex flex-col sm:flex-row gap-4 items-start">
                                         <p className="text-base flex-1">Penny Black merupakan prangko pertama di dunia yang digunakan dalam transaksi pengiriman pos. Prangko ini diterbitkan di Britania Raya pada tanggal 1 Mei 1840, akan tetapi baru digunakan pada tanggal 06 Mei 1840 setelah masa percobaan selama 5 hari.</p>
-                                        <StampImage src="https://placehold.co/150x180/000000/ffffff?text=PENNY+BLACK" alt="Prangko Penny Black" className="w-24 h-32 flex-shrink-0" />
+                                        <StampImage src="/bersejarah4.webp" alt="Prangko Penny Black" className="w-24 h-32 flex-shrink-0" />
                                     </div>
                                     
                                     <h5 className="font-semibold text-[#24459d] mt-4">PRANGKO YANG TERTEMPEL</h5>
@@ -123,8 +123,8 @@ const App: React.FC = () => {
 
                         <div className="flex flex-col md:flex-row gap-8 items-center">
                             <div className="w-full md:w-1/3 flex space-x-4 justify-center">
-                                <StampImage src="https://placehold.co/100x120/a0522d/ffffff?text=KING+WILLEM+III" alt="Prangko King Willem III" className="w-24 h-32" />
-                                <StampImage src="https://placehold.co/100x120/a0522d/ffffff?text=KING+WILLEM+III+2" alt="Prangko King Willem III Varian" className="w-24 h-32" />
+                                <StampImage src="/bersejarah5.webp" alt="Prangko King Willem III" className="w-24 h-32" />
+                                <StampImage src="/bersejarah6.webp"alt="Prangko King Willem III Varian" className="w-24 h-32" />
                             </div>
                             
                             <div className="w-full md:w-2/3">
@@ -151,7 +151,7 @@ const App: React.FC = () => {
                                 <p className="text-sm font-semibold italic text-[#24459d] mt-4 border-l-4 border-[#24459d] pl-3">Pada kedua prangko tersebut tertulis "REPUBLIK INDONESIA".</p>
                             </div>
                              <div className="w-full md:w-1/3 flex justify-center flex-shrink-0">
-                                <StampImage src="https://placehold.co/200x250/cc0000/ffffff?text=PRANGKO+BANTENG+17+AGUSTUS+1945" alt="Prangko Banteng Kemerdekaan" className="w-32 h-44 border-4 border-yellow-700 transform rotate-3" />
+                                <StampImage src="/bersejarah7.webp" alt="Prangko Banteng Kemerdekaan" className="w-32 h-44 border-4 border-yellow-700 transform rotate-3" />
                             </div>
                         </div>
                     </div>
@@ -159,15 +159,6 @@ const App: React.FC = () => {
                 </section>
 
             </main>
-
-            {/* Footer Museum */}
-            <footer className="bg-[#172b60] py-8 mt-12">
-                <div className="container mx-auto px-4 text-center text-white">
-                    <p className="text-lg font-medium mb-2">Museum Filateli Pos Indonesia</p>
-                    <p className="text-xs">&copy; 2024 Koleksi Digital. Dibuat dengan semangat sejarah pos Indonesia.</p>
-                </div>
-            </footer>
-
         </div>
     );
 };

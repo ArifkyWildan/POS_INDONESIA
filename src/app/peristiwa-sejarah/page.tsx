@@ -14,10 +14,10 @@ const historicalData = [
     description:
       "Berbagai penerbitan prangko sebagai media komunikasi, terutama pada masa perjuangan kemerdekaan, telah digunakan untuk menunjukkan keunggulan untuk penanaman bangsa terhadap pemerahan. Prangko seri Proklamasi (1945) adalah seri pertama yang dikeluarkan oleh pemerintah Indonesia. Meskipun prangko ini berfungsi sebagai lambang negara, kualitasnya turut mencitrakan prangko perjuangan yang dikeluarkan oleh negara yang baru merdeka ini.",
     stamps: [
-      "https://placehold.co/100x120/a8a29e/ffffff?text=20c%0A1945",
-      "https://placehold.co/100x120/f9a8d4/ffffff?text=50c%0A1945",
-      "https://placehold.co/100x120/d1d5db/ffffff?text=70c%0A1945",
-      "https://placehold.co/100x120/6ee7b7/ffffff?text=2+Rp%0A1945",
+      "/peristiwa1.webp",
+      "/peristiwa2.webp",
+      "/peristiwa3.webp",
+      "/peristiwa4.webp",
     ],
   },
   {
@@ -25,9 +25,9 @@ const historicalData = [
     description:
       "Di tengah demokrasi parlementer, awal tahun 1957 muncul pelukisan tokoh-tokotoh yang telah tiada di antara yang pertama. Pemerintah mengeluarkan prangko untuk melukiskan perjuangan dan kontrol percetakan di Haarlem, Belanda (pada 1952). Selain itu, prangko seri Penjajahan yang dikeluarkan pada tahun 1968 dilukiskan oleh G. K. P. R. S. H. S. A.",
     stamps: [
-      "https://placehold.co/120x150/7c2d12/ffffff?text=Perjuangan%0A1957",
-      "https://placehold.co/120x150/ef4444/ffffff?text=Garuda%0A1968",
-      "https://placehold.co/120x150/b91c1c/ffffff?text=Pahlawan%0ATanpa%20Jasa",
+      "/peristiwa5.webp",
+      "/peristiwa6.webp",
+      "/peristiwa7.webp",
     ],
   },
   {
@@ -35,8 +35,8 @@ const historicalData = [
     description:
       "Konferensi Asia-Afrika diselenggarakan pada tanggal 18-24 April 1955. Penggabungan blok-blok negara, yang secara keseluruhan terjadi berkat inisiatif para pemimpin Burma (Myanmar), India, Indonesia, Pakistan dan Sri Lanka (Ceylon). Perangko yang bertemakan Konferensi Asia-Afrika dan Timur Tengah. Prinsip-prinsip utama Konferensi Asia-Afrika, yang disebut 'Dasasila Bandung', di dalamnya termuat komitmen terhadap perdamaian dunia, kerjasama, dan hak asasi manusia. Prangko seri Konferensi Asia-Afrika 1955, merupakan seri pertama dengan tema event penting yang juga diserta desain original yang menarik perhatian.",
     stamps: [
-      "https://placehold.co/150x100/10b981/ffffff?text=KAA%0A1955",
-      "https://placehold.co/150x100/f87171/ffffff?text=Asia%0AAfrika",
+      "/peristiwa8.webp",
+      "/peristiwa9.webp",
     ],
   },
 ];
@@ -161,9 +161,7 @@ const App: FC = () => {
               borderBottom: `2px solid ${DARK_BLUE}`,
             }}
           >
-            <span className="text-gray-900 block text-lg font-sans font-light">
-              The Chronicle of Stamps
-            </span>
+
             Peristiwa Bersejarah
           </h1>
         </header>
@@ -230,16 +228,6 @@ const App: FC = () => {
             />
           ))}
         </main>
-
-        {/* Footer */}
-        <footer
-          className="mt-12 pt-8 text-center"
-          style={{ borderTop: `2px solid ${DARK_BLUE}50` }}
-        >
-          <p className="text-xs font-sans text-gray-500">
-            &copy; 2025 Arsip Prangko Sejarah. Dibuat dengan semangat historis.
-          </p>
-        </footer>
       </div>
     </div>
   );

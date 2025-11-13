@@ -10,14 +10,43 @@ const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
 });
 
-const shpData = [
+interface StampData {
+  id: number;
+  name: string;
+  region: string;
+  image: string;
+  avatar: string;
+  tutorialVideo: string;
+  description: string;
+  material: string;
+  year: string;
+  rating: number;
+  reviews: number;
+  nominal: string;
+}
+
+interface SHPData {
+  year: string;
+  title: string;
+  description: string;
+  images: string[];
+}
+
+interface ZoomModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  imageUrl: string;
+  title: string;
+}
+
+const shpData: SHPData[] = [
   { year: '2013', title: 'Seri Alat Musik Tradisional Indonesia 2013', description: 'Koleksi prangko yang menampilkan berbagai alat musik tradisional dari berbagai daerah di Indonesia.', images: ['/prangko1.png'] },
   { year: '2014', title: 'Seri Alat Musik Tradisional Indonesia 2014', description: 'Melanjutkan seri sebelumnya dengan menampilkan alat musik tradisional yang berbeda dari Nusantara.', images: ['/prangko2.png'] },
   { year: '2015', title: 'Seri Alat Musik Tradisional Indonesia 2015', description: 'Edisi khusus yang menampilkan alat musik langka dari berbagai pulau di Indonesia.', images: ['/prangko3.png'] },
   { year: '2020', title: 'Seri Alat Musik Tradisional Indonesia 2020', description: 'Edisi terbaru dengan desain modern, menampilkan dokumentasi lengkap alat musik tradisional Indonesia.', images: ['/prangko4.png', '/prangko5.png'] }
 ];
 
-const stampCollection = [
+const stampCollection: StampData[] = [
   { id: 1, name: 'Sasando', region: 'Jawa Barat', image: '/sasando.webp', avatar: '/sasando.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat musik tradisional yang terbuat dari bambu. Dimainkan dengan cara digoyangkan untuk menghasilkan suara yang merdu.', material: 'Bambu', year: '2010', rating: 4.8, reviews: 234, nominal: 'Rp 5.000,-' },
   { id: 2, name: 'Lilempung', region: 'Jawa Tengah', image: '/lilempung.webp', avatar: '/lilempung.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Ansambel musik perunggu dan kuningan yang menghasilkan harmoni khas Jawa. Digunakan dalam pertunjukan wayang.', material: 'Perunggu, Kuningan', year: '2008', rating: 4.9, reviews: 412, nominal: 'Rp 10.000,-' },
   { id: 3, name: 'Foida', region: 'NTT', image: '/foidoa.webp', avatar: '/foidoa.webp', tutorialVideo: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=450&fit=crop', description: 'Alat musik petik khas Rote dari daun lontar. Menghasilkan suara lembut yang menenangkan.', material: 'Daun Lontar', year: '2012', rating: 4.7, reviews: 189, nominal: 'Rp 3.000,-' },
@@ -36,7 +65,7 @@ const stampCollection = [
   { id: 16, name: 'Keledi', region: 'Sumatera Utara', image: '/keledi.webp', avatar: '/keledi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Alat tiup Batak dengan suara keras dan lantang. Digunakan dalam pesta adat Batak.', material: 'Kayu, Logam', year: '2014', rating: 4.5, reviews: 143, nominal: 'Rp 5.000,-' }
 ];
 
-const ZoomModal = ({ isOpen, onClose, imageUrl, title }) => {
+const ZoomModal: React.FC<ZoomModalProps> = ({ isOpen, onClose, imageUrl, title }) => {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -46,9 +75,9 @@ const ZoomModal = ({ isOpen, onClose, imageUrl, title }) => {
     if (isOpen) { setScale(1); setPosition({ x: 0, y: 0 }); setIsDragging(false); }
   }, [isOpen]);
 
-  const handleWheel = (e) => { e.preventDefault(); const delta = e.deltaY * -0.01; const newScale = Math.min(Math.max(1, scale + delta), 5); setScale(newScale); if (newScale === 1) setPosition({ x: 0, y: 0 }); };
-  const handleMouseDown = (e) => { if (scale > 1) { setIsDragging(true); setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y }); } };
-  const handleMouseMove = (e) => { if (isDragging && scale > 1) setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y }); };
+  const handleWheel = (e: React.WheelEvent) => { e.preventDefault(); const delta = e.deltaY * -0.01; const newScale = Math.min(Math.max(1, scale + delta), 5); setScale(newScale); if (newScale === 1) setPosition({ x: 0, y: 0 }); };
+  const handleMouseDown = (e: React.MouseEvent) => { if (scale > 1) { setIsDragging(true); setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y }); } };
+  const handleMouseMove = (e: React.MouseEvent) => { if (isDragging && scale > 1) setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y }); };
   const handleMouseUp = () => setIsDragging(false);
   const zoomIn = () => setScale(Math.min(scale + 0.5, 5));
   const zoomOut = () => { const newScale = Math.max(scale - 0.5, 1); setScale(newScale); if (newScale === 1) setPosition({ x: 0, y: 0 }); };
@@ -83,7 +112,7 @@ const ZoomModal = ({ isOpen, onClose, imageUrl, title }) => {
 };
 
 export default function MuseumPrangko() {
-  const [selectedStamp, setSelectedStamp] = useState(stampCollection[0]);
+  const [selectedStamp, setSelectedStamp] = useState<StampData>(stampCollection[0]);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isZoomModalOpen, setIsZoomModalOpen] = useState(false);
   const [currentSHPIndex, setCurrentSHPIndex] = useState(0);

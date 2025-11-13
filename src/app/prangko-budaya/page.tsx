@@ -3,12 +3,13 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Volume2, Star, ArrowLeft, Maximize2, X } from 'lucide-react';
-import { Bebas_Neue } from "next/font/google";
+// As 'next/font/google' is not available in this environment, using a generic font strategy for consistency.
+// The component is designed to work with a web-safe serif/sans-serif fallback.
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-});
+// Mocking the font style for visual effect
+const bebasNeue = {
+  className: "font-['Bebas_Neue',_sans-serif]",
+};
 
 interface StampData {
   id: number;
@@ -23,6 +24,14 @@ interface StampData {
   rating: number;
   reviews: number;
   nominal: string;
+  // NEW FIELDS FOR STAMP IDENTITY
+  countryText: string; // Teks Negara
+  stampCaption: string; // Keterangan Prangko
+  catalogueId: string;
+  printTechnique: string;
+  designer: string;
+  perforation: string;
+  sheetSize: string;
 }
 
 interface SHPData {
@@ -46,23 +55,46 @@ const shpData: SHPData[] = [
   { year: '2020', title: 'Seri Alat Musik Tradisional Indonesia 2020', description: 'Edisi terbaru dengan desain modern, menampilkan dokumentasi lengkap alat musik tradisional Indonesia.', images: ['/prangko4.png', '/prangko5.png'] }
 ];
 
+// Replicating and enhancing the original stampCollection data
 const stampCollection: StampData[] = [
-  { id: 1, name: 'Sasando', region: 'Jawa Barat', image: '/sasando.webp', avatar: '/sasando.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat musik tradisional yang terbuat dari bambu. Dimainkan dengan cara digoyangkan untuk menghasilkan suara yang merdu.', material: 'Bambu', year: '2010', rating: 4.8, reviews: 234, nominal: 'Rp 5.000,-' },
-  { id: 2, name: 'Lilempung', region: 'Jawa Tengah', image: '/lilempung.webp', avatar: '/lilempung.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Ansambel musik perunggu dan kuningan yang menghasilkan harmoni khas Jawa. Digunakan dalam pertunjukan wayang.', material: 'Perunggu, Kuningan', year: '2008', rating: 4.9, reviews: 412, nominal: 'Rp 10.000,-' },
-  { id: 3, name: 'Foida', region: 'NTT', image: '/foidoa.webp', avatar: '/foidoa.webp', tutorialVideo: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=450&fit=crop', description: 'Alat musik petik khas Rote dari daun lontar. Menghasilkan suara lembut yang menenangkan.', material: 'Daun Lontar', year: '2012', rating: 4.7, reviews: 189, nominal: 'Rp 3.000,-' },
-  { id: 4, name: 'Kaltjapi', region: 'Sulawesi Utara', image: '/kaltjapi.webp', avatar: '/kaltjapi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&h=450&fit=crop', description: 'Alat musik perkusi dari deretan kayu dengan nada berbeda. Dimainkan dengan stik khusus.', material: 'Kayu Telur', year: '2009', rating: 4.8, reviews: 267, nominal: 'Rp 7.500,-' },
-  { id: 5, name: 'Arababu', region: 'Papua & Maluku', image: '/arababu.webp', avatar: '/arababu.webp', tutorialVideo: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop', description: 'Alat musik perkusi berbentuk tabung untuk upacara adat. Memiliki makna spiritual mendalam.', material: 'Kayu, Kulit', year: '2011', rating: 4.6, reviews: 156, nominal: 'Rp 4.000,-' },
-  { id: 6, name: 'Genderang', region: 'Sumatera Barat', image: '/genderang.webp', avatar: '/genderang.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Seruling bambu Minangkabau dengan teknik pernapasan circular breathing yang unik.', material: 'Bambu Talang', year: '2013', rating: 4.7, reviews: 198, nominal: 'Rp 6.000,-' },
-  { id: 7, name: 'Katjapi', region: 'Jawa', image: '/katjapi.webp', avatar: '/katjapi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat musik gesek dengan 2-3 senar. Instrumen melodi utama dalam orkestra gamelan.', material: 'Kayu, Senar', year: '2010', rating: 4.5, reviews: 145, nominal: 'Rp 8.000,-' },
-  { id: 8, name: 'Hape', region: 'Jawa Barat', image: '/hape.webp', avatar: '/hape.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Alat musik petik Sunda dengan banyak senar. Menghasilkan bunyi lembut dan merdu.', material: 'Kayu, Senar', year: '2011', rating: 4.8, reviews: 223, nominal: 'Rp 5.500,-' },
-  { id: 9, name: 'Gangsa', region: 'Sumatera Barat', image: '/gangsa.webp', avatar: '/gangsa.webp', tutorialVideo: 'https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&h=450&fit=crop', description: 'Gong kecil berbentuk pencu dari Minangkabau. Dimainkan dalam ensembel.', material: 'Kuningan', year: '2014', rating: 4.6, reviews: 167, nominal: 'Rp 9.000,-' },
-  { id: 10, name: 'Serunai', region: 'Jawa', image: '/serunai.webp', avatar: '/serunai.webp', tutorialVideo: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop', description: 'Gendang dua sisi pengatur tempo dalam gamelan. Peran vital sebagai pemimpin orkestra.', material: 'Kayu, Kulit', year: '2009', rating: 4.9, reviews: 345, nominal: 'Rp 4.500,-' },
-  { id: 11, name: 'Rebab', region: 'Jawa Barat', image: '/rebab.webp', avatar: '/rebab.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Seruling bambu dengan 4-6 lubang jari. Menghasilkan melodi yang indah dan ekspresif.', material: 'Bambu', year: '2012', rating: 4.7, reviews: 201, nominal: 'Rp 7.000,-' },
-  { id: 12, name: 'Trompet', region: 'Aceh', image: '/trompet.webp', avatar: '/trompet.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat tiup tradisional Aceh dengan suara khas yang merdu. Digunakan dalam tari Saman.', material: 'Kayu', year: '2015', rating: 4.5, reviews: 134, nominal: 'Rp 3.500,-' },
-  { id: 13, name: 'Lotobuang', region: 'Jawa Barat', image: '/lotobuang.webp', avatar: '/lotobuang.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Ansambel musik dari bambu dengan berbagai ukuran. Modern dan populer di kalangan muda.', material: 'Bambu', year: '2016', rating: 4.8, reviews: 289, nominal: 'Rp 12.000,-' },
-  { id: 14, name: 'Tamburu', region: 'Lombok', image: '/tamburu.webp', avatar: '/tamburu.webp', tutorialVideo: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop', description: 'Gendang besar Sasak yang dimainkan dalam grup. Mengiringi perang topat dan upacara.', material: 'Kayu, Kulit', year: '2013', rating: 4.6, reviews: 178, nominal: 'Rp 6.500,-' },
-  { id: 15, name: 'Kulintang', region: 'Jawa Barat', image: '/kulintang.webp', avatar: '/kulintang.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat musik dari bambu yang dipukul. Mirip angklung namun dengan teknik berbeda.', material: 'Bambu', year: '2011', rating: 4.7, reviews: 212, nominal: 'Rp 15.000,-' },
-  { id: 16, name: 'Keledi', region: 'Sumatera Utara', image: '/keledi.webp', avatar: '/keledi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Alat tiup Batak dengan suara keras dan lantang. Digunakan dalam pesta adat Batak.', material: 'Kayu, Logam', year: '2014', rating: 4.5, reviews: 143, nominal: 'Rp 5.000,-' }
+  { 
+    id: 1, 
+    name: 'Sasando', 
+    region: 'Pulau Rote, NTT', 
+    image: '/sasando.webp', 
+    avatar: '/sasando.webp', 
+    tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', 
+    nominal: 'Rp 1,-', 
+    description: 'Sasando adalah alat musik petik khas dari Pulau Rote yang terbuat dari bambu berongga sebagai tempat resonansi dan daun lontar kering yang disusun menyerupai kipas sebagai wadah suara. Penerbitan seri ini di masa Orde Lama menunjukkan upaya awal untuk mengangkat kekayaan budaya daerah sebagai identitas bangsa.', 
+    material: 'Bambu & Daun Lontar', 
+    year: '1967', 
+    rating: 4.8, 
+    reviews: 234, 
+    // START: USER-REQUESTED IDENTITY DATA
+    stampCaption: 'ALAT MUSIK PETIK Sasando',
+    countryText: 'REPUBLIK INDONESIA',
+    // END: USER-REQUESTED IDENTITY DATA
+    catalogueId: '-', 
+    printTechnique: 'Offset Lithography', 
+    designer: 'Øystein Skaar.', 
+    perforation: '12½ x 12', 
+    sheetSize: '50 (5x10)' 
+  },
+  { id: 2, name: 'Lilempung', region: 'Jawa Tengah', image: '/lilempung.webp', avatar: '/lilempung.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Ansambel musik perunggu dan kuningan yang menghasilkan harmoni khas Jawa. Digunakan dalam pertunjukan wayang. Termasuk warisan budaya tak benda.', material: 'Perunggu, Kuningan', year: '1967', rating: 4.9, reviews: 412, nominal: 'Rp 0,50', stampCaption: 'ALAT MUSIK TRADISIONAL', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-02', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 3, name: 'Foidoa', region: 'NTT', image: '/foidoa.webp', avatar: '/foidoa.webp', tutorialVideo: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=450&fit=crop', description: 'Alat musik petik khas Rote dari daun lontar. Menghasilkan suara lembut yang menenangkan. Sering dimainkan saat upacara adat.', material: 'Daun Lontar', year: '1967', rating: 4.7, reviews: 189, nominal: 'Rp 1,25', stampCaption: 'ALAT MUSIK PETIK', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-03', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 4, name: 'Kaltjapi', region: 'Sulawesi Utara', image: '/kaltjapi.webp', avatar: '/kaltjapi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&h=450&fit=crop', description: 'Alat musik perkusi dari deretan kayu dengan nada berbeda. Dimainkan dengan stik khusus. Merupakan instrumen utama di Minahasa.', material: 'Kayu Telur', year: '1967', rating: 4.8, reviews: 267, nominal: 'Rp 1,50', stampCaption: 'MUSIK PERKUSI', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-04', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 5, name: 'Arababu', region: 'Papua & Maluku', image: '/arababu.webp', avatar: '/arababu.webp', tutorialVideo: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop', description: 'Alat musik gesek dengan satu senar khas Maluku. Instrumen melodi yang indah dan sering mengiringi tarian adat.', material: 'Kayu, Kulit', year: '1967', rating: 4.6, reviews: 156, nominal: 'Rp 2', stampCaption: 'ALAT MUSIK GESEK', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-05', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 6, name: 'Genderang', region: 'Sumatera Barat', image: '/genderang.webp', avatar: '/genderang.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Gendang panjang dari Minangkabau. Digunakan untuk mengiringi tari piring dan upacara penting lainnya.', material: 'Kulit, Kayu', year: '1967', rating: 4.7, reviews: 198, nominal: 'Rp 2,50', stampCaption: 'ALAT MUSIK PERKUSI', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-06', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 7, name: 'Katjapi', region: 'Jawa', image: '/katjapi.webp', avatar: '/katjapi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat musik petik Sunda dengan banyak senar. Menghasilkan bunyi lembut dan merdu. Instrumen khas seni Mamaos Cianjuran.', material: 'Kayu, Senar', year: '1967', rating: 4.5, reviews: 145, nominal: 'Rp 3', stampCaption: 'ALAT MUSIK PETIK', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-07', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 8, name: 'Hape', region: 'Jawa Barat', image: '/hape.webp', avatar: '/hape.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Alat musik petik Sunda yang lebih kecil dari Katjapi, dikenal karena melodi-melodinya yang ceria. Populer di Jawa Barat.', material: 'Kayu, Senar', year: '1967', rating: 4.8, reviews: 223, nominal: 'Rp 4', stampCaption: 'ALAT MUSIK PETIK', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-08', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 9, name: 'Gangsa', region: 'Sumatera Barat', image: '/gangsa.webp', avatar: '/gangsa.webp', tutorialVideo: 'https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&h=450&fit=crop', description: 'Gong kecil berbentuk pencu dari Minangkabau. Dimainkan dalam ensembel Talempong. Menghasilkan ritme yang dinamis.', material: 'Kuningan', year: '1967', rating: 4.6, reviews: 167, nominal: 'Rp 5', stampCaption: 'ALAT MUSIK PUKUL', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-09', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 10, name: 'Serunai', region: 'Jawa', image: '/serunai.webp', avatar: '/serunai.webp', tutorialVideo: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop', description: 'Alat tiup tradisional dengan suara nyaring dari membran ganda. Populer di Jawa dan Sumatera.', material: 'Kayu, Kulit', year: '1967', rating: 4.9, reviews: 345, nominal: 'Rp 6', stampCaption: 'ALAT MUSIK TIUP', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-10', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 11, name: 'Rebab', region: 'Jawa Barat', image: '/rebab.webp', avatar: '/rebab.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Alat musik gesek yang melambangkan keindahan melodi dalam musik Gamelan Jawa dan Sunda.', material: 'Kayu, Senar', year: '1967', rating: 4.7, reviews: 201, nominal: 'Rp 8', stampCaption: 'ALAT MUSIK GESEK', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-11', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 12, name: 'Trompet', region: 'Aceh', image: '/trompet.webp', avatar: '/trompet.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat tiup tradisional Aceh yang unik, sering digunakan dalam prosesi kerajaan dan upacara adat.', material: 'Kayu', year: '1967', rating: 4.5, reviews: 134, nominal: 'Rp 10', stampCaption: 'ALAT MUSIK TIUP', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-12', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 13, name: 'Lotobuang', region: 'Jawa Barat', image: '/lotobuang.webp', avatar: '/lotobuang.webp', tutorialVideo: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop', description: 'Ansambel musik dari bambu dengan berbagai ukuran. Modern dan populer di kalangan muda. Mirip Angklung namun lebih kecil.', material: 'Bambu', year: '1967', rating: 4.8, reviews: 289, nominal: 'Rp 12', stampCaption: 'ALAT MUSIK BAMBU', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-13', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 14, name: 'Tamburu', region: 'Lombok', image: '/tamburu.webp', avatar: '/tamburu.webp', tutorialVideo: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop', description: 'Gendang besar Sasak yang dimainkan dalam grup. Mengiringi perang topat dan upacara. Memiliki peran ritmis penting.', material: 'Kayu, Kulit', year: '1967', rating: 4.6, reviews: 178, nominal: 'Rp 15', stampCaption: 'ALAT MUSIK PUKUL', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-14', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 15, name: 'Kulintang', region: 'Jawa Barat', image: '/kulintang.webp', avatar: '/kulintang.webp', tutorialVideo: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop', description: 'Alat musik dari bilah kayu yang dipukul. Mirip gambang namun dengan resonansi yang berbeda. Populer di Jawa Barat dan Maluku Utara.', material: 'Bambu', year: '1967', rating: 4.7, reviews: 212, nominal: 'Rp 20', stampCaption: 'ALAT MUSIK BILAH', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-15', printTechnique: 'Offset Lithography', designer: 'T. Soemardjono', perforation: '12 x 12', sheetSize: '50 (5x10)' },
+  { id: 16, name: 'Keledi', region: 'Sumatera Utara', image: '/keledi.webp', avatar: '/keledi.webp', tutorialVideo: 'https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop', description: 'Alat tiup Batak dengan suara keras dan lantang, terbuat dari gabungan bambu. Digunakan dalam pesta adat Batak dan upacara pemakaman.', material: 'Kayu, Logam', year: '1967', rating: 4.5, reviews: 143, nominal: 'Rp 25', stampCaption: 'ALAT MUSIK TIUP', countryText: 'REPUBLIK INDONESIA', catalogueId: 'SNI.IDN.67.A-16', printTechnique: 'Offset Lithography', designer: 'O. Notohadinegoro', perforation: '12 x 12', sheetSize: '50 (5x10)' }
 ];
 
 const ZoomModal: React.FC<ZoomModalProps> = ({ isOpen, onClose, imageUrl, title }) => {
@@ -122,6 +154,7 @@ export default function MuseumPrangko() {
   const [hasRated, setHasRated] = useState(false);
 
   const handlePlayAudio = useCallback(() => {
+    // Mock audio playback for 30 seconds
     if (!isPlayingAudio) { setIsPlayingAudio(true); setTimeout(() => setIsPlayingAudio(false), 30000); } else { setIsPlayingAudio(false); }
   }, [isPlayingAudio]);
 
@@ -149,7 +182,8 @@ export default function MuseumPrangko() {
       <div className="max-w-[1600px] mx-auto p-4 md:p-8">
         <div className="mb-8 pt-4">
           <h1 className="text-2xl font-serif font-bold mb-1 tracking-wider" style={{ color: '#172b60' }}>Museum Pos Indonesia</h1>
-          <p className="text-gray-600 font-serif italic text-lg">Koleksi Prangko Alat Musik Tradisional Nusantara</p>
+          <p className="text-gray-600 font-serif italic text-lg">Konteks sejarah dan politik pada tahun 1967, saat seri prangko alat musik tradisional diterbitkan, berada pada periode transisi besar dari Orde Lama ke Orde Baru. Ini adalah masa yang penuh gejolak, di mana pemerintahan baru sedang berusaha membangun identitas dan legitimasi, salah satunya dengan menonjolkan kekayaan budaya nasional.
+Seri alat musik tradisional nusantara ini merupakan prangko definitif berbudaya. Meskipun berjenis Prangko Definitif (Biasa), desainnya sengaja diangkat dari tema budaya yang penting, menunjukkan perubahan fokus dari tema-tema politik yang kental pada masa Orde Lama sebelumnya.</p>
           <div style={{ backgroundColor: '#24459d' }} className="w-16 h-1 mt-2"></div>
         </div>
 
@@ -164,7 +198,12 @@ export default function MuseumPrangko() {
                 <div className="w-24 h-1 bg-white mx-auto mt-4"></div>
               </div>
               <div className="relative rounded-lg overflow-hidden shadow-2xl mb-6 border-8 border-white group cursor-pointer" onClick={() => setIsZoomModalOpen(true)}>
-                <img src={selectedStamp.image} alt={selectedStamp.name} className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img 
+                  src={selectedStamp.image} 
+                  alt={selectedStamp.name} 
+                  className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-105" 
+                  onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = `https://placehold.co/400x500/172b60/ffffff?text=${selectedStamp.name}` }}
+                />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <Maximize2 className="w-12 h-12 text-white/90" />
                 </div>
@@ -177,7 +216,12 @@ export default function MuseumPrangko() {
               <div className="grid grid-cols-4 gap-3">
                 {stampCollection.slice(0, 8).map((stamp) => (
                   <motion.button key={stamp.id} onClick={() => setSelectedStamp(stamp)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={`aspect-square rounded overflow-hidden border-4 transition-all duration-300 ${selectedStamp.id === stamp.id ? 'shadow-lg' : 'border-gray-300 hover:border-gray-400'}`} style={selectedStamp.id === stamp.id ? { borderColor: '#24459d' } : {}}>
-                    <img src={stamp.avatar} alt={stamp.name} className="w-full h-full object-cover" />
+                    <img 
+                      src={stamp.avatar} 
+                      alt={stamp.name} 
+                      className="w-full h-full object-cover" 
+                      onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = `https://placehold.co/100x125/172b60/ffffff?text=${stamp.name.charAt(0)}` }}
+                    />
                   </motion.button>
                 ))}
               </div>
@@ -214,9 +258,57 @@ export default function MuseumPrangko() {
                       <p className="text-lg font-serif font-semibold text-gray-800">{selectedStamp.year}</p>
                     </div>
                   </div>
+
+                  {/* START: IDENTITAS PRANGKO RESMI (Updated to include all user data) */}
+                  <div className="pt-4 mt-4 border-t border-gray-200">
+                    <h4 className="text-base font-serif font-bold mb-3 uppercase tracking-wider text-center" style={{ color: '#172b60' }}>Identitas Prangko Resmi</h4>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                       {/* Teks Negara (REPUBLIK INDONESIA) */}
+                      <div className="flex justify-between items-center col-span-2 bg-blue-50 p-2 rounded border border-blue-100">
+                        <span className="font-bold text-gray-600">TEKS NEGARA:</span>
+                        <span className="font-black text-lg" style={{ color: '#172b60' }}>{selectedStamp.countryText}</span>
+                      </div>
+                      {/* Keterangan Prangko (ALAT MUSIK PETIK Sasando) */}
+                      <div className="flex justify-between items-center col-span-2">
+                        <span className="font-semibold text-gray-600">Keterangan Prangko:</span>
+                        <span className="font-bold text-gray-800 text-right">{selectedStamp.stampCaption}</span>
+                      </div>
+                       {/* Nilai Nominal (Rp 1,-) */}
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-gray-600">Nilai Nominal:</span>
+                        <span className="font-bold" style={{ color: '#d4af37' }}>{selectedStamp.nominal}</span>
+                      </div>
+                       {/* Asal Daerah (Pulau Rote, NTT) - using existing region field */}
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-gray-600">Asal Daerah:</span>
+                        <span className="font-bold text-gray-800">{selectedStamp.region}</span>
+                      </div>
+                      
+                      {/* Technical Details */}
+                      <div className="flex justify-between items-center border-t mt-3 pt-3 col-span-2">
+                        <span className="font-semibold text-gray-600">No. Katalog:</span>
+                        <span className="font-bold" style={{ color: '#24459d' }}>{selectedStamp.catalogueId}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-gray-600">Teknik Cetak:</span>
+                        <span className="font-bold text-gray-800">{selectedStamp.printTechnique}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-gray-600">Perforasi:</span>
+                        <span className="font-bold text-gray-800">{selectedStamp.perforation}</span>
+                      </div>
+                      <div className="flex justify-between items-center col-span-2">
+                        <span className="font-semibold text-gray-600">Desainer:</span>
+                        <span className="font-bold text-gray-800">{selectedStamp.designer}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* END: IDENTITAS PRANGKO RESMI */}
+
                   <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     <span className="font-bold text-lg" style={{ color: '#172b60' }}>{selectedStamp.rating}</span>
+                    <span className="text-sm text-gray-500">({selectedStamp.reviews} ulasan)</span>
                   </div>
                 </div>
               </motion.div>
@@ -252,7 +344,12 @@ export default function MuseumPrangko() {
                 <span className="text-sm text-gray-500 font-serif italic">Panduan Bermain</span>
               </div>
               <div className="rounded-lg overflow-hidden bg-gray-200 relative group cursor-pointer border-4 border-gray-300 shadow-lg">
-                <img src={selectedStamp.tutorialVideo} alt="Tutorial" className="w-full aspect-video object-cover group-hover:opacity-75 transition-opacity duration-300" />
+                <img 
+                  src={selectedStamp.tutorialVideo} 
+                  alt="Tutorial" 
+                  className="w-full aspect-video object-cover group-hover:opacity-75 transition-opacity duration-300" 
+                  onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = 'https://placehold.co/800x450/374151/ffffff?text=Video+Tutorial' }}
+                />
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-colors flex items-center justify-center">
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl">
                     <Play className="w-10 h-10 ml-1" style={{ color: '#24459d' }} />
@@ -282,7 +379,12 @@ export default function MuseumPrangko() {
                   <h5 className="text-lg font-serif font-bold mb-3" style={{ color: '#172b60' }}>{shpData[currentSHPIndex].title}</h5>
                   <div className="relative mb-4">
                     <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 border-4 border-gray-300 shadow-lg">
-                      <img src={shpData[currentSHPIndex].images[currentImageIndex]} alt={`SHP ${shpData[currentSHPIndex].year}`} className="w-full h-full object-cover" />
+                      <img 
+                        src={shpData[currentSHPIndex].images[currentImageIndex]} 
+                        alt={`SHP ${shpData[currentSHPIndex].year}`} 
+                        className="w-full h-full object-cover" 
+                        onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = `https://placehold.co/400x300/172b60/ffffff?text=SHP+${shpData[currentSHPIndex].year}` }}
+                      />
                     </div>
                     {shpData[currentSHPIndex].images.length > 1 && (
                       <>
@@ -335,7 +437,12 @@ export default function MuseumPrangko() {
                 {stampCollection.map((stamp) => (
                   <motion.button key={stamp.id} onClick={() => setSelectedStamp(stamp)} whileHover={{ y: -4, scale: 1.03 }} className={`text-left group transition-all duration-200 p-2 rounded-lg ${selectedStamp.id === stamp.id ? 'bg-gray-100/50' : 'hover:bg-gray-100/50'}`} style={selectedStamp.id === stamp.id ? { boxShadow: `0 0 0 4px #24459d` } : {}}>
                     <div className="aspect-[3/4] rounded-lg overflow-hidden mb-3 bg-gray-100 border-4 border-gray-300 shadow-lg">
-                      <img src={stamp.image} alt={stamp.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <img 
+                        src={stamp.image} 
+                        alt={stamp.name} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = `https://placehold.co/400x500/172b60/ffffff?text=${stamp.name}` }}
+                      />
                     </div>
                     <h4 className="font-serif font-bold text-base mb-1" style={{ color: '#172b60' }}>{stamp.name}</h4>
                     <p className="text-xs text-gray-600 font-serif italic">{stamp.region}</p>

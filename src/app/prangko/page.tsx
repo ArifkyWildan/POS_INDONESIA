@@ -103,7 +103,7 @@ const STAMPS_DATA: Stamp[] = [
     title: 'Prangko Prisma',
     year: 2020,
     artist: 'Andi Rahmat',
-    image: '/tanda.webp',
+    image: '/pranko-prisma.jpg',
     location: 'Kementerian Komunikasi dan Informatika',
     description: 'Dirilis untuk mendukung pariwisata bahari...',
     color: '#24459d',
@@ -276,6 +276,8 @@ const App: React.FC = () => {
       router.push("/peristiwa-sejarah");
     } else if (id === '5') {
       router.push("/tokoh-indonesia");
+    } else if (id === '6') {
+      router.push("/prisma");
     } else {
       setSelectedStampId(id);
       window.scrollTo(0, 0);

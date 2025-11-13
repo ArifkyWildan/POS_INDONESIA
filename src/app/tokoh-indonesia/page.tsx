@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useState, useCallback } from 'react';
-
+import { Bebas_Neue } from "next/font/google";
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 // --- Konten Prangko (Stamps Content Data) ---
 interface StampItem {
   id: number;
@@ -271,8 +275,8 @@ const PrangkoTokoh: React.FC = () => {
         
         {/* Logo "POS IND" */}
         <div className="flex text-2xl md:text-3xl font-extrabold tracking-tight">
-          <span className={`text-white bg-[${colorPrimary}] px-1 rounded-l-md`}>POS</span>
-          <span className="text-white bg-red-600 px-1 rounded-r-md">IND</span>
+          <span className={` text-[${colorPrimary}] px-1 rounded-l-md ${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>
+          
         </div>
         <div className="w-20"></div> {/* Placeholder untuk menyeimbangkan layout */}
       </nav>

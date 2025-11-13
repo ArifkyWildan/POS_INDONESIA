@@ -4,6 +4,12 @@ import React, { useState, useMemo } from 'react';
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Layers } from 'lucide-react';
+import { Bebas_Neue } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 // --- INTERFACE (Tipe Data) ---
 interface Stamp {
@@ -167,8 +173,8 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
             <span>Kembali</span>
           </button>
           <div className="flex items-center space-x-2 md:space-x-3">
-            <span className="text-2xl md:text-4xl font-black text-white">POS</span>
-            <span className="text-2xl md:text-4xl font-black text-red-500">IND</span>
+            <span className={`${bebasNeue.className} text-2xl md:text-4xl font-black text-white`}>MUSEUM POS INDONESIA</span>
+            
           </div>
           <div className="w-16 md:w-20"></div>
         </div>

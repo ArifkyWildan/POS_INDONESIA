@@ -5,7 +5,12 @@
  * Menggunakan Tailwind CSS untuk styling responsif.
  */
 import React, { useState } from 'react';
+import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 // Definisi warna kustom Pos Indonesia
 const COLOR_DARK = '#172b60'; // Biru tua
 const COLOR_BLUE = '#24459d'; // Biru sedang
@@ -64,8 +69,8 @@ const App = () => {
                 <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
                     <BackButton />
                     <div className="text-4xl md:text-5xl font-black tracking-tight">
-                        <span className={`text-[${COLOR_DARK}]`}>POS</span>
-                        <span className="text-red-600"> IND</span>
+                        <span className={`text-[${COLOR_DARK}] ${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>
+                       
                     </div>
                 </div>
             </header>

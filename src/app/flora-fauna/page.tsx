@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 // --- DATA MOCKUP PRANGKO ---
 // Tipe data untuk kategori filter
 type StampCategory = "Flora" | "Fauna" | "Keduanya";
@@ -313,8 +318,8 @@ export default function App() {
                     
                     <div className="flex items-center">
                         <span className="text-2xl md:text-3xl font-extrabold tracking-tight">
-                            <span className="text-[#172b60]">POS</span>
-                            <span className="text-red-600"> IND</span>
+                            <span className={`text-[#172b60] ${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>
+                            
                         </span>
                     </div>
                 </div>
@@ -358,8 +363,8 @@ export default function App() {
           
           <div className="flex items-center">
             <span className="text-2xl md:text-3xl font-extrabold tracking-tight">
-              <span className="text-[#172b60]">POS</span>
-              <span className="text-red-600"> IND</span>
+              <span className={`text-indigo-900 ${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>
+              
             </span>
           </div>
         </div>

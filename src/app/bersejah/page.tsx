@@ -1,7 +1,12 @@
 "use client";
 
 import React from 'react';
+import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+}); 
 // Definisi warna kustom Pos Indonesia (diasumsikan sudah dikonfigurasi di tailwind.config.js Next.js)
 // Namun, kita akan menggunakan notasi heksadesimal langsung di className untuk menjamin warna.
 const COLOR_DARK = '#172b60'; // Biru tua
@@ -52,8 +57,8 @@ const App: React.FC = () => {
                 <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
                     <BackButton />
                     <div className="text-4xl md:text-5xl font-black tracking-tight">
-                        <span className="text-[#172b60]">POS</span>
-                        <span className="text-red-600"> IND</span>
+                        <span className={`text-[#172b60] ${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>
+                       
                     </div>
                 </div>
             </header>

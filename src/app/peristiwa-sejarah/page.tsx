@@ -2,7 +2,12 @@
 
 import React, { FC, useState } from "react";
 import Link from "next/link";
+import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 // Warna yang diminta oleh user
 const DARK_BLUE = "#172b60"; // Warna Utama, seperti teks dan border
 const BRIGHT_BLUE = "#24459d"; // Warna Aksen, seperti hover dan highlight
@@ -189,8 +194,8 @@ const App: FC = () => {
           
           <div className="text-center">
             <h1 className="font-bold tracking-wider" style={{ fontSize: '28px' }}>
-              <span style={{ color: DARK_BLUE }}>POS</span>{' '}
-              <span style={{ color: '#ef4444' }}>IND</span>
+              <span style={{ color: DARK_BLUE }} className={`${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>{' '}
+              
             </h1>
           </div>
           

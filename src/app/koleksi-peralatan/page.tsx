@@ -7,7 +7,12 @@ const PRIMARY_BLUE = '#172b60';
 const SECONDARY_BLUE = '#24459d';
 const ACCENT_RED = '#883131';
 const ACCENT_YELLOW = '#f0c766';
+import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 /**
  * Komponen untuk menampilkan satu item koleksi (Gerobak, Brievenbus, Bis Surat).
  */
@@ -290,8 +295,8 @@ const TopNavbar: React.FC = () => {
       </button>
 
       <div style={logoStyle}>
-        <span style={posStyle}>POS</span>
-        <span style={indStyle}>IND</span>
+        <span style={posStyle} className={`${bebasNeue.className}`}>MUSEUM POS INDONESIA</span>
+        
       </div>
 
       <div style={{ width: '100px' }}></div> 

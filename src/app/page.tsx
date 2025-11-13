@@ -13,6 +13,11 @@ import ChatbotButton from './components/ReusableChatbotButton';
 import ChatbotWidget from './components/ChatbotWidget';
 import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 // --- Import Ikon dari react-icons/fa ---
 import {
   FaInstagram,
@@ -22,10 +27,7 @@ import {
   FaXTwitter // Untuk ikon X (Twitter)
 } from 'react-icons/fa6'; // Menggunakan fa6 (Font Awesome 6) yang memiliki FaXTwitter
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-});
+
 
 const ChatbotWidgetTyped = (ChatbotWidget as unknown) as React.FC<{ isOpen: boolean; onClose: () => void }>;
 

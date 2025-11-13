@@ -2,11 +2,15 @@
 
 import React, { useState } from 'react';
 import { ChevronRight, ChevronLeft, Home, BookOpen, Building, Map, X, Clock, Archive, ChevronDown } from 'lucide-react';
-
+import { Bebas_Neue } from "next/font/google";
 // Warna Kustom Utama: #2E3192 (Dark Indigo/Violet)
 const MAIN_INDIGO = '#2E3192';
 
 // --- CONTENT DEFINITIONS ---
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 // Component Title Block untuk Sejarah Perpossan (dari gambar splash screen)
 const PerposanTitleBlock = () => (
@@ -200,10 +204,10 @@ const SejarahKantorPosContent = () => (
                         />
                     </div>
                     <p className="text-gray-800 leading-relaxed text-sm sm:text-base">
-                        Museum Pos Indonesia telah hadir sejak masa Hindia Belanda dengan nama **Museum PTT (Pos Telegrap dan Telepon)**, tepatnya pada tahun **1931** terletak dibagian sayap kanan bawah Gedung Kantor Pusat PTT Jl. Cilaki No. 73 Bandung 40115. Koleksi Museum PTT masih terbatas pada berbagai jenis Prangko, namun saat ini koleksinya semakin bertambah terdiri atas benda-benda yang bernilai sejarah seperti Peralatan Pos, Visualisasi dan Diorama Kegiatan Layanan Pos yang memiliki nilai sejarah dalam perjalanan PT Pos Indonesia (Persero) serta Prangko-Prangko dari berbagai Negara.
+                        Museum Pos Indonesia telah hadir sejak masa Hindia Belanda dengan nama Museum PTT (Pos Telegrap dan Telepon), tepatnya pada tahun 1931 terletak dibagian sayap kanan bawah Gedung Kantor Pusat PTT Jl. Cilaki No. 73 Bandung 40115. Koleksi Museum PTT masih terbatas pada berbagai jenis Prangko, namun saat ini koleksinya semakin bertambah terdiri atas benda-benda yang bernilai sejarah seperti Peralatan Pos, Visualisasi dan Diorama Kegiatan Layanan Pos yang memiliki nilai sejarah dalam perjalanan PT Pos Indonesia (Persero) serta Prangko-Prangko dari berbagai Negara.
                     </p>
                     <p className="text-gray-800 leading-relaxed text-sm sm:text-base mt-3">
-                        Akibat adanya pergolakan revolusi dan perang kemerdekaan, keberadaan Museum PTT kurang mendapat perhatian, bahkan nyaris terlupakan. Menyadari demikian besarnya peranan museum sebagai sarana pendidikan, informasi dan rekreasi untuk generasi muda di masa sekarang dan mendatang, maka pada tahun 1980 Direksi Perum Pos dan Giro membentuk Phalatila untuk menghidupkan kembali museum. Pada tanggal **27 September 1983** bersamaan dengan hari Bakti Postel ke-38, Museum ini secara resmi dibuka untuk umum oleh Menteri Pariwisata Pos dan Telekomunikasi yang pada saat itu dijabat oleh **Ahmad Tahir** dan diberi nama Museum Pos dan Giro. Sejalan dengan perkembangan perusahaan Pos dimana terhitung tanggal 20 Juni 1995 nama dan status Perusahaan Umum Pos dan Giro menjadi PT Pos Indonesia (Persero), maka Museum Pos dan Giro berubah menjadi Museum Pos Indonesia hingga saat ini.
+                        Akibat adanya pergolakan revolusi dan perang kemerdekaan, keberadaan Museum PTT kurang mendapat perhatian, bahkan nyaris terlupakan. Menyadari demikian besarnya peranan museum sebagai sarana pendidikan, informasi dan rekreasi untuk generasi muda di masa sekarang dan mendatang, maka pada tahun 1980 Direksi Perum Pos dan Giro membentuk Phalatila untuk menghidupkan kembali museum. Pada tanggal 27 September 1983 bersamaan dengan hari Bakti Postel ke-38, Museum ini secara resmi dibuka untuk umum oleh Menteri Pariwisata Pos dan Telekomunikasi yang pada saat itu dijabat oleh Ahmad Tahir dan diberi nama Museum Pos dan Giro. Sejalan dengan perkembangan perusahaan Pos dimana terhitung tanggal 20 Juni 1995 nama dan status Perusahaan Umum Pos dan Giro menjadi PT Pos Indonesia (Persero), maka Museum Pos dan Giro berubah menjadi Museum Pos Indonesia hingga saat ini.
                     </p>
                 </div>
             </div>
@@ -267,7 +271,7 @@ const SejarahMuseumPosContent = () => (
                 {/* Text Block (Left) */}
                 <div className="order-1">
                     <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4">
-                        Kantor Pos pertama didirikan di Batavia oleh Gubernur Jenderal Gustaaf Willem Baron Van Imhoff pada tanggal **26 Agustus 1746** dengan tujuan untuk lebih menjamin keamanan surat-surat penduduk, terutama bagi mereka yang datang dan pergi ke negeri Belanda. Pengantar Kantor Pos tersebut terdiri dari dua orang "**Postmeester**" yang disumpah dan dibantu dengan dua orang Kerani (klerk) yang disumpah pula termasuk pegawai Kantor Pos ini ialah beberapa pengantar Pos.
+                        Kantor Pos pertama didirikan di Batavia oleh Gubernur Jenderal Gustaaf Willem Baron Van Imhoff pada tanggal 26 Agustus 1746 dengan tujuan untuk lebih menjamin keamanan surat-surat penduduk, terutama bagi mereka yang datang dan pergi ke negeri Belanda. Pengantar Kantor Pos tersebut terdiri dari dua orang "Postmeester" yang disumpah dan dibantu dengan dua orang Kerani (klerk) yang disumpah pula termasuk pegawai Kantor Pos ini ialah beberapa pengantar Pos.
                     </p>
                     <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
                         Setelah Kantor pos Batavia didirikan, maka empat tahun kemudian didirikan kantor pos Semarang untuk mengadakan Perhubungan Pos yang teratur
@@ -289,10 +293,10 @@ const SejarahMuseumPosContent = () => (
             </div>
             <div className="mt-8 text-gray-700 leading-relaxed text-sm sm:text-base">
                 <p className="mb-4">
-                    ...antara kedua tempat itu dan untuk mempercepat pengirimannya. Rute perjalanan Pos kala itu melalui Krawang, Cirebon dan Pekalongan. Dari sejarah pos semasa kompeni dapat diteliti bahwa kata "**Kantor**" yang dikenal sekarang berasal dari kata *COMPTOIR* lama kelamaan menjadi "**Kantoor**" (Bahasa Belanda) dalam Bahasa Indonesia "Kantor" sedangkan kata "**Pos**" berasal dari kata kerja latin *Ponere* yang berubah menjadi *Posita* ini menjadi "**Posta**" dalam Bahasa Italia menjadi *Poste* dalam Bahasa Perancis dan *Post* dalam Bahasa Inggris, Belanda dan Jerman.
+                    ...antara kedua tempat itu dan untuk mempercepat pengirimannya. Rute perjalanan Pos kala itu melalui Krawang, Cirebon dan Pekalongan. Dari sejarah pos semasa kompeni dapat diteliti bahwa kata "Kantor" yang dikenal sekarang berasal dari kata COMPTOIR lama kelamaan menjadi "Kantoor" (Bahasa Belanda) dalam Bahasa Indonesia "Kantor" sedangkan kata "Pos" berasal dari kata kerja latin Ponere yang berubah menjadi Posita ini menjadi "Posta" dalam Bahasa Italia menjadi Poste dalam Bahasa Perancis dan Post dalam Bahasa Inggris, Belanda dan Jerman.
                 </p>
                 <p>
-                    Istilah "*Post Comtpoir*" antara lain Nampak pula pada Cap tanggal jaman Pemerintahan Daendels yang kemudian dibelandakan menjadi "*Postkantoor*" dan menjadi istilah Indonesia adalah "**Kantor Pos**".
+                    Istilah "Post Comtpoir" antara lain Nampak pula pada Cap tanggal jaman Pemerintahan Daendels yang kemudian dibelandakan menjadi "Postkantoor" dan menjadi istilah Indonesia adalah "Kantor Pos".
                 </p>
             </div>
         </section>
@@ -507,12 +511,10 @@ const PosSejarah: React.FC = () => {
 
                             {/* POS IND Logo menggunakan warna kustom #2E3192 */}
                             <div className="flex items-baseline">
-                                <h1 className="text-3xl sm:text-4xl font-black text-[#2E3192] leading-none">
-                                    POS
+                                <h1 className={`${bebasNeue.className} text-3xl sm:text-4xl font-black text-[#2E3192] leading-none`}>
+                                    MUSEUM POS INDONESIA
                                 </h1>
-                                <h2 className="text-3xl sm:text-4xl font-black text-red-600 leading-none ml-1 sm:ml-2">
-                                    IND
-                                </h2>
+                               
                             </div>
                             
                             {/* Spacer for justify-between balance */}

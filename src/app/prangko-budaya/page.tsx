@@ -11,10 +11,10 @@ const bebasNeue = Bebas_Neue({
 });
 
 const shpData = [
-  { year: '2013', title: 'Seri Alat Musik Tradisional Indonesia 2013', description: 'Koleksi prangko yang menampilkan berbagai alat musik tradisional dari berbagai daerah di Indonesia.', images: ['https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&h=600&fit=crop'] },
-  { year: '2014', title: 'Seri Alat Musik Tradisional Indonesia 2014', description: 'Melanjutkan seri sebelumnya dengan menampilkan alat musik tradisional yang berbeda dari Nusantara.', images: ['https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=800&h=600&fit=crop'] },
-  { year: '2015', title: 'Seri Alat Musik Tradisional Indonesia 2015', description: 'Edisi khusus yang menampilkan alat musik langka dari berbagai pulau di Indonesia.', images: ['https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=600&fit=crop'] },
-  { year: '2020', title: 'Seri Alat Musik Tradisional Indonesia 2020', description: 'Edisi terbaru dengan desain modern, menampilkan dokumentasi lengkap alat musik tradisional Indonesia.', images: ['https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1519683109079-d5f539e1542f?w=800&h=600&fit=crop'] }
+  { year: '2013', title: 'Seri Alat Musik Tradisional Indonesia 2013', description: 'Koleksi prangko yang menampilkan berbagai alat musik tradisional dari berbagai daerah di Indonesia.', images: ['/prangko1.png'] },
+  { year: '2014', title: 'Seri Alat Musik Tradisional Indonesia 2014', description: 'Melanjutkan seri sebelumnya dengan menampilkan alat musik tradisional yang berbeda dari Nusantara.', images: ['/prangko2.png'] },
+  { year: '2015', title: 'Seri Alat Musik Tradisional Indonesia 2015', description: 'Edisi khusus yang menampilkan alat musik langka dari berbagai pulau di Indonesia.', images: ['/prangko3.png'] },
+  { year: '2020', title: 'Seri Alat Musik Tradisional Indonesia 2020', description: 'Edisi terbaru dengan desain modern, menampilkan dokumentasi lengkap alat musik tradisional Indonesia.', images: ['/prangko4.png', '/prangko5.png'] }
 ];
 
 const stampCollection = [

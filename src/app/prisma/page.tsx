@@ -90,7 +90,7 @@ const App = () => {
                         <div className="flex flex-col md:flex-row gap-8 items-start">
                             <div className="w-full md:w-2/3">
                                 <p className="text-base mb-4">
-                                    **Prangko Prisma** (Prangko Identitas Milik Anda) adalah sebuah inovasi layanan dari Pos Indonesia yang memungkinkan masyarakat untuk membuat prangko dengan foto atau gambar pribadi mereka. 
+                                    Prangko Prisma (Prangko Identitas Milik Anda) adalah sebuah inovasi layanan dari Pos Indonesia yang memungkinkan masyarakat untuk membuat prangko dengan foto atau gambar pribadi mereka. 
                                     Layanan ini menggabungkan fungsi filateli tradisional dengan sentuhan personal yang unik.
                                 </p>
                                 <p className="mb-4 text-gray-700">

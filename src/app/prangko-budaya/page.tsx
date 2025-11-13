@@ -3,6 +3,12 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Volume2, Star, ArrowLeft, Maximize2, X } from 'lucide-react';
+import { Bebas_Neue } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const shpData = [
   { year: '2013', title: 'Seri Alat Musik Tradisional Indonesia 2013', description: 'Koleksi prangko yang menampilkan berbagai alat musik tradisional dari berbagai daerah di Indonesia.', images: ['https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&h=600&fit=crop'] },
@@ -104,8 +110,8 @@ export default function MuseumPrangko() {
             <ArrowLeft className="w-5 h-5" /><span className="font-serif text-sm">Kembali</span>
           </a>
           <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-            <span className="text-2xl md:text-3xl font-black tracking-wider" style={{ color: '#172b60' }}>POS</span>
-            <span className="text-2xl md:text-3xl font-black" style={{ color: '#E53E3E' }}> IND</span>
+            <span className={`text-2xl md:text-3xl font-black tracking-wider ${bebasNeue.className}`} style={{ color: '#172b60' }}>MUSEUM POS INDONESIA</span>
+            
           </div>
           <div className="w-[100px] md:w-[120px]"></div>
         </div>

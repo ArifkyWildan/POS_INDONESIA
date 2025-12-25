@@ -160,7 +160,10 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
               MUSEUM POS INDONESIA
             </span>
           </div>
-          <div className="w-10 sm:w-16 md:w-20"></div>
+          <div className="flex items-center justify-center bg-white rounded px-2 sm:px-3 py-1 sm:py-1.5">
+            <span className="text-[#172b60] font-black text-base sm:text-xl md:text-2xl tracking-tight">POS</span>
+            <span className="text-[#172b60] font-black text-base sm:text-xl md:text-2xl tracking-tight">IND</span>
+          </div>
         </div>
       </div>
 
@@ -178,74 +181,288 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
         </p>
       </div>
 
-      {/* Section Informasi Filateli */}
+      {/* Section Informasi Filateli - 3 Kolom Horizontal */}
       <div className="max-w-7xl mx-auto mb-6 sm:mb-8 md:mb-12 px-3 sm:px-4 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Kolom Kiri - Kalian Tau apa itu Filateli */}
-          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-gray-100">
-            <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
+        
+            <div className="flex items-start gap-3 mb-3">
+              <div className="w-16 h-20 sm:w-20 sm:h-24 flex-shrink-0 border-4 border-dashed border-gray-300 rounded-md p-1 bg-gray-50">
                 <img 
-                  src="https://images.unsplash.com/photo-1523735969558-d2c9e96d9d2f?w=400" 
+                  src="1.png" 
                   alt="Prangko" 
-                  className="w-full h-full object-cover rounded-md sm:rounded-lg border-2 sm:border-4 border-dashed border-gray-200" 
+                  className="w-full h-full object-cover" 
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#172b60] mb-1.5 sm:mb-2">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#172b60] mb-2">
                   Kalian Tau apa itu Filateli?
                 </h3>
-                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                   Filateli adalah studi, apresiasi, dan pengumpulan prangko dan benda-benda pos terkait <span className="font-semibold">(seperti amplop hari pertama, cap pos)</span>
                 </p>
               </div>
             </div>
-            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
-              <img src="https://images.unsplash.com/photo-1523735969558-d2c9e96d9d2f?w=400" alt="Koleksi Prangko" className="w-full h-24 sm:h-32 object-cover rounded-lg" />
-              <div className="mt-2 bg-blue-50 rounded-lg p-2 sm:p-3 text-right">
-                <p className="text-[10px] sm:text-xs text-gray-600">Dapatkan Bintang Ini dengan cara</p>
-                <p className="text-[10px] sm:text-xs text-blue-700 font-semibold">selesaikan tour pada halaman koleksi ini</p>
-              </div>
-            </div>
+          
+          
+
+          {/* Kolom Tengah - Gambar Koleksi Prangko */}
+          <div className="bg-white rounded-lg p-4 sm:p-5 shadow-lg border-2 border-gray-200 flex items-center justify-center">
+            <img 
+              src="3.png" 
+              alt="Koleksi Prangko Museum" 
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
 
-          {/* Kolom Kanan - Apa Definisi dan Fungsi Prangko */}
-          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-gray-100">
-            <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-              <div className="w-24 h-32 sm:w-32 sm:h-40 flex-shrink-0 border-4 sm:border-8 border-gray-800 rounded-md sm:rounded-lg p-1 bg-white">
-                <img 
-                  src="https://images.unsplash.com/photo-1523735969558-d2c9e96d9d2f?w=400" 
-                  alt="Prangko Indonesia" 
-                  className="w-full h-full object-cover rounded" 
-                />
+          {/* Kolom Kanan - Progress Bintang */}
+          <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg p-4 sm:p-5 shadow-lg border-2 border-blue-200">
+            <div className="text-center mb-4">
+              <p className="text-sm sm:text-base text-gray-700 font-medium mb-2">
+                Dapatkan Bintang ini dengan cara
+              </p>
+              <p className="text-xs sm:text-sm text-blue-700 font-semibold">
+                selesaikan tour pada halaman koleksi ini
+              </p>
+            </div>
+            
+            {/* Bintang dengan Progress */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="relative w-24 h-24 sm:w-32 sm:h-32">
+                {/* Background Star (Grey) */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full">
+                  <polygon 
+                    points="50,5 61,35 92,35 67,55 78,85 50,65 22,85 33,55 8,35 39,35" 
+                    fill="#E5E7EB" 
+                    stroke="#9CA3AF" 
+                    strokeWidth="2"
+                  />
+                </svg>
+                {/* Progress Star (Yellow) - 10% filled (5 points out of 50) */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full" style={{ clipPath: 'inset(0 0 90% 0)' }}>
+                  <polygon 
+                    points="50,5 61,35 92,35 67,55 78,85 50,65 22,85 33,55 8,35 39,35" 
+                    fill="#FCD34D" 
+                    stroke="#F59E0B" 
+                    strokeWidth="2"
+                  />
+                </svg>
               </div>
-              <div className="flex-1 bg-blue-50 rounded-lg p-3 sm:p-4 min-w-0">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#24459d] mb-2 sm:mb-3">
-                  Apa Definisi dan Fungsi Prangko?
-                </h3>
-                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
-                  <span className="font-semibold">Prangko</span> adalah secarik kertas kecil yang dikeluarkan dan dijual oleh otoritas pos suatu negara. Prangko berfungsi untuk melunasi biaya pengiriman surat atau paket pos
+              
+              {/* Progress Bar */}
+              <div className="w-full">
+                <div className="flex justify-between text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  <span>Progress</span>
+                  <span>5/50 Poin</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-3 sm:h-4 overflow-hidden">
+                  <div 
+                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-full rounded-full transition-all duration-500"
+                    style={{ width: '10%' }}
+                  ></div>
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-500 text-center mt-2">
+                  Setiap bagian yang diselesaikan = 5 poin
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Section Apa Definisi dan Fungsi Prangko - Full Width */}
+      <div className="max-w-7xl mx-auto mb-6 sm:mb-8 md:mb-12 px-3 sm:px-4 w-full">
+        <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg border-2 border-gray-200">
+          <div className="flex flex-col md:flex-row items-start gap-4 sm:gap-6">
+            <div className="w-full md:w-48 lg:w-56 flex-shrink-0 border-8 border-gray-800 rounded-lg p-2 bg-white mx-auto md:mx-0">
+              <img 
+                src="2.png" 
+                alt="Prangko Indonesia" 
+                className="w-full h-auto object-cover rounded" 
+              />
+            </div>
             
-            <div>
-              <h4 className="text-base sm:text-lg font-bold text-[#172b60] mb-2 sm:mb-3">
-                Jenis Prangko Utama
-              </h4>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                <span className="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#172b60] text-white text-[10px] sm:text-sm font-semibold rounded-full">
-                  Prangko Definitif (Biasa)
-                </span>
-                <span className="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#24459d] text-white text-[10px] sm:text-sm font-semibold rounded-full">
-                  Prangko Komemoratif (Peringatan)
-                </span>
-                <span className="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#172b60] text-white text-[10px] sm:text-sm font-semibold rounded-full">
-                  Prangko Udara
-                </span>
-                <span className="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#24459d] text-white text-[10px] sm:text-sm font-semibold rounded-full">
-                  Prangko Dinas
-                </span>
+            <div className="flex-1">
+              <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#24459d] mb-3">
+                  Apa Definisi dan Fungsi Prangko?
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  <span className="font-semibold">Prangko</span> adalah secarik kertas kecil yang dikeluarkan dan dijual oleh otoritas pos suatu negara. Prangko berfungsi untuk melunasi biaya pengiriman surat atau paket pos
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#172b60] mb-3">
+                  Jenis Prangko Utama
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-4 py-2 bg-[#172b60] text-white text-xs sm:text-sm font-semibold rounded-full">
+                    Prangko Definitif (Biasa)
+                  </span>
+                  <span className="px-4 py-2 bg-[#24459d] text-white text-xs sm:text-sm font-semibold rounded-full">
+                    Prangko Komemoratif (Peringatan)
+                  </span>
+                  <span className="px-4 py-2 bg-[#172b60] text-white text-xs sm:text-sm font-semibold rounded-full">
+                    Prangko Udara
+                  </span>
+                  <span className="px-4 py-2 bg-[#24459d] text-white text-xs sm:text-sm font-semibold rounded-full">
+                    Prangko Dinas
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Section Anatomi Prangko */}
+      <div className="max-w-7xl mx-auto mb-6 sm:mb-8 md:mb-12 px-3 sm:px-4 w-full">
+        <div className="bg-white rounded-lg p-6 sm:p-8 md:p-10 shadow-lg border border-gray-200">
+          {/* Header dengan Prangko Kecil dan Jenis Prangko */}
+          
+
+          {/* Judul Anatomi Prangko */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#172b60] text-center mb-8 sm:mb-10">
+            ANATOMI PRANGKO
+          </h2>
+
+          {/* Layout Utama - 3 Kolom */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            {/* Kolom Kiri - Penjelasan Nilai Nominal & Nama Negara */}
+            <div className="lg:col-span-3 space-y-6">
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#172b60] mb-2">
+                  Nilai Nominal (Harga)
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Angka yang menunjukkan biaya pos yang telah dibayar
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#172b60] mb-2">
+                  Nama Negara
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Identitas negara penerbit (misalnya, INDONESIA, Rep. Indonesia).
+                </p>
+              </div>
+            </div>
+
+            {/* Kolom Tengah - Dua Prangko dengan Panah Anotasi */}
+            <div className="lg:col-span-6 flex justify-center items-start">
+              <div className="relative inline-block">
+                {/* Container Dua Prangko */}
+                <div className="flex gap-4 sm:gap-6">
+                  {/* Prangko Kiri dengan Border Dashed */}
+                  <div className="relative border-4 border-dashed border-blue-400 rounded-lg p-3 bg-white">
+                    <img 
+                      src="jokowi.png" 
+                    
+                      className="w-32 sm:w-40 md:w-48 h-auto object-cover rounded shadow-lg"
+                    />
+                    
+                    {/* Panah ke Nilai Nominal */}
+                    <div className="absolute -left-20 top-8 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#172b60]">
+                        <line x1="0" y1="1" x2="70" y2="1" strokeWidth="2" markerEnd="url(#arrowleft)" />
+                        <defs>
+                          <marker id="arrowleft" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#172b60" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+
+                    {/* Panah ke Nama Negara */}
+                    <div className="absolute -left-20 bottom-20 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#172b60]">
+                        <line x1="0" y1="1" x2="70" y2="1" strokeWidth="2" markerEnd="url(#arrowleft2)" />
+                        <defs>
+                          <marker id="arrowleft2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#172b60" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Prangko Kanan dengan Border Dashed */}
+                  <div className="relative border-4 border-dashed border-blue-400 rounded-lg p-3 bg-white">
+                    <img 
+                      src="hatta.png" 
+                      alt="Prangko 5000" 
+                      className="w-32 sm:w-40 md:w-48 h-auto object-cover rounded shadow-lg"
+                    />
+
+                    {/* Panah ke Tahun Penerbitan */}
+                    <div className="absolute -right-20 top-4 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#24459d]">
+                        <line x1="10" y1="1" x2="80" y2="1" strokeWidth="2" markerStart="url(#arrowright1)" />
+                        <defs>
+                          <marker id="arrowright1" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M9,0 L9,6 L0,3 z" fill="#24459d" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+
+                    {/* Panah ke Perforasi */}
+                    <div className="absolute -right-20 top-1/2 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#24459d]">
+                        <line x1="10" y1="1" x2="80" y2="1" strokeWidth="2" markerStart="url(#arrowright2)" />
+                        <defs>
+                          <marker id="arrowright2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M9,0 L9,6 L0,3 z" fill="#24459d" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+
+                    {/* Panah ke Gambar/Desain */}
+                    <div className="absolute -right-20 bottom-8 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#24459d]">
+                        <line x1="10" y1="1" x2="80" y2="1" strokeWidth="2" markerStart="url(#arrowright3)" />
+                        <defs>
+                          <marker id="arrowright3" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M9,0 L9,6 L0,3 z" fill="#24459d" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Kolom Kanan - Penjelasan Tahun, Perforasi, Gambar */}
+            <div className="lg:col-span-3 space-y-6">
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#24459d] mb-2">
+                  Tahun Penerbitan
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Biasanya tertera samar atau diketahui melalui katalog) menunjukkan kapan prangko tersebut sah digunakan.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#24459d] mb-2">
+                  Perforasi (Gigi-gigi)
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Lubang-lubang kecil di tepi prangko yang memudahkannya untuk disobek dari lembar/blok prangko.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#24459d] mb-2">
+                  Gambar/Desain
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Ilustrasi atau foto yang biasanya menjadi daya tarik utama dan tema prangko.
+                </p>
               </div>
             </div>
           </div>

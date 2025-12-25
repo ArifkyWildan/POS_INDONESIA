@@ -1,15 +1,8 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Layers } from 'lucide-react';
-import { Bebas_Neue } from "next/font/google";
-
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 // --- INTERFACE (Tipe Data) ---
 interface Stamp {
@@ -32,24 +25,6 @@ interface StampCardProps {
 
 interface StampListProps {
   onSelectStamp: (id: string) => void;
-}
-
-interface StampDetailProps {
-  stamp: Stamp;
-  onBack: () => void;
-}
-
-interface DetailItemProps {
-  icon: React.ReactNode;
-  label: string;
-  value: string | number;
-}
-
-interface ButtonProps {
-  icon: React.ReactNode;
-  label: string;
-  primary?: boolean;
-  onClick?: () => void;
 }
 
 // --- DATA STAMP ---
@@ -157,7 +132,6 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, index, totalCards, onClick
 
 // --- LIST PRANGKO ---
 const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
-  const router = useRouter();
   const totalCards = STAMPS_DATA.length;
   
   return (
@@ -166,15 +140,20 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
       <div className="w-full max-w-7xl mx-auto mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#172b60] to-[#24459d] shadow-lg rounded-lg p-3 md:p-4 flex items-center justify-between">
           <button 
-            onClick={() => router.push('/')}
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.history.back();
+              }
+            }}
             className="flex items-center space-x-2 text-white hover:text-blue-100 transition-colors duration-200 font-semibold text-sm md:text-base"
           >
             <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
             <span>Kembali</span>
           </button>
           <div className="flex items-center space-x-2 md:space-x-3">
-            <span className={`${bebasNeue.className} text-2xl md:text-4xl font-black text-white`}>MUSEUM POS INDONESIA</span>
-            
+            <span className="text-2xl md:text-4xl font-black text-white tracking-wider">
+              MUSEUM POS INDONESIA
+            </span>
           </div>
           <div className="w-16 md:w-20"></div>
         </div>
@@ -189,23 +168,81 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
         >
           Koleksi Filateli
         </motion.h1>
-        <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 mt-4">
+        <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 mt-4">
           Jelajahi koleksi prangko bersejarah Indonesia.
         </p>
-        <div className="bg-gradient-to-br from-blue-50 to-slate-50 rounded-xl p-4 md:p-6 shadow-md border-2 border-[#24459d]/20">
-          <p className="text-xl md:text-2xl font-bold text-[#172b60] mb-3 md:mb-4">
-            🏷️ Apa Itu Prangko?
-          </p>
-          <div className="text-sm md:text-base text-gray-700 text-left space-y-3 md:space-y-4 leading-relaxed">
-            <p>
-              Prangko adalah tanda bukti pembayaran jasa pengiriman surat atau paket yang dikeluarkan oleh lembaga pos resmi suatu negara. Biasanya berupa kertas kecil bergambar yang ditempel di amplop atau paket sebelum dikirim.
-            </p>
-            <p>
-              Namun, prangko bukan hanya alat pembayaran pos — ia juga merupakan karya seni mini. Setiap prangko memiliki desain unik yang menggambarkan sejarah, budaya, tokoh penting, peristiwa bersejarah, atau kekayaan alam dari negara penerbitnya. Karena itu, prangko juga menjadi media dokumentasi budaya dan sejarah yang sangat berharga.
-            </p>
-            <p>
-              Seiring perkembangan zaman, fungsi prangko kini tidak hanya praktis, tetapi juga kolektibel. Banyak orang di seluruh dunia menjadi filatelis (kolektor prangko), yang mengumpulkan, meneliti, dan memamerkan prangko sebagai bagian dari warisan sejarah dan seni.
-            </p>
+      </div>
+
+      {/* Section Informasi Filateli */}
+      <div className="max-w-7xl mx-auto mb-8 md:mb-12 px-4">
+        <div className="grid md:grid-cols-2 gap-6 items-start">
+          {/* Kolom Kiri - Kalian Tau apa itu Filateli */}
+          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-20 h-20 flex-shrink-0">
+                <img 
+                  src="/budaya.webp" 
+                  alt="Prangko" 
+                  className="w-full h-full object-cover rounded-lg border-4 border-dashed border-gray-200" 
+                />
+              </div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-[#172b60] mb-2">
+                  Kalian Tau apa itu Filateli?
+                </h3>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                  Filateli adalah studi, apresiasi, dan pengumpulan prangko dan benda-benda pos terkait <span className="font-semibold">(seperti amplop hari pertama, cap pos)</span>
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <img src="/budaya.webp" alt="Koleksi Prangko" className="w-full h-32 object-cover rounded-lg" />
+              <div className="mt-2 bg-blue-50 rounded-lg p-3 text-right">
+                <p className="text-xs text-gray-600">Dapatkan Bintang Ini dengan cara</p>
+                <p className="text-xs text-blue-700 font-semibold">selesaikan tour pada halaman koleksi ini</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Kolom Kanan - Apa Definisi dan Fungsi Prangko */}
+          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-32 h-40 flex-shrink-0 border-8 border-gray-800 rounded-lg p-1 bg-white">
+                <img 
+                  src="/budaya.webp" 
+                  alt="Prangko Indonesia" 
+                  className="w-full h-full object-cover rounded" 
+                />
+              </div>
+              <div className="flex-1 bg-blue-50 rounded-lg p-4">
+                <h3 className="text-xl md:text-2xl font-bold text-[#24459d] mb-3">
+                  Apa Definisi dan Fungsi Prangko?
+                </h3>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                  <span className="font-semibold">Prangko</span> adalah secarik kertas kecil yang dikeluarkan dan dijual oleh otoritas pos suatu negara. Prangko berfungsi untuk melunasi biaya pengiriman surat atau paket pos
+                </p>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-bold text-[#172b60] mb-3">
+                Jenis Prangko Utama
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-4 py-2 bg-[#172b60] text-white text-sm font-semibold rounded-full">
+                  Prangko Definitif (Biasa)
+                </span>
+                <span className="px-4 py-2 bg-[#24459d] text-white text-sm font-semibold rounded-full">
+                  Prangko Komemoratif (Peringatan)
+                </span>
+                <span className="px-4 py-2 bg-[#172b60] text-white text-sm font-semibold rounded-full">
+                  Prangko Udara
+                </span>
+                <span className="px-4 py-2 bg-[#24459d] text-white text-sm font-semibold rounded-full">
+                  Prangko Dinas
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -237,34 +274,8 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
   );
 };
 
-// --- KOMPONEN DETAIL ---
-const DetailItem: React.FC<DetailItemProps> = ({ icon, label, value }) => (
-  <div className="flex items-start space-x-3">
-    <div className="pt-1">{icon}</div>
-    <div>
-      <p className="text-xs font-semibold uppercase text-gray-500">{label}</p>
-      <p className="text-lg font-medium text-gray-800">{value}</p>
-    </div>
-  </div>
-);
-
-const Button: React.FC<ButtonProps> = ({ icon, label, primary, onClick }) => (
-  <button
-    className={`flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-xl transition duration-300 shadow-md ${
-      primary
-        ? 'bg-gradient-to-r from-[#172b60] to-[#24459d] text-white hover:from-[#24459d] hover:to-[#172b60] active:scale-95'
-        : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 active:bg-gray-200'
-    }`}
-    onClick={onClick}
-  >
-    {icon && <span className="mr-2">{icon}</span>}
-    {label}
-  </button>
-);
-
 // --- MAIN APP ---
 const App: React.FC = () => {
-  const router = useRouter();
   const [selectedStampId, setSelectedStampId] = useState<string | null>(null);
 
   const selectedStamp = useMemo(() => {
@@ -272,27 +283,30 @@ const App: React.FC = () => {
   }, [selectedStampId]);
 
   const handleSelectStamp = (id: string) => {
-    if (id === '1') {
-      router.push("/prangko-budaya");
-    } else if (id === '2') {
-      router.push("/flora-fauna");
-    } else if (id === '3') {
-      router.push("/bersejah");
-    } else if (id === '4') {
-      router.push("/peristiwa-sejarah");
-    } else if (id === '5') {
-      router.push("/tokoh-indonesia");
-    } else if (id === '6') {
-      router.push("/prisma");
+    if (typeof window === 'undefined') return;
+    
+    const routes: Record<string, string> = {
+      '1': '/prangko-budaya',
+      '2': '/flora-fauna',
+      '3': '/bersejah',
+      '4': '/peristiwa-sejarah',
+      '5': '/tokoh-indonesia',
+      '6': '/prisma',
+    };
+
+    if (routes[id]) {
+      window.location.href = routes[id];
     } else {
       setSelectedStampId(id);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const handleBack = () => {
     setSelectedStampId(null);
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const currentView: 'list' | 'detail' = selectedStamp ? 'detail' : 'list';
@@ -301,13 +315,34 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 font-sans antialiased">
       <AnimatePresence mode="wait">
         {currentView === 'list' && (
-          <motion.div key="list" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }}>
+          <motion.div 
+            key="list" 
+            initial={{ opacity: 0, y: 50 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4 }}
+          >
             <StampList onSelectStamp={handleSelectStamp} />
           </motion.div>
         )}
         {currentView === 'detail' && selectedStamp && (
-          <motion.div key="detail" initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -100 }}>
-            {/* Kamu bisa tampilkan StampDetail di sini */}
+          <motion.div 
+            key="detail" 
+            initial={{ opacity: 0, x: 100 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="min-h-screen p-8">
+              <button 
+                onClick={handleBack}
+                className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                ← Kembali
+              </button>
+              <h2 className="text-3xl font-bold">{selectedStamp.title}</h2>
+              {/* Add more detail content here */}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

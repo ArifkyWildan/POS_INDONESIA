@@ -3,10 +3,7 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Volume2, Star, ArrowLeft, Maximize2, X } from 'lucide-react';
-// As 'next/font/google' is not available in this environment, using a generic font strategy for consistency.
-// The component is designed to work with a web-safe serif/sans-serif fallback.
 
-// Mocking the font style for visual effect
 const bebasNeue = {
   className: "font-['Bebas_Neue',_sans-serif]",
 };
@@ -24,9 +21,8 @@ interface StampData {
   rating: number;
   reviews: number;
   nominal: string;
-  // NEW FIELDS FOR STAMP IDENTITY
-  countryText: string; // Teks Negara
-  stampCaption: string; // Keterangan Prangko
+  countryText: string;
+  stampCaption: string;
   catalogueId: string;
   printTechnique: string;
   designer: string;
@@ -55,7 +51,6 @@ const shpData: SHPData[] = [
   { year: '2020', title: 'Seri Alat Musik Tradisional Indonesia 2020', description: 'Edisi terbaru dengan desain modern, menampilkan dokumentasi lengkap alat musik tradisional Indonesia.', images: ['/prangko4.png', '/prangko5.png'] }
 ];
 
-// Replicating and enhancing the original stampCollection data
 const stampCollection: StampData[] = [
   { 
     id: 1, 
@@ -70,10 +65,8 @@ const stampCollection: StampData[] = [
     year: '1967', 
     rating: 4.8, 
     reviews: 234, 
-    // START: USER-REQUESTED IDENTITY DATA
     stampCaption: 'ALAT MUSIK PETIK Sasando',
     countryText: 'REPUBLIK INDONESIA',
-    // END: USER-REQUESTED IDENTITY DATA
     catalogueId: '-', 
     printTechnique: 'Offset Lithography', 
     designer: 'Øystein Skaar.', 
@@ -152,10 +145,33 @@ export default function MuseumPrangko() {
   const [userRating, setUserRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [hasRated, setHasRated] = useState(false);
+  
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+
+  React.useEffect(() => {
+    // Initialize audio element
+    audioRef.current = new Audio('/ab.mp3');
+    audioRef.current.addEventListener('ended', () => setIsPlayingAudio(false));
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.removeEventListener('ended', () => setIsPlayingAudio(false));
+      }
+    };
+  }, []);
 
   const handlePlayAudio = useCallback(() => {
-    // Mock audio playback for 30 seconds
-    if (!isPlayingAudio) { setIsPlayingAudio(true); setTimeout(() => setIsPlayingAudio(false), 30000); } else { setIsPlayingAudio(false); }
+    if (!audioRef.current) return;
+    
+    if (!isPlayingAudio) {
+      audioRef.current.play().catch(err => console.error('Audio play failed:', err));
+      setIsPlayingAudio(true);
+    } else {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setIsPlayingAudio(false);
+    }
   }, [isPlayingAudio]);
 
   const nextSHP = () => { setCurrentSHPIndex((prev) => (prev + 1) % shpData.length); setCurrentImageIndex(0); };
@@ -259,32 +275,26 @@ Seri alat musik tradisional nusantara ini merupakan prangko definitif berbudaya.
                     </div>
                   </div>
 
-                  {/* START: IDENTITAS PRANGKO RESMI (Updated to include all user data) */}
                   <div className="pt-4 mt-4 border-t border-gray-200">
                     <h4 className="text-base font-serif font-bold mb-3 uppercase tracking-wider text-center" style={{ color: '#172b60' }}>Identitas Prangko Resmi</h4>
                     <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-                       {/* Teks Negara (REPUBLIK INDONESIA) */}
                       <div className="flex justify-between items-center col-span-2 bg-blue-50 p-2 rounded border border-blue-100">
                         <span className="font-bold text-gray-600">TEKS NEGARA:</span>
                         <span className="font-black text-lg" style={{ color: '#172b60' }}>{selectedStamp.countryText}</span>
                       </div>
-                      {/* Keterangan Prangko (ALAT MUSIK PETIK Sasando) */}
                       <div className="flex justify-between items-center col-span-2">
                         <span className="font-semibold text-gray-600">Keterangan Prangko:</span>
                         <span className="font-bold text-gray-800 text-right">{selectedStamp.stampCaption}</span>
                       </div>
-                       {/* Nilai Nominal (Rp 1,-) */}
                       <div className="flex justify-between items-center">
                         <span className="font-semibold text-gray-600">Nilai Nominal:</span>
                         <span className="font-bold" style={{ color: '#d4af37' }}>{selectedStamp.nominal}</span>
                       </div>
-                       {/* Asal Daerah (Pulau Rote, NTT) - using existing region field */}
                       <div className="flex justify-between items-center">
                         <span className="font-semibold text-gray-600">Asal Daerah:</span>
                         <span className="font-bold text-gray-800">{selectedStamp.region}</span>
                       </div>
                       
-                      {/* Technical Details */}
                       <div className="flex justify-between items-center border-t mt-3 pt-3 col-span-2">
                         <span className="font-semibold text-gray-600">No. Katalog:</span>
                         <span className="font-bold" style={{ color: '#24459d' }}>{selectedStamp.catalogueId}</span>
@@ -303,7 +313,6 @@ Seri alat musik tradisional nusantara ini merupakan prangko definitif berbudaya.
                       </div>
                     </div>
                   </div>
-                  {/* END: IDENTITAS PRANGKO RESMI */}
 
                   <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />

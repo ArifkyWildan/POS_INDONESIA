@@ -108,6 +108,8 @@ const ZoomModal: React.FC<ZoomModalProps> = ({ isOpen, onClose, imageUrl, title 
   const zoomOut = () => { const newScale = Math.max(scale - 0.5, 1); setScale(newScale); if (newScale === 1) setPosition({ x: 0, y: 0 }); };
   const resetZoom = () => { setScale(1); setPosition({ x: 0, y: 0 }); };
 
+  
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -145,34 +147,93 @@ export default function MuseumPrangko() {
   const [userRating, setUserRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [hasRated, setHasRated] = useState(false);
-  
+  const [audioProgress, setAudioProgress] = useState(0);
+  const [audioCurrentTime, setAudioCurrentTime] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(10);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  // ==========================================
+  // CUSTOM AUDIO FILE - GANTI PATH INI
+  // ==========================================
+  const CUSTOM_AUDIO_FILE = '/audio/sasando.mp3'; // GANTI dengan path audio Anda
+  
+  // ==========================================
+  // CUSTOM VIDEO FILE - GANTI PATH INI
+  // ==========================================
+  const CUSTOM_VIDEO_FILE = '/video/tutorial-sasando.mp4'; // GANTI dengan path video Anda
+
+  const handlePlayVideo = useCallback(() => {
+    if (videoRef.current) {
+      if (isPlayingVideo) {
+        videoRef.current.pause();
+        setIsPlayingVideo(false);
+      } else {
+        videoRef.current.play();
+        setIsPlayingVideo(true);
+      }
+    }
+  }, [isPlayingVideo]);
+
+  const handlePlayAudio = useCallback(() => {
+  if (!audioRef.current) {
+    // Buat audio element dengan file audio dari selectedStamp
+    audioRef.current = new Audio('/audio/sasando.mp3'); // Ganti dengan path audio Anda
+    
+    // Event listeners
+    audioRef.current.addEventListener('loadedmetadata', () => {
+      if (audioRef.current) {
+        setAudioDuration(audioRef.current.duration);
+      }
+    });
+    
+    audioRef.current.addEventListener('timeupdate', () => {
+      if (audioRef.current) {
+        setAudioCurrentTime(audioRef.current.currentTime);
+        const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+        setAudioProgress(progress);
+      }
+    });
+    
+    audioRef.current.addEventListener('ended', () => {
+      setIsPlayingAudio(false);
+      setAudioCurrentTime(0);
+      setAudioProgress(0);
+    });
+  }
+  
+  if (isPlayingAudio) {
+    audioRef.current.pause();
+    setIsPlayingAudio(false);
+  } else {
+    audioRef.current.play();
+    setIsPlayingAudio(true);
+  }
+}, [isPlayingAudio]);
+
 
   React.useEffect(() => {
-    // Initialize audio element
-    audioRef.current = new Audio('/ab.mp3');
-    audioRef.current.addEventListener('ended', () => setIsPlayingAudio(false));
-    
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleVideoEnded = () => {
+      setIsPlayingVideo(false);
+    };
+
+    video.addEventListener('ended', handleVideoEnded);
+
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.removeEventListener('ended', () => setIsPlayingAudio(false));
-      }
+      video.removeEventListener('ended', handleVideoEnded);
     };
   }, []);
 
-  const handlePlayAudio = useCallback(() => {
-    if (!audioRef.current) return;
-    
-    if (!isPlayingAudio) {
-      audioRef.current.play().catch(err => console.error('Audio play failed:', err));
-      setIsPlayingAudio(true);
-    } else {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      setIsPlayingAudio(false);
-    }
-  }, [isPlayingAudio]);
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const nextSHP = () => { setCurrentSHPIndex((prev) => (prev + 1) % shpData.length); setCurrentImageIndex(0); };
   const prevSHP = () => { setCurrentSHPIndex((prev) => (prev - 1 + shpData.length) % shpData.length); setCurrentImageIndex(0); };
@@ -339,10 +400,20 @@ Seri alat musik tradisional nusantara ini merupakan prangko definitif berbudaya.
                   <div className="h-2 bg-white/30 rounded-full overflow-hidden border border-white/40">
                     <motion.div className="h-full rounded-full shadow-lg" style={{ backgroundColor: '#d4af37' }} initial={{ width: '0%' }} animate={{ width: isPlayingAudio ? '85%' : '0%' }} transition={{ duration: 30, ease: 'linear' }} />
                   </div>
-                  <div className="flex items-center justify-between text-xs font-serif" style={{ color: '#d4af37' }}>
-                    <span>{isPlayingAudio ? '0:05' : '0:00'}</span>
-                    <span>3:45</span>
-                  </div>
+                  <div className="h-2 bg-white/30 rounded-full overflow-hidden border border-white/40">
+  <motion.div 
+    className="h-full rounded-full shadow-lg" 
+    style={{ 
+      backgroundColor: '#d4af37',
+      width: `${audioProgress}%`
+    }} 
+    transition={{ duration: 0.1 }}
+  />
+</div>
+<div className="flex items-center justify-between text-xs font-serif" style={{ color: '#d4af37' }}>
+  <span>{formatTime(audioCurrentTime)}</span>
+  <span>{formatTime(audioDuration)}</span>
+</div>
                 </div>
               </motion.div>
             </div>

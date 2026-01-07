@@ -221,8 +221,8 @@ const stampCollection: StampData[] = [
     region: "Jawa",
     image: "/katjapi.webp",
     avatar: "/katjapi.webp",
-    tutorialVideo: "/video/katjapi.mp4",
-    audioFile: "/audio/katjapi.mp3",
+    tutorialVideo: "/video/kaltjapi.mp4",
+    audioFile: "/audio/kaltjapi.mp3",
     description:
       "Alat musik petik Sunda dengan banyak senar. Menghasilkan bunyi lembut dan merdu. Instrumen khas seni Mamaos Cianjuran.",
     material: "Kayu, Senar",

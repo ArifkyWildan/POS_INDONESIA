@@ -405,6 +405,159 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
         </div>
       </div>
 
+      {/* Section Anatomi Prangko */}
+      <div className="max-w-7xl mx-auto mb-6 sm:mb-8 md:mb-12 px-3 sm:px-4 w-full">
+        <div className="bg-white rounded-lg p-6 sm:p-8 md:p-10 shadow-lg border border-gray-200">
+          {/* Header dengan Prangko Kecil dan Jenis Prangko */}
+          
+
+          {/* Judul Anatomi Prangko */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#172b60] text-center mb-8 sm:mb-10">
+            ANATOMI PRANGKO
+          </h2>
+
+          {/* Layout Utama - 3 Kolom */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            {/* Kolom Kiri - Penjelasan Nilai Nominal & Nama Negara */}
+            <div className="lg:col-span-3 space-y-6">
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#172b60] mb-2">
+                  Nilai Nominal (Harga)
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Angka yang menunjukkan biaya pos yang telah dibayar
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#172b60] mb-2">
+                  Nama Negara
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Identitas negara penerbit (misalnya, INDONESIA, Rep. Indonesia).
+                </p>
+              </div>
+            </div>
+
+            {/* Kolom Tengah - Dua Prangko dengan Panah Anotasi */}
+            <div className="lg:col-span-6 flex justify-center items-start">
+              <div className="relative inline-block">
+                {/* Container Dua Prangko */}
+                <div className="flex gap-4 sm:gap-6">
+                  {/* Prangko Kiri dengan Border Dashed */}
+                  <div className="relative border-4 border-dashed border-blue-400 rounded-lg p-3 bg-white">
+                    <img 
+                      src="jokowi1.png" 
+                    
+                      className="w-32 sm:w-40 md:w-48 h-auto object-cover rounded shadow-lg"
+                    />
+                    
+                    {/* Panah ke Nilai Nominal */}
+                    <div className="absolute -left-20 top-8 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#172b60]">
+                        <line x1="0" y1="1" x2="70" y2="1" strokeWidth="2" markerEnd="url(#arrowleft)" />
+                        <defs>
+                          <marker id="arrowleft" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#172b60" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+
+                    {/* Panah ke Nama Negara */}
+                    <div className="absolute -left-20 bottom-20 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#172b60]">
+                        <line x1="0" y1="1" x2="70" y2="1" strokeWidth="2" markerEnd="url(#arrowleft2)" />
+                        <defs>
+                          <marker id="arrowleft2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#172b60" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Prangko Kanan dengan Border Dashed */}
+                  <div className="relative border-4 border-dashed border-blue-400 rounded-lg p-3 bg-white">
+                    <img 
+                      src="hatta1.png" 
+                      alt="Prangko 5000" 
+                      className="w-32 sm:w-40 md:w-48 h-auto object-cover rounded shadow-lg"
+                    />
+
+                    {/* Panah ke Tahun Penerbitan */}
+                    <div className="absolute -right-20 top-4 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#24459d]">
+                        <line x1="10" y1="1" x2="80" y2="1" strokeWidth="2" markerStart="url(#arrowright1)" />
+                        <defs>
+                          <marker id="arrowright1" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M9,0 L9,6 L0,3 z" fill="#24459d" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+
+                    {/* Panah ke Perforasi */}
+                    <div className="absolute -right-20 top-1/2 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#24459d]">
+                        <line x1="10" y1="1" x2="80" y2="1" strokeWidth="2" markerStart="url(#arrowright2)" />
+                        <defs>
+                          <marker id="arrowright2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M9,0 L9,6 L0,3 z" fill="#24459d" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+
+                    {/* Panah ke Gambar/Desain */}
+                    <div className="absolute -right-20 bottom-8 hidden lg:block">
+                      <svg width="80" height="2" className="stroke-[#24459d]">
+                        <line x1="10" y1="1" x2="80" y2="1" strokeWidth="2" markerStart="url(#arrowright3)" />
+                        <defs>
+                          <marker id="arrowright3" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M9,0 L9,6 L0,3 z" fill="#24459d" />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Kolom Kanan - Penjelasan Tahun, Perforasi, Gambar */}
+            <div className="lg:col-span-3 space-y-6">
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#24459d] mb-2">
+                  Tahun Penerbitan
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Biasanya tertera samar atau diketahui melalui katalog) menunjukkan kapan prangko tersebut sah digunakan.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#24459d] mb-2">
+                  Perforasi (Gigi-gigi)
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Lubang-lubang kecil di tepi prangko yang memudahkannya untuk disobek dari lembar/blok prangko.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg sm:text-xl font-bold text-[#24459d] mb-2">
+                  Gambar/Desain
+                </h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Ilustrasi atau foto yang biasanya menjadi daya tarik utama dan tema prangko.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Stamp Cards Container */}
       <div className="relative h-[280px] xs:h-[320px] sm:h-[380px] md:h-[450px] lg:h-[550px] w-full max-w-7xl mx-auto flex justify-center items-center mb-12 sm:mb-20 md:mb-40 overflow-visible px-2 sm:px-4">
         <AnimatePresence>

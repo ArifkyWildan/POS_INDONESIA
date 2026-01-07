@@ -15,6 +15,7 @@ interface StampData {
   image: string;
   avatar: string;
   tutorialVideo: string;
+  audioFile: string;
   description: string;
   material: string;
   year: string;
@@ -82,8 +83,8 @@ const stampCollection: StampData[] = [
     region: "Pulau Rote, NTT",
     image: "/sasando.webp",
     avatar: "/sasando.webp",
-    tutorialVideo:
-      "/video/sasando.mp4",
+    tutorialVideo: "/video/sasando.mp4",
+    audioFile: "/audio/sasando.mp3",
     nominal: "Rp 1,-",
     description:
       "Sasando adalah alat musik petik khas dari Pulau Rote yang terbuat dari bambu berongga sebagai tempat resonansi dan daun lontar kering yang disusun menyerupai kipas sebagai wadah suara. Penerbitan seri ini di masa Orde Lama menunjukkan upaya awal untuk mengangkat kekayaan budaya daerah sebagai identitas bangsa.",
@@ -105,8 +106,8 @@ const stampCollection: StampData[] = [
     region: "Jawa Tengah",
     image: "/lilempung.webp",
     avatar: "/lilempung.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/lilempung.mp4",
+    audioFile: "/audio/lilempung.mp3",
     description:
       "Ansambel musik perunggu dan kuningan yang menghasilkan harmoni khas Jawa. Digunakan dalam pertunjukan wayang. Termasuk warisan budaya tak benda.",
     material: "Perunggu, Kuningan",
@@ -128,8 +129,8 @@ const stampCollection: StampData[] = [
     region: "NTT",
     image: "/foidoa.webp",
     avatar: "/foidoa.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/foidoa.mp4",
+    audioFile: "/audio/foidoa.mp3",
     description:
       "Alat musik petik khas Rote dari daun lontar. Menghasilkan suara lembut yang menenangkan. Sering dimainkan saat upacara adat.",
     material: "Daun Lontar",
@@ -151,8 +152,8 @@ const stampCollection: StampData[] = [
     region: "Sulawesi Utara",
     image: "/kaltjapi.webp",
     avatar: "/kaltjapi.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/kaltjapi.mp4",
+    audioFile: "/audio/kaltjapi.mp3",
     description:
       "Alat musik perkusi dari deretan kayu dengan nada berbeda. Dimainkan dengan stik khusus. Merupakan instrumen utama di Minahasa.",
     material: "Kayu Telur",
@@ -174,8 +175,8 @@ const stampCollection: StampData[] = [
     region: "Papua & Maluku",
     image: "/arababu.webp",
     avatar: "/arababu.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/arababu.mp4",
+    audioFile: "/audio/arababu.mp3",
     description:
       "Alat musik gesek dengan satu senar khas Maluku. Instrumen melodi yang indah dan sering mengiringi tarian adat.",
     material: "Kayu, Kulit",
@@ -197,8 +198,8 @@ const stampCollection: StampData[] = [
     region: "Sumatera Barat",
     image: "/genderang.webp",
     avatar: "/genderang.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/genderang.mp4",
+    audioFile: "/audio/genderang.mp3",
     description:
       "Gendang panjang dari Minangkabau. Digunakan untuk mengiringi tari piring dan upacara penting lainnya.",
     material: "Kulit, Kayu",
@@ -220,8 +221,8 @@ const stampCollection: StampData[] = [
     region: "Jawa",
     image: "/katjapi.webp",
     avatar: "/katjapi.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/katjapi.mp4",
+    audioFile: "/audio/katjapi.mp3",
     description:
       "Alat musik petik Sunda dengan banyak senar. Menghasilkan bunyi lembut dan merdu. Instrumen khas seni Mamaos Cianjuran.",
     material: "Kayu, Senar",
@@ -243,8 +244,8 @@ const stampCollection: StampData[] = [
     region: "Jawa Barat",
     image: "/hape.webp",
     avatar: "/hape.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/hape.mp4",
+    audioFile: "/audio/hape.mp3",
     description:
       "Alat musik petik Sunda yang lebih kecil dari Katjapi, dikenal karena melodi-melodinya yang ceria. Populer di Jawa Barat.",
     material: "Kayu, Senar",
@@ -266,8 +267,8 @@ const stampCollection: StampData[] = [
     region: "Sumatera Barat",
     image: "/gangsa.webp",
     avatar: "/gangsa.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/gangsa.mp4",
+    audioFile: "/audio/gangsa.mp3",
     description:
       "Gong kecil berbentuk pencu dari Minangkabau. Dimainkan dalam ensembel Talempong. Menghasilkan ritme yang dinamis.",
     material: "Kuningan",
@@ -289,8 +290,8 @@ const stampCollection: StampData[] = [
     region: "Jawa",
     image: "/serunai.webp",
     avatar: "/serunai.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/serunai.mp4",
+    audioFile: "/audio/serunai.mp3",
     description:
       "Alat tiup tradisional dengan suara nyaring dari membran ganda. Populer di Jawa dan Sumatera.",
     material: "Kayu, Kulit",
@@ -312,8 +313,8 @@ const stampCollection: StampData[] = [
     region: "Jawa Barat",
     image: "/rebab.webp",
     avatar: "/rebab.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/rebab.mp4",
+    audioFile: "/audio/rebab.mp3",
     description:
       "Alat musik gesek yang melambangkan keindahan melodi dalam musik Gamelan Jawa dan Sunda.",
     material: "Kayu, Senar",
@@ -335,8 +336,8 @@ const stampCollection: StampData[] = [
     region: "Aceh",
     image: "/trompet.webp",
     avatar: "/trompet.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/trompet.mp4",
+    audioFile: "/audio/trompet.mp3",
     description:
       "Alat tiup tradisional Aceh yang unik, sering digunakan dalam prosesi kerajaan dan upacara adat.",
     material: "Kayu",
@@ -358,8 +359,8 @@ const stampCollection: StampData[] = [
     region: "Jawa Barat",
     image: "/lotobuang.webp",
     avatar: "/lotobuang.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/lotobuang.mp4",
+    audioFile: "/audio/lotobuang.mp3",
     description:
       "Ansambel musik dari bambu dengan berbagai ukuran. Modern dan populer di kalangan muda. Mirip Angklung namun lebih kecil.",
     material: "Bambu",
@@ -381,8 +382,8 @@ const stampCollection: StampData[] = [
     region: "Lombok",
     image: "/tamburu.webp",
     avatar: "/tamburu.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/tamburu.mp4",
+    audioFile: "/audio/tamburu.mp3",
     description:
       "Gendang besar Sasak yang dimainkan dalam grup. Mengiringi perang topat dan upacara. Memiliki peran ritmis penting.",
     material: "Kayu, Kulit",
@@ -404,8 +405,8 @@ const stampCollection: StampData[] = [
     region: "Jawa Barat",
     image: "/kulintang.webp",
     avatar: "/kulintang.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/kulintang.mp4",
+    audioFile: "/audio/kulintang.mp3",
     description:
       "Alat musik dari bilah kayu yang dipukul. Mirip gambang namun dengan resonansi yang berbeda. Populer di Jawa Barat dan Maluku Utara.",
     material: "Bambu",
@@ -427,8 +428,8 @@ const stampCollection: StampData[] = [
     region: "Sumatera Utara",
     image: "/keledi.webp",
     avatar: "/keledi.webp",
-    tutorialVideo:
-      "https://images.unsplash.com/photo-1510906594845-bc082582c8cc?w=800&h=450&fit=crop",
+    tutorialVideo: "/video/keledi.mp4",
+    audioFile: "/audio/keledi.mp3",
     description:
       "Alat tiup Batak dengan suara keras dan lantang, terbuat dari gabungan bambu. Digunakan dalam pesta adat Batak dan upacara pemakaman.",
     material: "Kayu, Logam",
@@ -600,15 +601,6 @@ export default function MuseumPrangko() {
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
-  // ==========================================
-  // CUSTOM AUDIO FILE - GANTI PATH INI
-  // ==========================================
-  const CUSTOM_AUDIO_FILE = "/audio/sasando.mp3"; // GANTI dengan path audio Anda
-
-  // ==========================================
-  // CUSTOM VIDEO FILE - GANTI PATH INI
-  // ==========================================
-  const CUSTOM_VIDEO_FILE = "/video/sasando.mp4"; // GANTI dengan path video Anda
 
   const handlePlayVideo = useCallback(() => {
     if (videoRef.current) {
@@ -623,56 +615,71 @@ export default function MuseumPrangko() {
   }, [isPlayingVideo]);
 
   const handlePlayAudio = useCallback(() => {
-    if (!audioRef.current) {
-      // Buat audio element dengan file audio dari selectedStamp
-      audioRef.current = new Audio("/audio/sasando.mp3"); // Ganti dengan path audio Anda
+  if (!audioRef.current) {
+    // Buat audio element dengan file audio dari selectedStamp
+    audioRef.current = new Audio(selectedStamp.audioFile); // Gunakan audioFile dari selectedStamp
 
-      // Event listeners
-      audioRef.current.addEventListener("loadedmetadata", () => {
-        if (audioRef.current) {
-          setAudioDuration(audioRef.current.duration);
-        }
-      });
+    // Event listeners
+    audioRef.current.addEventListener("loadedmetadata", () => {
+      if (audioRef.current) {
+        setAudioDuration(audioRef.current.duration);
+      }
+    });
 
-      audioRef.current.addEventListener("timeupdate", () => {
-        if (audioRef.current) {
-          setAudioCurrentTime(audioRef.current.currentTime);
-          const progress =
-            (audioRef.current.currentTime / audioRef.current.duration) * 100;
-          setAudioProgress(progress);
-        }
-      });
+    audioRef.current.addEventListener("timeupdate", () => {
+      if (audioRef.current) {
+        setAudioCurrentTime(audioRef.current.currentTime);
+        const progress =
+          (audioRef.current.currentTime / audioRef.current.duration) * 100;
+        setAudioProgress(progress);
+      }
+    });
 
-      audioRef.current.addEventListener("ended", () => {
-        setIsPlayingAudio(false);
-        setAudioCurrentTime(0);
-        setAudioProgress(0);
-      });
-    }
-
-    if (isPlayingAudio) {
-      audioRef.current.pause();
+    audioRef.current.addEventListener("ended", () => {
       setIsPlayingAudio(false);
-    } else {
-      audioRef.current.play();
-      setIsPlayingAudio(true);
-    }
-  }, [isPlayingAudio]);
+      setAudioCurrentTime(0);
+      setAudioProgress(0);
+    });
+  }
 
-  React.useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+  if (isPlayingAudio) {
+    audioRef.current.pause();
+    setIsPlayingAudio(false);
+  } else {
+    audioRef.current.play();
+    setIsPlayingAudio(true);
+  }
+}, [isPlayingAudio, selectedStamp.audioFile]); // Tambahkan selectedStamp.audioFile ke dependency
 
-    const handleVideoEnded = () => {
-      setIsPlayingVideo(false);
-    };
+// Tambahkan useEffect ini setelah deklarasi audioRef
+React.useEffect(() => {
+  // Reset audio ketika selectedStamp berubah
+  if (audioRef.current) {
+    audioRef.current.pause();
+    audioRef.current = null;
+  }
+  setIsPlayingAudio(false);
+  setAudioProgress(0);
+  setAudioCurrentTime(0);
+  setAudioDuration(10);
+}, [selectedStamp.id]); // Trigger saat stamp berubah
 
-    video.addEventListener("ended", handleVideoEnded);
+  // Di bagian video section, ganti ini:
+<video
+  ref={videoRef}
+  src={selectedStamp.tutorialVideo} // Gunakan tutorialVideo dari selectedStamp
+  className="w-full aspect-video object-cover"
+  playsInline
+/>
 
-    return () => {
-      video.removeEventListener("ended", handleVideoEnded);
-    };
-  }, []);
+// Dan tambahkan useEffect untuk reset video saat stamp berubah:
+React.useEffect(() => {
+  const video = videoRef.current;
+  if (video) {
+    video.load(); // Reload video ketika selectedStamp berubah
+    setIsPlayingVideo(false);
+  }
+}, [selectedStamp.id]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -1136,7 +1143,7 @@ export default function MuseumPrangko() {
               >
                 <video
                   ref={videoRef}
-                  src={CUSTOM_VIDEO_FILE}
+                  src={selectedStamp.tutorialVideo}
                   className="w-full aspect-video object-cover"
                   playsInline
                 />

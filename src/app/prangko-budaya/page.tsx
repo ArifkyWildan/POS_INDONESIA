@@ -1169,7 +1169,7 @@ React.useEffect(() => {
                 </div>
               </div>
               <p className="text-xs text-gray-500 mt-3 text-center font-serif italic">
-                {isPlayingVideo ? "⏸️ Klik video untuk pause" : "▶️ Klik video untuk memutar"}
+                {isPlayingVideo ? "⏸️ Klik video untuk pause" : "▶️ Klik video untuk memutar"}1
               </p>
             </motion.div>
           </div>

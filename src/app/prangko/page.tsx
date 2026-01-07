@@ -147,7 +147,7 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
           <button 
             onClick={() => {
               if (typeof window !== 'undefined') {
-                window.history.back();
+                window.location.href = '/';
               }
             }}
             className="flex items-center space-x-1 sm:space-x-2 text-white hover:text-blue-100 transition-colors duration-200 font-semibold text-xs sm:text-sm md:text-base"
@@ -207,12 +207,18 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
           
 
           {/* Kolom Tengah - Gambar Koleksi Prangko */}
-          <div className="bg-white rounded-lg p-4 sm:p-5 shadow-lg border-2 border-gray-200 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-4 sm:p-5 shadow-lg border-2 border-gray-200 flex flex-col items-center justify-center">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#172b60] mb-3 text-center">
+              SHP
+            </h3>
             <img 
               src="3.png" 
               alt="Koleksi Prangko Museum" 
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg mb-3"
             />
+            <p className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 text-center">
+              Sampulan Hari Pertama
+            </p>
           </div>
 
           {/* Kolom Kanan - Progress Bintang */}
@@ -358,7 +364,7 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
                   {/* Prangko Kiri dengan Border Dashed */}
                   <div className="relative border-4 border-dashed border-blue-400 rounded-lg p-3 bg-white">
                     <img 
-                      src="jokowi.png" 
+                      src="jokowi1.png" 
                     
                       className="w-32 sm:w-40 md:w-48 h-auto object-cover rounded shadow-lg"
                     />
@@ -391,7 +397,7 @@ const StampList: React.FC<StampListProps> = ({ onSelectStamp }) => {
                   {/* Prangko Kanan dengan Border Dashed */}
                   <div className="relative border-4 border-dashed border-blue-400 rounded-lg p-3 bg-white">
                     <img 
-                      src="hatta.png" 
+                      src="hatta1.png" 
                       alt="Prangko 5000" 
                       className="w-32 sm:w-40 md:w-48 h-auto object-cover rounded shadow-lg"
                     />

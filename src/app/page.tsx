@@ -77,7 +77,7 @@ export default function Home() {
     <main className="relative bg-indigo-900 text-white min-h-screen overflow-x-hidden">
       <Navbar />
 
-  <div className="fixed top-6 right-6 z-50">
+  <div className="absolute top-6 right-6 z-50">
   <a
     href="/login"
     className="

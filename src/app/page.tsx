@@ -77,6 +77,24 @@ export default function Home() {
     <main className="relative bg-indigo-900 text-white min-h-screen overflow-x-hidden">
       <Navbar />
 
+  <div className="fixed top-6 right-6 z-50">
+  <a
+    href="/login"
+    className="
+      px-5 py-2
+      rounded-full
+      bg-indigo-900/80 backdrop-blur
+      border border-indigo-300/30
+      text-white text-sm font-semibold
+      hover:bg-indigo-800
+      transition-all duration-300
+    "
+  >
+    Login
+  </a>
+</div>
+
+
       {/* Hero Section */}
       <header
         id="hero"

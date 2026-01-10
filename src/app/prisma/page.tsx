@@ -22,7 +22,7 @@ const App = () => {
     // --- Utility Components ---
 
     const BackButton = () => (
-        <a href="/" className={`flex items-center text-sm font-semibold px-4 py-2 rounded-full border transition duration-200 
+        <a href="/prangko" className={`flex items-center text-sm font-semibold px-4 py-2 rounded-full border transition duration-200 
             text-[${COLOR_DARK}] border-[${COLOR_DARK}] hover:bg-[${COLOR_DARK}] hover:text-white`}>
             {/* SVG Arrow Left (Ikon Panah) */}
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

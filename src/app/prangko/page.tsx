@@ -314,7 +314,7 @@ const StampList: React.FC<{ onSelectStamp: (id: string) => void }> = ({ onSelect
 
   useEffect(() => {
     if (mounted) {
-      sessionStorage.setItem('viewedStamps', JSON.stringify([...viewedStamps]));
+      sessionStorage.setItem('viewedStamps', JSON.stringify(Array.from(viewedStamps)));
     }
   }, [viewedStamps, mounted]);
 
@@ -326,7 +326,11 @@ const StampList: React.FC<{ onSelectStamp: (id: string) => void }> = ({ onSelect
 
   const handleStampClick = (id: string) => {
     if (!viewedStamps.has(id)) {
-      setViewedStamps(prev => new Set([...prev, id]));
+      setViewedStamps(prev => {
+        const newSet = new Set(prev);
+        newSet.add(id);
+        return newSet;
+      });
       setShowNotification(true);
       
       if (viewedStamps.size + 1 === TOTAL_STAMPS && !rewardClaimed) {
